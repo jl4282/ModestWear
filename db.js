@@ -25,14 +25,13 @@ Styles.plugin(URLSlugs('name owner'));
 
 
 var User = new mongoose.Schema({
-  id: String,
   name: String,
   styles: [Styles], //should be name of style with array of clothes
   favorites: [Clothing]
 });
-
+User.plugin(URLSlugs('name'));
 
 mongoose.model('Clothing', Clothing);
 mongoose.model('Styles', Styles);
 mongoose.model('User', User);
-mongoose.connect('mongodb://localhost/clothesdb');
+mongoose.connect('mongodb://localhost/mwdb');
