@@ -18,6 +18,9 @@ function kosherScrape(url, links){
             if($('.currentPage').next().html()){
                 kosherScrape('http://www.koshercasual.com/' + $('.currentPage').next().find('a').attr('href'), links);
             }
+            else{
+                //final page so call function that will scrape individual pages
+            }
             console.log("ITS WORKING!");
         }
         if(error){
