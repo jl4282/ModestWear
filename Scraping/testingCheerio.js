@@ -13,8 +13,6 @@ function kosherScrape(url, links){
                 links.push($(this).attr('href'));
             });
             console.log(links);
-
-            // $('.currentPage').next().find('a').attr('href');
             if($('.currentPage').next().html()){
                 kosherScrape('http://www.koshercasual.com/' + $('.currentPage').next().find('a').attr('href'), links);
             }
@@ -28,13 +26,3 @@ function kosherScrape(url, links){
         }
     });
 }
-
-
-
-
-
-/*
-
-    req function that returns body
-
- */
