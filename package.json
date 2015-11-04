@@ -15,6 +15,9 @@
     "mongoose": "^4.2.3",
     "mongoose-url-slugs": "^0.1.4",
     "morgan": "~1.6.1",
+    "ejs": "latest",
+    "passport": "latest",
+    "passport-facebook": "latest",
     "request": "^2.65.0",
     "serve-favicon": "~2.3.0"
   }

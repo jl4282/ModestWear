@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<body>
+
+		<% if (!user) { %>
+		<h2>Welcome! Please log in.</h2>
+		<a href="/auth/facebook">
+		<button>Login with facebook</button>
+		</a>
+		<% } else { %>
+		<h2>Hello, <%= user.username %>.</h2>
+		<% } %>
+
+	</body>
+</html>
