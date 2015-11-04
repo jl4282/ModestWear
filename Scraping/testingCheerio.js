@@ -5,7 +5,7 @@ require('../db');
 var Clothing = mongoose.model('Clothing');
 
 
-var koshCasLinks = [
+var websiteLinks = [
   {
     type: 'skirt',
     link: 'http://www.koshercasual.com/category.asp?id=364'
@@ -18,14 +18,14 @@ var koshCasLinks = [
   }
 ];
 
-koshCasLinks.forEach(function(obj){
+websiteLinks.forEach(function(obj){
   var links = [];
-  kosherScrape(obj.link, links, obj.type);
+  getAllLinks(obj.link, links, obj.type);
 });
 
 
 //get all product links
-function kosherScrape(url, links, type){
+function getAllLinks(url, links, type){
   request(url, function(error, response, body){
     if(!error){
       var $ = cheerio.load(body);
@@ -33,7 +33,7 @@ function kosherScrape(url, links, type){
         links.push($(this).attr('href'));
       });
       if($('.currentPage').next().html()){
-        kosherScrape('http://www.koshercasual.com/' + $('.currentPage').next().find('a').attr('href'), links, type);
+        getAllLinks('http://www.koshercasual.com/' + $('.currentPage').next().find('a').attr('href'), links, type);
       }
       else{
         //final page so call function that will scrape individual pages
