@@ -1,5 +1,9 @@
 var request = require('request');
 var cheerio = require('cheerio');
+var mongoose = require('mongoose');
+require('../db');
+var Clothing = mongoose.model('Clothing');
+
 
 var koshCasLinks = [
   {
@@ -14,7 +18,12 @@ var koshCasLinks = [
   }
 ];
 
-var links = [];
+koshCasLinks.forEach(function(obj){
+  var links = [];
+  kosherScrape(obj.link, links, obj.type);
+});
+
+
 // kosherScrape(url, links, 'skirt');
 function kosherScrape(url, links, type){
   request(url, function(error, response, body){
@@ -92,11 +101,9 @@ function scrapeProductPage(link, type){
       //length
       if (type === 'skirt'){
         item.length = $('.mceItemTable tbody').find('tr').eq(4).find('td').eq(3).text().trim();
-        console.log(item.length);
       }
       if (type === 'dress'){
         item.length = $('.mceItemTable tbody').find('tr').eq(4).find('td').eq(4).text().trim();
-        console.log(item.length);
       }
       //
       //url
@@ -114,7 +121,19 @@ function scrapeProductPage(link, type){
       //approved
       item.approved = true;
 
-      // console.log(item.type);
+      // console.log(item);
+
+      //INSERT INTO DB
+      new Clothing(item).save(function(err, clothing, count){
+        if (!err){
+          console.log('no error!');
+        }
+        else{
+          console.log('error: ', err);
+        }
+      });
+
+
     }
     else{
       console.log('ERROR in individual link:' + fullUrl);
