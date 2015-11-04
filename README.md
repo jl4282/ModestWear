@@ -9,9 +9,20 @@
 `node bin/www`
 
 ## Scraping
+
+###Running a Scraping Algorithm
+
 Scraping requires mongo to be running. 
 To accept MongoDB connections: `mongod`.
 In another terminal window run the scraping algorithm, `node testingCheerio.js`.
+
+###Creating a Scraping Algorithm
+
+We are using [cheerio.js](http://cheeriojs.github.io/cheerio/) to scrape information. It uses jQuery like syntax and is very easy to use. They have great documentation for it.
+
+The template is based off of kosherCasual.js. The file has two function. The first, `kosherScrape` takes in a url, array, and clothing type. This function aggregates all the links to a product page. It continues onto the next page in the website, until it is on the last page. At this point it has compiled a list to all of the links for products in that category, and then it calls the scrapeProductPage function.
+
+scrapeProductPage scrapes an individual page and stores it in the database. We add fields to an object until the object contains everything, and then that object is passed into mongoose to add it to the database. **Note:** Property names must match the names in the schema exactly, or else it won't save.
 
 ##MongoDB Terminal Commands
 
