@@ -34,3 +34,8 @@ Thus, an example scraping might look something like this:
 2. Leave that open while running `node scrapingalgo.js`
 3. Then open `mongo mwdb`
 4. `db.clothings.count()` to make sure it added items.
+
+##Design
+
+We're using Material Design Lite. It shouldn't require too much custom CSS. Try to implement everything using MDL. The components can all be found [here](http://www.getmdl.io/components/index.html). Do note that the components have extensive examples and step by step guides on the bottom. 
+
