@@ -7,17 +7,20 @@ var Clothing = new mongoose.Schema({
   description: String,
   sizes: [String], //array of sizes
   price: Number,
-  length: Number,
-  url: String,
+  colors: [String],
+  length: Number, //take middle size
+  url: String, //back to original site scraped from
   brand: String,
   itemNumber: String,
-  type: String, //enum type of clothing that it is (skirt, hat...)
-  approved: Boolean //whether it’s approved to show
+  type: {type: String, enum: ['skirt', 'shirt', 'dress', 'sweater']}, // skirt, shirt, dress, sweater
+  approved: Boolean, //whether it’s approved to show
+  favorites: Number, //keeps track of how many times it was favorited
+  styles: Number //keeps track of how many styles it's in
 });
 Clothing.plugin(URLSlugs('name'));
 
 var Styles = new mongoose.Schema({
-  name: String,
+  name: String, //name of the Style
   clothes: [Clothing],
   owner: String
 });
@@ -25,9 +28,9 @@ Styles.plugin(URLSlugs('name owner'));
 
 
 var User = new mongoose.Schema({
-  name: String,
+  name: String, //name of user
   styles: [Styles], //should be name of style with array of clothes
-  favorites: [Clothing]
+  favorites: [Clothing] //items the user has favorited
 });
 User.plugin(URLSlugs('name'));
 
