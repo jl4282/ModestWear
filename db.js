@@ -19,22 +19,33 @@ var Clothing = new mongoose.Schema({
 });
 Clothing.plugin(URLSlugs('name'));
 
-var Styles = new mongoose.Schema({
+var Style = new mongoose.Schema({
   name: String, //name of the Style
   clothes: [Clothing],
+  outfits: [Outfit],
   owner: String
 });
-Styles.plugin(URLSlugs('name owner'));
+Style.plugin(URLSlugs('name'));
 
+var Outfit = new mongoose.Schema({
+  name: String,
+  clothes: [Clothing],
+  style: Styles,
+  owner: String
+});
+Outfit.plugin(URLSlugs('name'));
 
 var User = new mongoose.Schema({
   name: String, //name of user
   styles: [Styles], //should be name of style with array of clothes
-  favorites: [Clothing] //items the user has favorited
+  favorites: [Clothing], //items the user has favorited
+  following: [User], //which users the person is following
+  searches: [String]
 });
 User.plugin(URLSlugs('name'));
 
 mongoose.model('Clothing', Clothing);
-mongoose.model('Styles', Styles);
+mongoose.model('Style', Style);
+mongoose.model('Outfit', Outfit);
 mongoose.model('User', User);
 mongoose.connect('mongodb://localhost/mwdb');
