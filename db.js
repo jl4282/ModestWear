@@ -19,14 +19,6 @@ var Clothing = new mongoose.Schema({
 });
 Clothing.plugin(URLSlugs('name'));
 
-var Style = new mongoose.Schema({
-  name: String, //name of the Style
-  clothes: [Clothing],
-  outfits: [Outfit],
-  owner: String
-});
-Style.plugin(URLSlugs('name'));
-
 var Outfit = new mongoose.Schema({
   name: String,
   clothes: [Clothing],
@@ -34,6 +26,14 @@ var Outfit = new mongoose.Schema({
   owner: String
 });
 Outfit.plugin(URLSlugs('name'));
+
+var Style = new mongoose.Schema({
+  name: String, //name of the Style
+  clothes: [Clothing],
+  outfits: [Outfit],
+  owner: String
+});
+Style.plugin(URLSlugs('name'));
 
 var User = new mongoose.Schema({
   name: String, //name of user
