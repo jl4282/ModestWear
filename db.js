@@ -22,24 +22,24 @@ Clothing.plugin(URLSlugs('name'));
 var Outfit = new mongoose.Schema({
   name: String,
   clothes: [Clothing],
-  style: Styles,
+  style: {type: mongoose.Schema.Types.ObjectId, ref: 'Style'},
   owner: String
 });
 Outfit.plugin(URLSlugs('name'));
 
 var Style = new mongoose.Schema({
   name: String, //name of the Style
-  clothes: [Clothing],
-  outfits: [Outfit],
+  clothes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
+  outfits: [{type: mongoose.Schema.Types.ObjectId, ref: 'Outfit'}],
   owner: String
 });
 Style.plugin(URLSlugs('name'));
 
 var User = new mongoose.Schema({
   name: String, //name of user
-  styles: [Styles], //should be name of style with array of clothes
-  favorites: [Clothing], //items the user has favorited
-  following: [User], //which users the person is following
+  styles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Style'}], //should be name of style with array of clothes
+  favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}], //items the user has favorited
+  following: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}], //which users the person is following
   searches: [String]
 });
 User.plugin(URLSlugs('name'));
