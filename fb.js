@@ -1,9 +1,18 @@
+//store id in model as facebookID or something like that. Request more permissions!!!
+//why isn't MDL working with links?
+
+
 var express = require('express')
   , passport = require('passport')
   , util = require('util')
-  , FacebookStrategy = require('passport-facebook').Strategy;
+  , FacebookStrategy = require('passport-facebook').Strategy
+  , logger = require('morgan')
+  , session = require('express-session')
+  , bodyParser = require("body-parser")
+  , cookieParser = require("cookie-parser")
+  , methodOverride = require('method-override');
 
-var FACEBOOK_APP_ID = "1666068127010516"
+var FACEBOOK_APP_ID = "1666068127010516";
 var FACEBOOK_APP_SECRET = "c92430f3b1228e0d7e8fc548a2b14692";
 
 
@@ -30,12 +39,12 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "https://apps.facebook.com/1666068127010516"
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
-      
+
       // To keep the example simple, the user's Facebook profile is returned to
       // represent the logged-in user.  In a typical application, you would want
       // to associate the Facebook account with a user record in your database,
@@ -51,23 +60,22 @@ passport.use(new FacebookStrategy({
 var app = express();
 
 // configure Express
-app.configure(function() {
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'ejs');
-  app.use(express.logger());
-  app.use(express.cookieParser());
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(express.session({ secret: 'keyboard cat' }));
+  app.set('view engine', 'hbs');
+  app.use(logger());
+  app.use(cookieParser());
+  app.use(bodyParser());
+  app.use(methodOverride());
+  app.use(session({ secret: 'keyboard cat' }));
   // Initialize Passport!  Also use passport.session() middleware, to support
   // persistent login sessions (recommended).
   app.use(passport.initialize());
   app.use(passport.session());
-  app.use(app.router);
-});
+  app.use(express.static(__dirname + '/public'));
 
 
 app.get('/', function(req, res){
+  console.log('req.user: ', req.user);
   res.render('index', { user: req.user });
 });
 
@@ -85,18 +93,17 @@ app.get('/login', function(req, res){
 //   redirecting the user to facebook.com.  After authorization, Facebook will
 //   redirect the user back to this application at /auth/facebook/callback
 app.get('/auth/facebook',
-  passport.authenticate('facebook'),
-  function(req, res){
+  passport.authenticate('facebook', { authType: 'rerequest', scope: ['user_status', 'public_profile', 'email', 'user_about_me'] }));
+
     // The request will be redirected to Facebook for authentication, so this
     // function will not be called.
-  });
 
 // GET /auth/facebook/callback
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-app.get('/auth/facebook/callback', 
+app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
@@ -108,7 +115,6 @@ app.get('/logout', function(req, res){
 });
 
 app.listen(3000);
-console.log("Application running on port 3000");
 
 
 // Simple route middleware to ensure user is authenticated.
@@ -118,5 +124,5 @@ console.log("Application running on port 3000");
 //   login page.
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
+  res.redirect('/login');
 }
