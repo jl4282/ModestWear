@@ -1,5 +1,5 @@
 require('./db');
-require('./auth');
+// require('./auth');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');

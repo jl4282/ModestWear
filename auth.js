@@ -1,12 +1,13 @@
 var mongoose = require('mongoose'),
     passport = require('passport'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    oauth = require('./oauth');
 var FacebookStrategy  = require('passport-facebook').Strategy;
 
 passport.use(new FacebookStrategy({
-    clientID: FACEBOOK_APP_ID,
-    clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    clientID: oauth.facebook.clientID,
+    clientSecret: oauth.facebook.clientSecret,
+    callbackURL: oauth.facebook.callbackURL
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
