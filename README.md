@@ -16,11 +16,19 @@ ModestWear is a website that aggregates modest clothing so that users don't need
 - [passport-facebook](https://github.com/jaredhanson/passport-facebook): We want to login through Facebook, so we chose passport-facebook because it is the module recommended by Passport. We need to still research how to actually get data from a user's Facebook page, and how to add it to the database. Right now Passport-Facebook is only working in a separate test app `fb.js`, although we need to add it to the main application.
 
 ###Point Values
-- MVC (1) - we want to lay out the project in a Model - View - Controller format
-- Phantom.js (3) - We want to use Phantom.js to test our routes
+- MVC (1) 
+  - I want to lay out the project in a Model - View - Controller format
+  - Need to research Polymer and MVC
+- Using pre-built Express project templates (1) - created `app using npm install express-generator`
+- Phantom.js (3) 
+  - We want to use Phantom.js to test our routes
+  - Need to research it more [here](http://phantomjs.org/)
 - Less (1?) - If we need to add any aditional CSS we want to use LESS
 - Minification (1) - We want to minify everything on our production server
-- grunt to automatically precompile Less and run scraping algorithms and minify the files (1)
+- grunt to automatically (1): 
+  - precompile Less (if used) 
+  - run scraping algorithms
+  - minify the files
 - JSHint (1) - we want to install JSHint for SublimeText2
 - User Authentication (3)- hopefully use Facebook
 - CSS Framework (1) - Either Material Design Lite or the framework that Polymer comes with.
@@ -116,7 +124,125 @@ Total: 13? (I'm bad with numbers)
   2. The user finds the other user in a search result
   3. User finds style in search result and follows it
 - Postconditions: User will see more search results from the followed user or followed style. It might also show up in a feed page if we get that far.
- 
+
+###Example Documents
+
+####User
+```javascript
+//Model
+var User = new mongoose.Schema({
+  name: String, //name of user
+  styles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Style'}], //should be name of style with array of clothes
+  favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}], //items the user has favorited
+  following:
+  {
+    users: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+    styles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Style'}]
+  }, //which users the person is following
+  searches: [String],
+  facebookId: [String] //probably want to store more FB data as well
+});
+
+  //example:
+{
+  name: 'Jesse Lifshitz',
+  styles: ['ref to style 1', 'ref to style 2'],
+  favorites: ['ref to clothing 1', 'ref to clothing 2', 'ref to clothing 3'],
+  following: 
+  {
+    users: ['ref to user 1', 'ref to user 2', 'ref to user 3' ...],
+    styles: ['ref to style 1', 'ref to style 2']
+  },
+  searches: ['black skirts', 'summer shirts', '30 inch skirt'],
+  facebookId: ['sad;flkjasdf123;asdf12'] //provided by Facebook
+}  
+```
+####Clothing
+```javascript
+//model
+var Clothing = new mongoose.Schema({
+  name: String,
+  images: [String], //(array of links to the image so that we don’t need to host the image)
+  description: String,
+  sizes: [String], //array of sizes
+  price: Number,
+  colors: [String],
+  length: Number, //take middle size
+  url: String, //back to original site scraped from
+  brand: String,
+  itemNumber: String,
+  type: {type: String, enum: ['skirt', 'shirt', 'dress', 'sweater']}, // skirt, shirt, dress, sweater
+  approved: Boolean, //whether it’s approved to show
+  favorites: Number, //keeps track of how many times it was favorited
+  styles: Number //keeps track of how many styles it's in
+});
+
+//example: pulled from a findOne query...
+{
+  "_id" : ObjectId("563b8a0e6420742115954a92"),
+  "name" : "Little Black Dress- Knee Length Scuba Fabric",
+  "description" : "Little black dress in scuba fabric is the perfect addition to every wardrobe. Fitted cut made from 90% polyester/10% spandex. Classic LBD with silver lurex highlights to make you shine. Wear as is or add a scarf, belt, or cardigan to give it your personal touch. Also available in purple without lurex",
+  "price" : 36,
+  "length" : 39,
+  "url" : "http://www.koshercasual.com/Little-Black-DressKnee-Length-Scuba-Fabric_1508_p.html",
+  "brand" : "KosherCasual",
+  "itemNumber" : "1508",
+  "type" : "dress",
+  "approved" : true,
+  "slug" : "little-black-dress-knee-length-scuba-fabric",
+  "colors" : [
+    "Purple",
+    "Black Lurex"
+  ],
+  "sizes" : [
+    "XS",
+    "S",
+    "M"
+  ],
+  "images" : [
+    "https://www.koshercasual.com/cthumbh.asp?path=C:\\hshome\\koshercasual\\koshercasual.com\\uploads\\3129.26938.jpg&height=300",
+    "https://www.koshercasual.com/cthumbh.asp?path=C:\\hshome\\koshercasual\\koshercasual.com\\uploads\\3176.49741.jpg&height=300"
+  ],
+  "__v" : 0
+}
+```
+####Outfit
+```javascript
+//model:
+var Outfit = new mongoose.Schema({
+  name: String,
+  clothes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
+  style: {type: mongoose.Schema.Types.ObjectId, ref: 'Style'},
+  owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+});
+
+//example: 
+{
+  name: 'Good for School',
+  clothes: ['ref to clothing 1', 'ref to clothing 2', 'ref to clothing 3'],
+  style: 'ref to Style',
+  owner: 'ref to User'
+}
+```
+####Style
+```javascript
+//model
+var Style = new mongoose.Schema({
+  name: String, //name of the Style
+  clothes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
+  outfits: [{type: mongoose.Schema.Types.ObjectId, ref: 'Outfit'}],
+  owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+});
+
+//example: 
+{
+  name: 'Hipster',
+  clothes: ['ref to clothing 1', 'ref to clothing 2', 'ref to clothing 3'],
+  outfits: ['ref to outfit 1', 'ref to another outfit'],
+  owner: 'ref to user'
+}
+```
+
 ###Site Map
 ![Site Map](/documentation/site_map.JPG?raw=true "Site Map")
 
@@ -148,7 +274,7 @@ Total: 13? (I'm bad with numbers)
 
 ##Design
 
-We're using Material Design Lite. It shouldn't require too much custom CSS. Try to implement everything using MDL. The components can all be found [here](http://www.getmdl.io/components/index.html). Do note that the components have extensive examples and step by step guides on the bottom. 
+We're using Material Design themes. We hope to abide the MD standards and create meaningful transitions.
 
 
 ##Instructions - Quick Guide to MEAN

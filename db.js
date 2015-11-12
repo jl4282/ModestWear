@@ -1,4 +1,5 @@
 'use strict';
+
 var mongoose = require('mongoose'),
     URLSlugs = require('mongoose-url-slugs');
 
@@ -22,9 +23,9 @@ Clothing.plugin(URLSlugs('name'));
 
 var Outfit = new mongoose.Schema({
   name: String,
-  clothes: [Clothing],
+  clothes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
   style: {type: mongoose.Schema.Types.ObjectId, ref: 'Style'},
-  owner: String
+  owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 });
 Outfit.plugin(URLSlugs('name'));
 
@@ -32,7 +33,7 @@ var Style = new mongoose.Schema({
   name: String, //name of the Style
   clothes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
   outfits: [{type: mongoose.Schema.Types.ObjectId, ref: 'Outfit'}],
-  owner: String
+  owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 });
 Style.plugin(URLSlugs('name'));
 
@@ -45,7 +46,8 @@ var User = new mongoose.Schema({
     users: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
     styles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Style'}]
   }, //which users the person is following
-  searches: [String]
+  searches: [String],
+  facebookId: [String] //probably want to store more FB data as well
 });
 User.plugin(URLSlugs('name'));
 
