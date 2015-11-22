@@ -3,10 +3,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'ModestWear' });
+  res.sendfile('./public/views/index.html');
 });
 
-//Routes
+//Routes NEEDS TO BE MOVED TO ANGULAR!
 
 router.get('/search/:query', function(req, res, next) {
   //get query
