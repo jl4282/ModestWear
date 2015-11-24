@@ -7,7 +7,6 @@ router.get('/', function(req, res, next) {
 });
 
 //Routes NEEDS TO BE MOVED TO ANGULAR!
-
 router.get('/search/:query', function(req, res, next) {
   //get query
   //run db query
