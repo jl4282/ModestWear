@@ -7,27 +7,6 @@ var FACEBOOK_APP_ID = "1666068127010516";
 var FACEBOOK_APP_SECRET = "c92430f3b1228e0d7e8fc548a2b14692";
 
 
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
-
-passport.use(new FacebookStrategy({
-    clientID: FACEBOOK_APP_ID,
-    clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
-  },
-  function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function () {
-      return done(null, profile);
-    });
-  }
-));
-
-
 /* GET users listing. */
 router.get('/facebook', function(req, res, next) {
   console.log('in /facebook');

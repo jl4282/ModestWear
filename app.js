@@ -36,20 +36,44 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules',  express.static(__dirname + '/node_modules'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
-app.use(passport.initialize());
-app.use(passport.session());
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
 
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    profileFields: ['id', 'displayName', 'email']
   },
   function(accessToken, refreshToken, profile, done) {
+    console.log('anonymous function');
     process.nextTick(function () {
       return done(null, profile);
     });
   }
 ));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('/auth/facebook',
+  passport.authenticate('facebook', { authType: 'rerequest', scope: ['user_status', 'public_profile', 'email', 'user_about_me'] }));
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    console.log('========req', req.user);
+    //get the user idea and search mongo for corresponding user, if not create new user
+    res.redirect('/');
+  });
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
 app.use('/auth', fb);
 app.use('/api', api);
@@ -88,3 +112,10 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+
+//wipe out sessions after if storing user id in session ...
+//authenticated api. how does front end know that backend is authenticated?
+//
+//has session so every request has a req.user and req.session
+//check for 403 and redirect to login
+
