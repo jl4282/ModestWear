@@ -9,6 +9,12 @@ var modeStyLinks = [
   {
     type: 'skirt',
     link: 'http://www.mode-sty.com/collections/midi-skirts'
+  }, {
+    type: 'skirt',
+    link: 'http://www.mode-sty.com/collections/maxi-skirts'
+  }, {
+    type: 'dress',
+    link: 'http://www.mode-sty.com/collections/maxi-dresses'
   }
 ];/*,{
     type: 'shirt',
@@ -117,7 +123,8 @@ function scrapeProductPage(link, type){
       // TODO : sizes --> take middle size
       item.sizes = [];
       // var bad_size = ['Details', 'Coverage Information', 'Size Chart'];
-      $('strong').each(function(i, elem) {
+      $('table strong').each(function(i, elem) {
+        //if not waist
         var size_array = elem.children;
         var data = [];
         for (var a in size_array) {
@@ -126,14 +133,40 @@ function scrapeProductPage(link, type){
           var data = size_array[a]['data'];
           //console.log(data);
           // console.log(data);
-          item.sizes.push(size_array[a]['data']);
+          if (data != 'Waist' && data != 'Bust' && data != 'Hips' && data != 'Length') {
+            item.sizes.push(data);
+          }
+          // item.sizes.push(size_array[a]['data']);
         }
       });
 
       // price
       var price = $('span.current_price');
       // console.log(price[0].parent.attribs['content']);
-      item.price = price[0].parent.attribs['content'];
+      if (type == 'skirt') {
+        item.price = price[0].parent.attribs['content'];
+      }
+      else if (type == 'dress') {
+        console.log(link);
+        try {
+          item.price = price[0].parent.attribs['content'];
+          if (item.name == 'CastError') {
+            console.log('MEHHHH');
+            return;
+          }
+        } catch(e) {
+          try {
+            item.price = price[0].parent['attribs']['content'];
+          } catch(e) {
+            console.log("FAILING!!! ");
+            console.log(link);
+            console.log('\n');
+            return;
+          }
+        } 
+        
+      }
+      
 
       // TODO : NEED COLOR
       // QUESTION : I'M NOT SURE THAT THEY PUT COLOR HERE BECAUSE THEY'RE MULTICOLOR
@@ -148,12 +181,82 @@ function scrapeProductPage(link, type){
       /*
       TODO : FIND COVERAGE INFO AND THEN FIND THE FIRST DECIMAL NUMBER...
       */
+      if (type == 'dress') {
+        console.log("CHECKING FOR A DRESS");
+        //put it to a variable, then check if it's that, and take the first number
+        var length;
+        try {
+          length = $('.mceItemTable tbody').find('tr').eq(4).find('td').eq(3).text().trim();
+        }
+        catch(e) {
+          // length = $('.mceItemTable tbody').find('tr').eq(4).find('td').eq(3).text().trim();
+          console.log("CATCHING AN ERROR");
+          // length = ('.mceItemTable tbody').find('tr').eq(4).find('td');
+          // return;
+          // console.log(hi);
+        }
+        
+      }
+      else {
+        item.length = $('.mceItemTable tbody').find('tr').eq(4).find('td').eq(3).text().trim();
+      }
+      /* 
       if (type === 'skirt'){
         item.length = $('.mceItemTable tbody').find('tr').eq(4).find('td').eq(3).text().trim();
       }
       if (type === 'dress'){
-        item.length = $('.mceItemTable tbody').find('tr').eq(4).find('td').eq(4).text().trim();
-      }
+        var length = $('description');
+        console.log(length);
+        for (var a in length[0].children) {
+          console.log('hi');
+        }
+        // console.log(length);
+        // item.length = $('.mceItemTable tbody').find('tr').eq(4).find('td').eq(4).text().trim();
+        /*
+        $('table td').each(function(i, elem) {
+          var array = elem.children;
+          var num_cols = 0;
+          for (var a in array) {
+            var data = array[a]['data'];
+            console.log(data);
+          */
+            /*
+            if (typeof(data) == 'undefined') {
+              num_cols++;
+            }
+            else {
+              console.log('FOUND THE NUM COLS!!!');
+              console.log(num_cols);
+              console.log(array[num_cols*2]['data']);
+              break;
+            }
+            */
+            /*
+            console.log(data);
+            if (data == 'Length') {
+              magic_number = a;
+              console.log("I FOUND THE MAGIC NUMBER!!! ");
+              console.log(magic_number);
+              // break;
+            }
+            */
+          // }
+          // console.log(elem);
+          /*
+          if (i == 2) {
+            console.log('me!!');
+            console.log(elem);
+          }
+          */
+          //console.log(elem.children[3]);
+          // console.log('getting the table');
+        // });
+        // console.log(item.length);
+       //  console.log('hi');
+        // console.log("TRYING TO FIND THE LENGTH!!!");
+        
+      // }
+
       //
       //url
       item.url = fullUrl;
@@ -165,13 +268,8 @@ function scrapeProductPage(link, type){
       var textarray = text.split(" ");
       for (var a in textarray) {
         if (textarray[a].indexOf('length,') > -1) {
-          // console.log('yes!!!');
-          // console.log(textarray[a]);
           a++;
-          //console.log(textarray[a]);
-          // str = str.replace(/'/g, 'A');
           textarray[a] = textarray[a].replace(/'/g, '');
-          // console.log(textarray[a]);
           item.length = textarray[a];
           break;
         }
@@ -187,6 +285,7 @@ function scrapeProductPage(link, type){
       item.approved = true;
 
       // console.log(item);
+      // console.log('\n\n');
 
       //INSERT INTO DB
       new Clothing(item).save(function(err, clothing, count){
