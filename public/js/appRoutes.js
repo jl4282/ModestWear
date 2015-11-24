@@ -1,13 +1,13 @@
-app.config('appRoutes', ['$routeProvider', function($routeProvider) {
+app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
         // home page
         .when('/', {
             templateUrl: 'views/home.html',
-            controller: 'MainController'
+            controller: 'MainCtrl'
         })
         .when('/search/:query', {
             templateUrl: 'views/search.html',
-            controller: 'SearchController'
+            controller: 'SearchCtrl'
         });
 
 }]);
