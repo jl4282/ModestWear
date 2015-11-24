@@ -1,3 +1,4 @@
+'use strict';
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
         // home page
