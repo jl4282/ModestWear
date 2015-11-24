@@ -15,16 +15,11 @@ var modeStyLinks = [
   }, {
     type: 'dress',
     link: 'http://www.mode-sty.com/collections/maxi-dresses'
-  }
-];/*,{
-    type: 'shirt',
-    link: 'http://www.koshercasual.com/category.asp?id=368'
-  },{
+  }, {
     type: 'dress',
-    link: 'http://www.koshercasual.com/Womens-Modest-Dresses_cat.html'
+    link: 'http://www.mode-sty.com/collections/midi-dresses'
   }
 ];
-*/
 
 modeStyLinks.forEach(function(obj){
   var links = [];
@@ -142,122 +137,20 @@ function scrapeProductPage(link, type){
 
       // price
       var price = $('span.current_price');
-      // console.log(price[0].parent.attribs['content']);
-      if (type == 'skirt') {
-        item.price = price[0].parent.attribs['content'];
-      }
-      else if (type == 'dress') {
-        console.log(link);
-        try {
-          item.price = price[0].parent.attribs['content'];
-          if (item.name == 'CastError') {
-            console.log('MEHHHH');
-            return;
-          }
-        } catch(e) {
-          try {
-            item.price = price[0].parent['attribs']['content'];
-          } catch(e) {
-            console.log("FAILING!!! ");
-            console.log(link);
-            console.log('\n');
-            return;
-          }
-        } 
-        
-      }
-      
+      item.price = price[0].parent.attribs['content'];
 
       // TODO : NEED COLOR
       // QUESTION : I'M NOT SURE THAT THEY PUT COLOR HERE BECAUSE THEY'RE MULTICOLOR
       item.colors = [];
+      /*
       $('#attop38 option').each(function(i, elem){
         var color = $(this).text().trim();
         if (color !== '-First  Select Color-'){ //normalize with just name
           item.colors.push(color.slice(1 + color.search(':')));
         }
       });
-      //length
-      /*
-      TODO : FIND COVERAGE INFO AND THEN FIND THE FIRST DECIMAL NUMBER...
       */
-      if (type == 'dress') {
-        console.log("CHECKING FOR A DRESS");
-        //put it to a variable, then check if it's that, and take the first number
-        var length;
-        try {
-          length = $('.mceItemTable tbody').find('tr').eq(4).find('td').eq(3).text().trim();
-        }
-        catch(e) {
-          // length = $('.mceItemTable tbody').find('tr').eq(4).find('td').eq(3).text().trim();
-          console.log("CATCHING AN ERROR");
-          // length = ('.mceItemTable tbody').find('tr').eq(4).find('td');
-          // return;
-          // console.log(hi);
-        }
-        
-      }
-      else {
-        item.length = $('.mceItemTable tbody').find('tr').eq(4).find('td').eq(3).text().trim();
-      }
-      /* 
-      if (type === 'skirt'){
-        item.length = $('.mceItemTable tbody').find('tr').eq(4).find('td').eq(3).text().trim();
-      }
-      if (type === 'dress'){
-        var length = $('description');
-        console.log(length);
-        for (var a in length[0].children) {
-          console.log('hi');
-        }
-        // console.log(length);
-        // item.length = $('.mceItemTable tbody').find('tr').eq(4).find('td').eq(4).text().trim();
-        /*
-        $('table td').each(function(i, elem) {
-          var array = elem.children;
-          var num_cols = 0;
-          for (var a in array) {
-            var data = array[a]['data'];
-            console.log(data);
-          */
-            /*
-            if (typeof(data) == 'undefined') {
-              num_cols++;
-            }
-            else {
-              console.log('FOUND THE NUM COLS!!!');
-              console.log(num_cols);
-              console.log(array[num_cols*2]['data']);
-              break;
-            }
-            */
-            /*
-            console.log(data);
-            if (data == 'Length') {
-              magic_number = a;
-              console.log("I FOUND THE MAGIC NUMBER!!! ");
-              console.log(magic_number);
-              // break;
-            }
-            */
-          // }
-          // console.log(elem);
-          /*
-          if (i == 2) {
-            console.log('me!!');
-            console.log(elem);
-          }
-          */
-          //console.log(elem.children[3]);
-          // console.log('getting the table');
-        // });
-        // console.log(item.length);
-       //  console.log('hi');
-        // console.log("TRYING TO FIND THE LENGTH!!!");
-        
-      // }
 
-      //
       //url
       item.url = fullUrl;
       //brand
@@ -270,7 +163,19 @@ function scrapeProductPage(link, type){
         if (textarray[a].indexOf('length,') > -1) {
           a++;
           textarray[a] = textarray[a].replace(/'/g, '');
-          item.length = textarray[a];
+          if (textarray[a].indexOf('-') > -1) {
+            try {
+              var length = textarray[a];
+              length = length.split('-')[0];
+              item.length = length;
+            }
+            catch (e) {
+              return;
+            }
+          }
+          else {
+            item.length = textarray[a];
+          }
           break;
         }
       }
