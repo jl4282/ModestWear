@@ -9,7 +9,7 @@ ModestWear is a website that aggregates modest clothing so that users don't need
 
 - [Cheerio](https://github.com/cheeriojs/cheerio): Cheerio is a web scraping framework that uses familiar jQuery syntax. It will allow us to scrape websites more quickly and efficiently.
 - [Node.js](https://nodejs.org/en/)
-- [Polymer](https://www.polymer-project.org/1.0/): Polymer is Google's Material Design framework. We want the site to have an MD layout and we want to utilize Polymer's data binding. This will make passing information between the controllers and web page easier. Polymer also adheres to Google's MD specifications, and takes care of much of the required CSS. It also adds motions that we can use to transition between elements. Another possible framework we might use for the front end is Material Angular. It's Angular that adheres to MD specifications, although it's not as fleshed out as Polymer.
+- [Material Angular](https://material.angularjs.org/latest/): Material Angular is Google's Material Design framework in Angular form. We want the site to have an MD layout and we want to utilize Angular's data binding. This will make passing information between the controllers and web page easier. Polymer also adheres to Google's MD specifications, and takes care of much of the required CSS. It also adds motions that we can use to transition between elements. While not as fleshed out as Polymer, it is easier to use.
 - [MongoDB](https://www.mongodb.org/)
 - [Mongoose](http://mongoosejs.com/)
 - [Express](http://expressjs.com/)
@@ -32,8 +32,8 @@ ModestWear is a website that aggregates modest clothing so that users don't need
 - JSHint (1) - we want to install JSHint for SublimeText2
 - User Authentication (3)- hopefully use Facebook
 - CSS Framework (1) - Either Material Design Lite or the framework that Polymer comes with.
-- client side library (1) - Polymer - Is it possible to count as 3 or 4 points though because of the complexity of Polymer? It's relatively new so it's hard to learn. 
-- visual effects (1) - we want to use Polymer's visual effects or create our own to create a living, breathing site.
+- client side library (1) - Angular 
+- visual effects (1) - we want to use Material Design motions to create visual effects and turn it into a living, breathing site.
 
 Total: 13? (I'm bad with numbers)
 
