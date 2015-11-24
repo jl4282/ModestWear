@@ -18,6 +18,9 @@ var modeStyLinks = [
   }, {
     type: 'dress',
     link: 'http://www.mode-sty.com/collections/midi-dresses'
+  }, {
+    type: 'shirt',
+    link: 'http://www.mode-sty.com/collections/tops'
   }
 ];
 
@@ -41,12 +44,6 @@ function modeStyScrape(url, links, type){
         links.push($(this).attr('href'));
         // console.log(links);
       });
-      /* modSty does all in one page
-      if($('.currentPage').next().html()){
-        console.log("working?");
-        modeStyScrape('http://www.mode-sty.com/' + $('.currentPage').next().find('a').attr('href'), links, type);
-      }
-      */
       
       //final page so call function that will scrape individual pages
       links.forEach(function(link){
@@ -129,7 +126,9 @@ function scrapeProductPage(link, type){
           //console.log(data);
           // console.log(data);
           if (data != 'Waist' && data != 'Bust' && data != 'Hips' && data != 'Length') {
-            item.sizes.push(data);
+            if (data) {
+              item.sizes.push(data);
+            } 
           }
           // item.sizes.push(size_array[a]['data']);
         }
@@ -137,6 +136,7 @@ function scrapeProductPage(link, type){
 
       // price
       var price = $('span.current_price');
+      
       item.price = price[0].parent.attribs['content'];
 
       // TODO : NEED COLOR
@@ -159,26 +159,30 @@ function scrapeProductPage(link, type){
       var text = $('#tab1', 'div').text();
       // console.log(text);
       var textarray = text.split(" ");
-      for (var a in textarray) {
-        if (textarray[a].indexOf('length,') > -1) {
-          a++;
-          textarray[a] = textarray[a].replace(/'/g, '');
-          if (textarray[a].indexOf('-') > -1) {
-            try {
-              var length = textarray[a];
-              length = length.split('-')[0];
-              item.length = length;
+      // TODO : Right now, if it's a shirt, it's undefined.
+      if (type != 'shirt') {
+        for (var a in textarray) {
+          if (textarray[a].indexOf('length,') > -1) {
+            a++;
+            textarray[a] = textarray[a].replace(/'/g, '');
+            if (textarray[a].indexOf('-') > -1) {
+              try {
+                var length = textarray[a];
+                length = length.split('-')[0];
+                item.length = length;
+              }
+              catch (e) {
+                return;
+              }
             }
-            catch (e) {
-              return;
+            else {
+              item.length = textarray[a];
             }
+            break;
           }
-          else {
-            item.length = textarray[a];
-          }
-          break;
         }
       }
+      
       $('div .productleft span').each(function(){
         if ($(this).attr('itemprop') === 'identifier'){
           item.itemNumber = $(this).text().trim();
