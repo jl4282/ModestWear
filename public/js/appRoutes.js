@@ -1,14 +1,8 @@
 'use strict';
-app.config(['$routeProvider', function($routeProvider) {
+app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
-        // home page
-        .when('/', {
-            templateUrl: 'views/home.html',
-            controller: 'MainCtrl'
-        })
-
         //still need to be implemented
-        .when('/search/:query', {
+        .when('/search/:query?', {
             templateUrl: 'views/search.html',
             controller: 'SearchCtrl'
         })
@@ -27,6 +21,11 @@ app.config(['$routeProvider', function($routeProvider) {
         .when('/favorites', {
             templateUrl: 'views/favorites',
             controller: 'FavoritesCtrl'
+        })
+        .when('/', {
+            templateUrl: 'views/home.html'
         });
+        // home page
+    $locationProvider.html5Mode(true);
 
 }]);

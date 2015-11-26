@@ -11,6 +11,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
+
 var methodOverride = require('method-override');
 
 var routes = require('./routes/index');
@@ -25,6 +28,13 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+var sessionOptions = {
+  secret: 'secret for signing session id',
+  saveUninitialized: false,
+  resave: false
+};
+app.use(session(sessionOptions));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -52,6 +62,9 @@ passport.use(new FacebookStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     console.log('anonymous function');
+    // User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+    //   return done(err, user);
+    // });
     process.nextTick(function () {
       return done(null, profile);
     });
@@ -66,7 +79,9 @@ app.get('/auth/facebook',
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
-    console.log('========req', req.user);
+    // console.log('========req', req.user);
+    req.session.user = req.user;
+    console.log('======', req.session.user);
     //get the user idea and search mongo for corresponding user, if not create new user
     res.redirect('/');
   });
@@ -75,7 +90,7 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.use('/auth', fb);
+// app.use('/auth', fb);
 app.use('/api', api);
 app.use('*', routes);
 
