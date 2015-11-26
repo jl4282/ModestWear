@@ -24,6 +24,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         })
         .when('/', {
             templateUrl: 'views/home.html'
+        })
+        //when viewing an article of clothing
+        .when('/:slug', {
+            templateUrl: 'views/product.html',
+            controller: 'ProductCtrl'
         });
         // home page
     $locationProvider.html5Mode(true);
