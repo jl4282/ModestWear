@@ -74,6 +74,7 @@ passport.use(new FacebookStrategy({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 app.get('/auth/facebook',
   passport.authenticate('facebook', { authType: 'rerequest', scope: ['user_status', 'public_profile', 'email', 'user_about_me'] }));
 app.get('/auth/facebook/callback',

@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  console.log('in home', req.locals);
+  console.log('wtf', req.locals);
   res.sendfile('./public/views/index.html');
 });
 

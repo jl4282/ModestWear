@@ -24,10 +24,19 @@ router.get('/clothes', function(req, res, next) {
 });
 
 //get by searching description
-router.get('/clothes/search/:query', function(req, res, next){
-  console.log(req.params.query);
-  Clothing.find({description: new RegExp(decodeURIComponent(req.params.query), 'i')}, function(err, clothes, count){
+router.get(/\/search.*/, function(req, res, next){
+  console.log('in search');
+  console.log(req.query);
+  var query = {};
+  if (req.query && req.query.description){
+    query.description = new RegExp(decodeURIComponent(req.query.description), 'i');
+  }
+  if (req.query && req.query.type){
+    query.type = req.query.type;
+  }
+  Clothing.find(query, function(err, clothes, count){
     res.json(clothes);
+    console.log(count);
   });
 });
 

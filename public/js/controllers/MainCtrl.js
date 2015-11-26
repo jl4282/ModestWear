@@ -16,5 +16,13 @@ app.controller('MainCtrl', ['$scope', 'Clothing', '$location', function($scope, 
   $scope.home = function(){
     $location.path('/');
   };
+  $scope.buttons = [
+    {
+      name: 'Skirts',
+      search: {
+        type: 'skirt'
+      }
+    }
+  ];
 
 }]);

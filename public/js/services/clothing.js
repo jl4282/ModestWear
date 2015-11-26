@@ -12,7 +12,18 @@ app.factory('Clothing', ['$http', function($http){
     });
   };
   var searchClothing = function(query){
-    return $http.get('/api/clothes/search/' + query).then(function(resp){
+    var params = {};
+    if (query.type){
+      params.type = query.type;
+    }
+    else {
+      params.description = query;
+    }
+    console.log(params);
+    return $http.get('/api/search', {
+      params: params
+    }).then(function(resp){
+      console.log(resp.data.length);
       return resp.data;
     });
   };
