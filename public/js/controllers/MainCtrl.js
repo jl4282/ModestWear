@@ -22,6 +22,24 @@ app.controller('MainCtrl', ['$scope', 'Clothing', '$location', function($scope, 
       search: {
         type: 'skirt'
       }
+    },
+    {
+      name: 'Shirts',
+      search: {
+        type: 'shirt'
+      }
+    },
+    {
+      name: 'Dresses',
+      search: {
+        type: 'dress'
+      }
+    },
+    {
+      name: 'Sweaters',
+      search: {
+        type: 'sweater'
+      }
     }
   ];
 

@@ -18,7 +18,8 @@
           <span><a href="/">ModestWear</a></span>
         </h2>
         <span flex></span>
-        <md-button class="md-flat" aria-label="Skirts" data-ng-click="search(buttons[0].search)">
+        <md-button class="md-flat" aria-label="b.name" data-ng-click="search(b.search)" data-ng-repeat="b in buttons">{{b.name}}</md-button>
+        <!-- <md-button class="md-flat" aria-label="Skirts" data-ng-click="search(buttons[0].search)">
           Skirts
         </md-button>
         <md-button class="md-flat" aria-label="Shirts">
@@ -29,7 +30,7 @@
         </md-button>
         <md-button class="md-flat" aria-label="Sweaters">
           Sweaters
-        </md-button>
+        </md-button> -->
         <!-- Icons not working -->
         <md-button class="md-fab md-mini" aria-label="Search">
           <md-icon class="search"></md-icon>
@@ -38,10 +39,12 @@
     </md-toolbar>
   </md-content>
 
+  <div layout="column" flex id="content">
+    <md-content layout="column" flex class="md-padding">
+      <div ng-view></div>
+    </md-content>
+  </div>
 
-  <div>{{test}}</div>
-
-  <div ng-view></div>
 
 
 
