@@ -20,15 +20,6 @@ var juneesLinks = [
   type: 'dress',
   link: 'http://www.junees.com/collections/junee-dresses-1'
 }
-/*
-  {
-    type: //type of clothing
-    link: // link to category results page ex: http://www.koshercasual.com/category.asp?id=368
-  }
-*/
-
-  //add as many objects as you need. Each object should have a type and link.
-
 ];
 
 
