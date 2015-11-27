@@ -1,36 +1,14 @@
 
 <!-- Code for displaying search results -->
 
-<div flex="100" layout="row">
-  <div flex="50" layout="column">
-    <md-card >
-     <img src="{{clothes[0].images[0]}}" class="md-card-image" alt="image caption">
-     <md-card-content>
-       <p>{{clothes[0].name}}</p>
-     </md-card-content>
-     <md-card-actions layout="column" layout-align="end center">
-        <md-button>Favorite</md-button>
-        <md-button>Add</md-button>
-      </md-card-actions>
-    </md-card>
-    <md-card >
-     <img src="{{clothes[0].images[0]}}" class="md-card-image" alt="image caption">
-     <md-card-content>
-       <p>{{clothes[0].name}}</p>
-     </md-card-content>
-     <md-card-actions layout="column" layout-align="end center">
-        <md-button>Favorite</md-button>
-        <md-button>Add</md-button>
-      </md-card-actions>
-    </md-card>
-  </div>
-  <div flex="30" layout="column">
+<div layout="row" layout-wrap>
+  <div flex="20" layout="column" ng-repeat="c in clothes">
     <md-card>
-     <img src="{{clothes[0].images[0]}}" class="md-card-image" alt="image caption">
+     <img data-ng-if="c.images[0]" src="{{c.images[0]}}" class="md-card-image" alt="{{c.name}}">
      <md-card-content>
-       <p>{{clothes[0].name}}</p>
+       <p>{{c.name}}</p>
      </md-card-content>
-     <md-card-actions layout="column" layout-align="end center">
+     <md-card-actions layout="row" layout-align="end center">
         <md-button>Favorite</md-button>
         <md-button>Add</md-button>
       </md-card-actions>
@@ -63,4 +41,4 @@
 </div>
  -->
 
- {{clothes}}
+ <!-- {{clothes}} -->
