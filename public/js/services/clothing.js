@@ -7,6 +7,7 @@ app.factory('Clothing', ['$http', function($http){
   };
 
   var getClothingBySlug = function(slug){
+    console.log('slug',slug);
     return $http.get('/api/clothes/' + slug).then(function(resp){
       return resp.data;
     });

@@ -9,8 +9,9 @@ var User = mongoose.model('User');
 
 //find by slug
 router.get('/clothes/:slug', function(req, res, next) {
-  Clothing.findOne({'slug': req.params.slug}, function(err, clothing){
-    res.json(clothing);
+  Clothing.findOne({'slug': req.params.slug}, function(err, clothes, count){
+    console.log(count, clothes);
+    res.json(clothes);
   });
 });
 
