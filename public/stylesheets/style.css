@@ -1,0 +1,29 @@
+html, body {
+	background-color: #edf2f7 !important;
+}
+.parent {
+    display: block;
+}
+/*
+md-card md-card-content {
+	padding: 8px;
+	height: 50px;
+}
+
+md-card img {
+    height: 100%;
+    width: 90%;
+    height: 250px;
+    overflow: hidden;
+
+}
+
+.parent {
+    display: block;
+}
+
+
+md-card md-card-content, md-card-actions {
+	background-color: pink;
+}
+*/
