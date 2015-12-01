@@ -29,7 +29,8 @@ function kosherScrape(url, links, type){
   request(url, function(error, response, body){
     if(!error){
       var $ = cheerio.load(body);
-      $('.price a').each(function(i, elem){
+      $('.info a').each(function(i, elem){
+        console.log($(this).attr('href'));
         links.push($(this).attr('href'));
       });
       if($('.currentPage').next().html()){
