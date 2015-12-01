@@ -4,9 +4,9 @@
 <div layout="row" layout-wrap class="search-container">
   <div flex="20" layout="column" ng-repeat="c in clothes">
     <md-card>
-     <a href="/{{c.slug}}"><img data-ng-if="c.images[0]" src="{{c.images[0]}}" class="md-card-image" alt="{{c.name}}"></a>
+     <a href="/clothes/{{c.slug}}"><img data-ng-if="c.images[0]" src="{{c.images[0]}}" class="md-card-image" alt="{{c.name}}"></a>
      <md-card-content>
-       <p><a href="/{{c.slug}}">{{c.name}}</a></p>
+       <p><a href="/clothes/{{c.slug}}">{{c.name}}</a></p>
      </md-card-content>
      <md-card-actions layout="row" layout-align="end center">
         <md-button class="md-accent md-hue-1">Favorite</md-button>

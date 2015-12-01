@@ -41,6 +41,10 @@ router.get(/\/search.*/, function(req, res, next){
   });
 });
 
+router.get('/getUser', function(req, res, next){
+  res.json(req.user);
+});
+
 router.get('/outfit/:id', function(req, res, next){
   //return outfit with all the clothing
 });

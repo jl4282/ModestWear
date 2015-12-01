@@ -1,7 +1,10 @@
 'use strict';
-app.factory('User', ['$http', function($http){
+app.factory('UserSrvc', ['$http', function($http){
   var getUser = function(){
-    //get the logged in user
+    return $http.get('/api/getUser').then(function(resp){
+      console.log(resp.data);
+      return resp.data;
+    });
   };
   var favorite = function(itemId){
     $http.get('/api/favorite/' + itemId).success(function(data){});

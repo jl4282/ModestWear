@@ -1,9 +1,13 @@
 'use strict';
-app.controller('MainCtrl', ['$scope', 'Clothing', '$location', function($scope, Clothing, $location){
+app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', '$location', '$http', function($scope, Clothing, User, $location, $http){
   // Clothing.searchClothing('winter').then(function(data){
   //   $scope.clothes = data;
   // });
   //
+  User.getUser().then(function(data){
+    $scope.user = data;
+  });
+
   $scope.search = function(query){
     var params = {};
     if (query.type){

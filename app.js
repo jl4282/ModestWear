@@ -61,7 +61,6 @@ passport.use(new FacebookStrategy({
     profileFields: ['id', 'displayName', 'email']
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log('anonymous function');
     // User.findOrCreate({ facebookId: profile.id }, function (err, user) {
     //   return done(err, user);
     // });
