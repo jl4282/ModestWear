@@ -3,6 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  //should be what is returned
   console.log('in home', req.user);
   res.sendfile('./public/views/index.html');
 });
