@@ -30,9 +30,9 @@ ModestWear is a website that aggregates modest clothing so that users don't need
   - run scraping algorithms
   - minify the files
 - JSHint (1) - we want to install JSHint for SublimeText2
-- User Authentication (3)- hopefully use Facebook
+- User Authentication (4)- use Facebook
 - CSS Framework (1) - Either Material Design Lite or the framework that Polymer comes with.
-- client side library (1) - Angular 
+- client side library (3) - Angular 
 - visual effects (1) - we want to use Material Design motions to create visual effects and turn it into a living, breathing site.
 
 Total: 13? (I'm bad with numbers)
