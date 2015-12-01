@@ -1,18 +1,15 @@
-app.controller('SearchCtrl', ['$scope', 'Clothing', '$routeParams', function($scope, Clothing, $routeParams){
+app.controller('SearchCtrl', ['$scope', 'Clothing', '$routeParams', '$location', function($scope, Clothing, $routeParams, $location){
   // Clothing.searchClothing('winter').then(function(data){
   //   $scope.clothes = data;
   // });
   //
-  console.log('in search ctrl');
-
   $scope.search = function(query){
     Clothing.searchClothing(query).then(function(data){
       $scope.clothes = data;
     });
   };
-
-  if($routeParams.query){
-    $scope.search($routeParams.query);
+  if($location.search()){
+    $scope.search($location.search());
   }
 
 }]);

@@ -17,14 +17,16 @@ app.factory('Clothing', ['$http', function($http){
     if (query.type){
       params.type = query.type;
     }
+    else if (query.description){
+      params.description = query.description;
+    }
     else {
       params.description = query;
     }
-    console.log(params);
+    console.log('params',params);
     return $http.get('/api/search', {
       params: params
     }).then(function(resp){
-      console.log(resp.data.length);
       return resp.data;
     });
   };

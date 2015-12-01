@@ -5,10 +5,15 @@ app.controller('MainCtrl', ['$scope', 'Clothing', '$location', function($scope, 
   // });
   //
   $scope.search = function(query){
-    if ($location.path().search('search') < 0){
-      $location.path('/search');
+    var params = {};
+    if (query.type){
+      params.type = query.type;
     }
-    Clothing.searchClothing(query).then(function(data){
+    else {
+      params.description = query;
+    }
+    $location.path('/search/').search(params);
+    Clothing.searchClothing(params).then(function(data){
       $scope.clothes = data;
     });
   };
