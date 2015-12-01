@@ -61,10 +61,29 @@ passport.use(new FacebookStrategy({
     profileFields: ['id', 'displayName', 'email']
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log('anonymous function');
     // User.findOrCreate({ facebookId: profile.id }, function (err, user) {
     //   return done(err, user);
     // });
+    User.findOne({facebookId: profile.id}, function(err, user){
+      // console.log('==== user, err ', user, err);
+      console.log('user ',user);
+      if (!user){
+        new User({
+          name: profile.displayName,
+          facebookId: profile.id,
+          email: profile.emails[0].value
+        }).save(function(err, user, count){
+          if (!err){
+            console.log('created new user');
+            return done(err, user);
+          }
+        });
+      }
+      else {
+        console.log('returned existing user');
+        return done (err, user);
+      }
+    });
     process.nextTick(function () {
       return done(null, profile);
     });
@@ -81,10 +100,13 @@ app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
     // console.log('========req', req.user);
-    req.session.user = req.user;
-    console.log('======', req.session.user);
-    //get the user idea and search mongo for corresponding user, if not create new user
-    res.redirect('/');
+    User.findOne({facebookId: req.user.id}, function(err, user){
+      if (!err){
+        req.user = user;
+      }
+      res.redirect('/');
+    });
+
   });
 app.get('/logout', function(req, res){
   req.logout();

@@ -26,7 +26,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             templateUrl: 'views/home.html'
         })
         //when viewing an article of clothing
-        .when('/:slug', {
+        .when('/clothes/:slug', {
             templateUrl: 'views/product.html',
             controller: 'ProductCtrl'
         });
