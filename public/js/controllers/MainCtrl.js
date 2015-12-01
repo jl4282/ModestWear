@@ -4,6 +4,7 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', '$location', '$htt
   //   $scope.clothes = data;
   // });
   //
+  //
   User.getUser().then(function(data){
     $scope.user = data;
   });
@@ -17,9 +18,9 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', '$location', '$htt
       params.description = query;
     }
     $location.path('/search/').search(params);
-    Clothing.searchClothing(params).then(function(data){
-      $scope.clothes = data;
-    });
+    // Clothing.searchClothing(params).then(function(data){
+    //   $scope.clothes = data;
+    // });
   };
 
   $scope.home = function(){

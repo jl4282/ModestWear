@@ -2,7 +2,7 @@
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
         //still need to be implemented
-        .when('/search/:query?', {
+        .when('/search/', {
             templateUrl: 'views/search.html',
             controller: 'SearchCtrl'
         })
