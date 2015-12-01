@@ -47,7 +47,8 @@ var User = new mongoose.Schema({
     styles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Style'}]
   }, //which users the person is following
   searches: [String],
-  facebookId: [String] //probably want to store more FB data as well
+  facebookId: [String], //probably want to store more FB data as well
+  email: String
 });
 User.plugin(URLSlugs('name'));
 
