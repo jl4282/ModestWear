@@ -1,3 +1,5 @@
+'use strict';
+
 var mongoose = require('mongoose'),
     URLSlugs = require('mongoose-url-slugs');
 
@@ -7,31 +9,50 @@ var Clothing = new mongoose.Schema({
   description: String,
   sizes: [String], //array of sizes
   price: Number,
-  length: Number,
-  url: String,
+  colors: [String],
+  length: Number, //take middle size
+  url: String, //back to original site scraped from
   brand: String,
   itemNumber: String,
-  type: String, //enum type of clothing that it is (skirt, hat...)
-  approved: Boolean //whether it’s approved to show
+  type: {type: String, enum: ['skirt', 'shirt', 'dress', 'sweater']}, // skirt, shirt, dress, sweater
+  approved: Boolean, //whether it’s approved to show
+  favorites: Number, //keeps track of how many times it was favorited
+  styles: Number //keeps track of how many styles it's in
 });
 Clothing.plugin(URLSlugs('name'));
 
-var Styles = new mongoose.Schema({
+var Outfit = new mongoose.Schema({
   name: String,
-  clothes: [Clothing],
-  owner: String
+  clothes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
+  style: {type: mongoose.Schema.Types.ObjectId, ref: 'Style'},
+  owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 });
-Styles.plugin(URLSlugs('name owner'));
+Outfit.plugin(URLSlugs('name'));
 
+var Style = new mongoose.Schema({
+  name: String, //name of the Style
+  clothes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
+  outfits: [{type: mongoose.Schema.Types.ObjectId, ref: 'Outfit'}],
+  owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+});
+Style.plugin(URLSlugs('name'));
 
 var User = new mongoose.Schema({
-  name: String,
-  styles: [Styles], //should be name of style with array of clothes
-  favorites: [Clothing]
+  name: String, //name of user
+  styles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Style'}], //should be name of style with array of clothes
+  favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}], //items the user has favorited
+  following:
+  {
+    users: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+    styles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Style'}]
+  }, //which users the person is following
+  searches: [String],
+  facebookId: [String] //probably want to store more FB data as well
 });
 User.plugin(URLSlugs('name'));
 
 mongoose.model('Clothing', Clothing);
-mongoose.model('Styles', Styles);
+mongoose.model('Style', Style);
+mongoose.model('Outfit', Outfit);
 mongoose.model('User', User);
 mongoose.connect('mongodb://localhost/mwdb');

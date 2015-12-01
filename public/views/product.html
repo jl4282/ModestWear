@@ -1,0 +1,16 @@
+<div layout="column" layout-padding>
+  <div layout="row" >
+    <h1 class="product-name">{{product.name}}</h1>
+  </div>
+  <div layout="row" data-ng-if="product.images" layout-wrap layout-padding>
+    <div layout="column">
+      <img src="{{featuredImage}}">
+    </div>
+    <div layout="column" flex="50">
+      <p>{{product.description}}</p>
+    </div>
+  </div>
+  <div layout="row" layout-padding>
+    <img layout="column" class="product-img" src="{{i}}" data-ng-repeat="i in product.images" max-height="40px">
+  </div>
+</div>
