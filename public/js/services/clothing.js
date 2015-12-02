@@ -20,6 +20,9 @@ app.factory('Clothing', ['$http', function($http){
     else if (query.description){
       params.description = query.description;
     }
+    else if (query.limit){
+      params.limit = query.limit;
+    }
     else {
       params.description = query;
     }

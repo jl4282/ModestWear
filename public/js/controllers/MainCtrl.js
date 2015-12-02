@@ -11,6 +11,9 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', '$location', '$htt
       $scope.user = data;
     });
   }
+  Clothing.searchClothing({limit: 10}).then(function(data){
+    $scope.homeDisplay = data;
+  });
 
   //checks if item is favorited
   $scope.favorited = function(c){

@@ -26,18 +26,26 @@ router.get('/clothes', function(req, res, next) {
 
 //get by searching description
 router.get(/\/search.*/, function(req, res, next){
+  var limit = 1000; //purely because I don't have time to do pagination
+  var query = {};
   console.log('in search');
   console.log(req.query);
-  var query = {};
+  if (req.query && req.query.limit){
+    limit = req.query.limit;
+  }
   if (req.query && req.query.description){
     query.description = new RegExp(decodeURIComponent(req.query.description), 'i');
   }
   if (req.query && req.query.type){
     query.type = req.query.type;
   }
-  Clothing.find(query, function(err, clothes, count){
-    res.json(clothes);
-    console.log(count);
+  Clothing.find(query).limit(limit).exec(function(err, clothes, count){
+    if (!err){
+      res.json(clothes);
+    }
+    else {
+      res.sendStatus(500);
+    }
   });
 });
 
