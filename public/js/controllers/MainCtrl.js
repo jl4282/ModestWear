@@ -5,7 +5,6 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', '$location', '$htt
   // });
   //
   //
-  console.log('MainCtrl');
   if (!$scope.user){
     User.getUser().then(function(data){
       $scope.user = data;
@@ -17,7 +16,6 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', '$location', '$htt
 
   //checks if item is favorited
   $scope.favorited = function(c){
-    console.log(c, $scope.user);
     if ($scope.user){
       return -1 < $scope.user.favorites.indexOf(c._id);
     }
@@ -40,7 +38,6 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', '$location', '$htt
   };
 
   $scope.favorite = function(id){
-    console.log(id);
     User.favorite(id).then(function(data){
       if (data.status === 200){
         $scope.user.favorites.push(id);
