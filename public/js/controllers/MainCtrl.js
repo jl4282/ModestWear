@@ -13,7 +13,10 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', '$location', '$htt
   }
 
   $scope.search = function(query){
-    if (query.trim()){
+    if (query && typeof query === 'String'){
+      query = query.trim();
+    }
+    if (query){
       var params = {};
       if (query.type){
         params.type = query.type;
