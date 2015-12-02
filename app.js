@@ -20,8 +20,10 @@ var routes = require('./routes/index');
 var fb = require('./routes/fb');
 var api = require('./routes/api');
 
-var FACEBOOK_APP_ID = "1666068127010516";
-var FACEBOOK_APP_SECRET = "c92430f3b1228e0d7e8fc548a2b14692";
+var secrets = require('./secrets');
+
+var FACEBOOK_APP_ID = secrets.facebook.appId;
+var FACEBOOK_APP_SECRET = secrets.facebook.secret;
 
 var app = express();
 
