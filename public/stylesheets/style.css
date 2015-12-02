@@ -12,6 +12,9 @@
 .parent {
     display: block;
 }
+.product-container .info{
+    margin-right: 10px;
+}
 /*
 md-card md-card-content {
 	padding: 8px;
