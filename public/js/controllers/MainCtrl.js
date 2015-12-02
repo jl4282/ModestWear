@@ -12,6 +12,14 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', '$location', '$htt
     });
   }
 
+  //checks if item is favorited
+  $scope.favorited = function(c){
+    console.log(c, $scope.user);
+    if ($scope.user){
+      return -1 < $scope.user.favorites.indexOf(c._id);
+    }
+  };
+
   $scope.search = function(query){
     if (query && typeof query === 'String'){
       query = query.trim();
@@ -26,15 +34,18 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', '$location', '$htt
       }
       $location.path('/search/').search(params);
     }
-
-    // Clothing.searchClothing(params).then(function(data){
-    //   $scope.clothes = data;
-    // });
   };
 
   $scope.favorite = function(id){
     console.log(id);
-    User.favorite(id);
+    User.favorite(id).then(function(data){
+      if (data.status === 200){
+        $scope.user.favorites.push(id);
+      }
+      else {
+        console.log('grave error');
+      }
+    });
   };
 
   $scope.home = function(){
