@@ -57,6 +57,20 @@ router.post('/favorite/:id', function(req, res, next){
   }
 });
 
+router.get('/favorites', function(req, res, next){
+  if (req.user){
+    User.findOne({facebookId: req.user.facebookId}).populate('favorites').exec(function(err, user){
+      if (!err){
+        console.log('===== favorites', user.favorites);
+        res.json(user.favorites);
+      }
+      else {
+        res.sendStatus(400);
+      }
+    });
+  }
+});
+
 router.get('/getUser', function(req, res, next){
   if (req.user && req.user.provider){
     User.findOne({facebookId: req.user.id}, function(err, user, count){

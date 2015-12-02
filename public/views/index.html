@@ -17,12 +17,14 @@
   <base href="/">
 </head>
 <body data-ng-app="ModestWear" data-ng-controller="MainCtrl">
+  <!-- accounts for Facebook tacking that on after redirect -->
   <script type="text/javascript">
     if (window.location.hash && window.location.hash == '#_=_') {
         window.location.hash = '';
     }
   </script>
   <md-content layout="row" layoutfill>
+    <!-- menu -->
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>
@@ -30,6 +32,7 @@
         </h2>
         <span flex></span>
         <md-button class="md-flat" aria-label="b.name" data-ng-click="search(b.search)" data-ng-repeat="b in buttons">{{b.name}}</md-button>
+        <a href="/favorites" data-ng-if="user"><md-button class="md-flat" aria-label="Favorites">Favorites</md-button></a>
         <a href="/auth/facebook" target="_self" data-ng-if="!user"><md-button class="md-flat" aria-label="Login" >Login</md-button></a>
         <a href="/profile" data-ng-if="user"><md-button class="md-flat" aria-label="Profile">Profile</md-button></a>
         <md-button class="md-fab md-mini" aria-label="Search">
@@ -66,6 +69,7 @@
   <script src="js/controllers/ProductCtrl.js"></script>
   <script src="js/controllers/FBCtrl.js"></script>
   <script src="js/controllers/ProfileCtrl.js"></script>
+  <script src="js/controllers/FavoritesCtrl.js"></script>
   <!-- Services -->
   <script src="js/services/clothing.js"></script>
   <script src="js/services/UserSrvc.js"></script>

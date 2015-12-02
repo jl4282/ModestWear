@@ -23,7 +23,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             controller: 'ProfileCtrl'
         })
         .when('/favorites', {
-            templateUrl: 'views/favorites',
+            templateUrl: 'views/favorites.html',
             controller: 'FavoritesCtrl'
         })
         .when('/', {

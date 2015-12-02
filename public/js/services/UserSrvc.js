@@ -11,8 +11,14 @@ app.factory('UserSrvc', ['$http', function($http){
       return data;
     });
   };
+  var getFavorites = function(){
+    return $http.get('/api/favorites').then(function(res){
+      return res.data;
+    });
+  };
   return {
     favorite : favorite,
-    getUser : getUser
+    getUser : getUser,
+    getFavorites : getFavorites
   };
 }]);
