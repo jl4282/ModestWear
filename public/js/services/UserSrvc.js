@@ -6,8 +6,11 @@ app.factory('UserSrvc', ['$http', function($http){
       return resp.data;
     });
   };
+  /* need to figure out how it works with post - not the same... */
   var favorite = function(itemId){
-    $http.get('/api/favorite/' + itemId).success(function(data){});
+    return $http.post('/api/favorite/' + itemId).then(function(data){
+      console.log(data);
+    });
   };
   return {
     favorite : favorite,

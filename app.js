@@ -65,8 +65,6 @@ passport.use(new FacebookStrategy({
     //   return done(err, user);
     // });
     User.findOne({facebookId: profile.id}, function(err, user){
-      // console.log('==== user, err ', user, err);
-      console.log('user ',user);
       if (!user){
         new User({
           name: profile.displayName,
@@ -99,12 +97,15 @@ app.get('/auth/facebook',
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
-    // console.log('========req', req.user);
     User.findOne({facebookId: req.user.id}, function(err, user){
       if (!err){
         req.user = user;
+        console.log('==== req.user: ', req.user);
+        res.redirect('/');
       }
-      res.redirect('/');
+      else{
+        console.log(err);
+      }
     });
 
   });
@@ -113,7 +114,6 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-// app.use('/auth', fb);
 app.use('/api', api);
 app.use('*', routes);
 

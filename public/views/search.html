@@ -9,7 +9,7 @@
        <p><a href="/clothes/{{c.slug}}">{{c.name}}</a></p>
      </md-card-content>
      <md-card-actions layout="row" layout-align="end center">
-        <md-button class="md-accent md-hue-1">Favorite</md-button>
+        <md-button class="md-accent md-hue-1" data-ng-click="favorite(c._id)">Favorite</md-button>
         <md-button class="md-accent md-hue-1">Add</md-button>
       </md-card-actions>
     </md-card>

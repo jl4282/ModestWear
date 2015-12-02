@@ -41,8 +41,33 @@ router.get(/\/search.*/, function(req, res, next){
   });
 });
 
+router.post('/favorite/:id', function(req, res, next){
+  //get user and add
+  console.log(req.params.id);
+  if (req.user){
+    User.findOneAndUpdate(
+      {facebookId: req.user.facebookId},
+      {$push: {favorites: req.params.id}},
+      {safe: true, upsert: true},
+      function(err, user, count){
+        res.sendStatus(200);
+    });
+    //find one and update with the added favorite
+    //findOneAndUpdate([query], [doc], [options], [callback])
+  }
+});
+
 router.get('/getUser', function(req, res, next){
-  res.json(req.user);
+  if (req.user && req.user.provider){
+    User.findOne({facebookId: req.user.id}, function(err, user, count){
+      if (!err){
+        req.user = user;
+        res.json(user);
+      }
+    });
+  } else {
+    res.json(req.user);
+  }
 });
 
 router.get('/outfit/:id', function(req, res, next){
