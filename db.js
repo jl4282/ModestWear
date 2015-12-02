@@ -17,7 +17,8 @@ var Clothing = new mongoose.Schema({
   type: {type: String, enum: ['skirt', 'shirt', 'dress', 'sweater']}, // skirt, shirt, dress, sweater
   approved: Boolean, //whether it’s approved to show
   favorites: Number, //keeps track of how many times it was favorited
-  styles: Number //keeps track of how many styles it's in
+  styles: Number, //keeps track of how many styles it's in
+  created: { type: Date, default: Date.now }
 });
 Clothing.plugin(URLSlugs('name'));
 
@@ -25,7 +26,8 @@ var Outfit = new mongoose.Schema({
   name: String,
   clothes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
   style: {type: mongoose.Schema.Types.ObjectId, ref: 'Style'},
-  owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  created: { type: Date, default: Date.now }
 });
 Outfit.plugin(URLSlugs('name'));
 
@@ -33,7 +35,8 @@ var Style = new mongoose.Schema({
   name: String, //name of the Style
   clothes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
   outfits: [{type: mongoose.Schema.Types.ObjectId, ref: 'Outfit'}],
-  owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  created: { type: Date, default: Date.now }
 });
 Style.plugin(URLSlugs('name'));
 
@@ -48,7 +51,8 @@ var User = new mongoose.Schema({
   }, //which users the person is following
   searches: [String],
   facebookId: [String], //probably want to store more FB data as well
-  email: String
+  email: String,
+  created: { type: Date, default: Date.now }
 });
 User.plugin(URLSlugs('name'));
 
