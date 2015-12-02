@@ -5,22 +5,33 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', '$location', '$htt
   // });
   //
   //
-  User.getUser().then(function(data){
-    $scope.user = data;
-  });
+  console.log('MainCtrl');
+  if (!$scope.user){
+    User.getUser().then(function(data){
+      $scope.user = data;
+    });
+  }
 
   $scope.search = function(query){
-    var params = {};
-    if (query.type){
-      params.type = query.type;
+    if (query.trim()){
+      var params = {};
+      if (query.type){
+        params.type = query.type;
+      }
+      else {
+        params.description = query;
+      }
+      $location.path('/search/').search(params);
     }
-    else {
-      params.description = query;
-    }
-    $location.path('/search/').search(params);
+
     // Clothing.searchClothing(params).then(function(data){
     //   $scope.clothes = data;
     // });
+  };
+
+  $scope.favorite = function(id){
+    console.log(id);
+    User.favorite(id);
   };
 
   $scope.home = function(){
