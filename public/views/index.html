@@ -25,7 +25,7 @@
   </script>
   <md-content layout="row" layoutfill>
     <!-- menu -->
-    <md-toolbar>
+    <md-toolbar ng-show="!showSearch">
       <div class="md-toolbar-tools">
         <h2>
           <span><a href="/">ModestWear</a></span>
@@ -35,8 +35,25 @@
         <a href="/favorites" data-ng-if="user"><md-button class="md-flat" aria-label="Favorites">Favorites</md-button></a>
         <a href="/auth/facebook" target="_self" data-ng-if="!user"><md-button class="md-flat" aria-label="Login" >Login</md-button></a>
         <a href="/profile" data-ng-if="user"><md-button class="md-flat" aria-label="Profile">Profile</md-button></a>
-        <md-button class="md-fab md-mini" aria-label="Search">
-          <md-icon class="search"></md-icon>
+        <md-button class="md-fab md-mini md-accent" aria-label="Search" data-ng-click="showSearch = !showSearch">
+          <md-icon md-svg-icon="search"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-toolbar class="md-accent search" ng-show="showSearch">
+      <div class="md-toolbar-tools">
+        <md-button data-ng-click="showSearch = !showSearch" aria-label="Back" class="md-icon-button">
+          <md-icon md-svg-icon="arrow-back"></md-icon>
+        </md-button>
+        <h3 flex="10">
+          Back
+        </h3>
+        <md-input-container flex>
+          <label>&nbsp;</label>
+          <input class="search" data-ng-model="query" placeholder="enter search">
+        </md-input-container>
+        <md-button class="md-icon-button" aria-label="Search" data-ng-click="search(query)">
+          <md-icon md-svg-icon="search"></md-icon>
         </md-button>
       </div>
     </md-toolbar>

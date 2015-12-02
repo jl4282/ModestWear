@@ -50,9 +50,8 @@ router.get(/\/search.*/, function(req, res, next){
 });
 
 router.post('/favorite/:id', function(req, res, next){
-  //get user and add
-  //
-  //make sure not already in it...
+
+  //make sure not already in it...?
   console.log(req.params.id);
   if (req.user){
     User.findOneAndUpdate(

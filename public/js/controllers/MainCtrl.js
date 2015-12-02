@@ -22,6 +22,7 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', '$location', '$htt
   };
 
   $scope.search = function(query){
+    $scope.showSearch = false;
     if (query && typeof query === 'String'){
       query = query.trim();
     }
