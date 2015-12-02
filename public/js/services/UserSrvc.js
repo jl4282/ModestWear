@@ -16,9 +16,16 @@ app.factory('UserSrvc', ['$http', function($http){
       return res.data;
     });
   };
+  var logout = function(){
+    return $http.get('/logout').then(function(res){
+      console.log(res);
+      return res.status;
+    });
+  };
   return {
     favorite : favorite,
     getUser : getUser,
-    getFavorites : getFavorites
+    getFavorites : getFavorites,
+    logout: logout
   };
 }]);

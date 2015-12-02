@@ -1,1 +1,16 @@
-<h1>Welcome {{user.name}}</h1>
+<div layout="column" layout-padding>
+  <div layout="row">
+    <h1>Welcome {{user.name}}</h1>
+  </div>
+  <div layout="column">
+    <h2>Stats:</h2>
+    <p>Total Favorites: {{user.favorites.length}}</p>
+  </div>
+  <div layout="row">
+      <a href="/favorites"><md-button class="md-accent md-raised">View Favorites</md-button></a>
+    </div>
+  <div layout="row">
+    <md-button class="md-flat" data-ng-click="logout()">Logout</md-button>
+  </div>
+</div>
+
