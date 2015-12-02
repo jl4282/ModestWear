@@ -48,6 +48,17 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', '$location', '$htt
     });
   };
 
+  $scope.deleteFav = function(id){
+    User.deleteFav(id).then(function(data){
+      if (data.status === 200){
+        $scope.user.favorites.splice($scope.user.favorites.indexOf(id), 1);
+      }
+      else {
+        console.log('grave error');
+      }
+    });
+  };
+
   $scope.home = function(){
     $location.path('/');
   };

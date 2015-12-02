@@ -26,7 +26,6 @@ app.factory('Clothing', ['$http', function($http){
     else {
       params.description = query;
     }
-    console.log('params',params);
     return $http.get('/api/search', {
       params: params
     }).then(function(resp){

@@ -18,6 +18,7 @@
      </md-card-content>
      <md-card-actions layout="row" layout-align="end center">
         <md-button class="md-accent md-hue-1" data-ng-click="favorite(c._id)" data-ng-if="!favorited(c)">Favorite</md-button>
+        <md-button class="md-accent md-hue-1" data-ng-click="deleteFav(c._id)" data-ng-if="favorited(c)">Remove Favorite</md-button>
         <md-button class="md-accent md-hue-1">Add</md-button>
       </md-card-actions>
     </md-card>

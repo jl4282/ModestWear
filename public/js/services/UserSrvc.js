@@ -11,6 +11,11 @@ app.factory('UserSrvc', ['$http', function($http){
       return data;
     });
   };
+  var deleteFav = function(itemId){
+    return $http.delete('/api/favorite/' + itemId).then(function(data){
+      return data;
+    });
+  };
   var getFavorites = function(){
     return $http.get('/api/favorites').then(function(res){
       return res.data;
@@ -26,6 +31,7 @@ app.factory('UserSrvc', ['$http', function($http){
     favorite : favorite,
     getUser : getUser,
     getFavorites : getFavorites,
-    logout: logout
+    logout: logout,
+    deleteFav: deleteFav
   };
 }]);
