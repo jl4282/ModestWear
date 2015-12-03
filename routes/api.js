@@ -52,10 +52,13 @@ router.get(/\/search.*/, function(req, res, next){
 router.post('/favorite/:id', function(req, res, next){
 
   //make sure not already in it...?
-  console.log(req.params.id);
+  var query = {_id: req.user._id};
+  if (req.user && req.user.provider){
+    query = {facebookId: req.user.id};
+  }
   if (req.user){
     User.findOneAndUpdate(
-      {facebookId: req.user.facebookId},
+      query,
       {$push: {favorites: req.params.id}},
       {safe: true, upsert: true},
       function(err, user, count){
@@ -68,9 +71,12 @@ router.post('/favorite/:id', function(req, res, next){
 
 router.delete('/favorite/:id', function(req, res, next){
   //get user and add
-  console.log(req.params.id);
+  var query = {_id: req.user._id};
+  if (req.user && req.user.provider){
+    query = {facebookId: req.user.id};
+  }
   if (req.user){
-    User.update({facebookId: req.user.facebookId}, {$pull: {favorites: req.params.id}}, function(err, user){
+    User.update(query, {$pull: {favorites: req.params.id}}, function(err, user){
       console.log(err, user);
       if (!err){
         res.sendStatus(200);
@@ -98,8 +104,13 @@ router.delete('/favorite/:id', function(req, res, next){
 
 
 router.get('/favorites', function(req, res, next){
+  console.log('favorites', req.user);
+  var query = {_id: req.user._id};
+  if (req.user && req.user.provider){
+    query = {facebookId: req.user.id};
+  }
   if (req.user){
-    User.findOne({facebookId: req.user.facebookId}).populate('favorites').exec(function(err, user){
+    User.findOne(query).populate('favorites').exec(function(err, user){
       if (!err){
         if (user.favorites){
           res.json(user.favorites);
@@ -117,16 +128,12 @@ router.get('/favorites', function(req, res, next){
 
 router.get('/getUser', function(req, res, next){
   console.log('get user: ', req.user);
+  var query = {_id: req.user._id};
   if (req.user && req.user.provider){
-    User.findOne({facebookId: req.user.id}, function(err, user, count){
-      if (!err){
-        req.user = user;
-        res.json(user);
-      }
-    });
+    query = {facebookId: req.user.id};
   }
-  else if (req.user){
-    User.findOne({_id: req.user._id}, function(err, user, count){
+  if (req.user){
+    User.findOne(query, function(err, user, count){
       if (!err){
         req.user = user;
         res.json(user);
@@ -134,7 +141,7 @@ router.get('/getUser', function(req, res, next){
     });
   }
   else {
-    res.json({});
+    res.json();
   }
 });
 
