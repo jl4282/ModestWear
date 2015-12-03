@@ -1,12 +1,12 @@
 <div layout="row" layout-wrap class="favorites-container">
-  <div flex="20" layout="column" ng-repeat="c in favorites">
+  <div flex="20" layout="column" ng-repeat="fav in favorites">
     <md-card>
-      <a href="/clothes/{{c.slug}}"><img data-ng-if="c.images[0]" src="{{c.images[0]}}" class="md-card-image" alt="{{c.name}}"></a>
+      <a href="/clothes/{{fav.slug}}"><img data-ng-if="fav.images[0]" src="{{fav.images[0]}}" class="md-card-image" alt="{{fav.name}}"></a>
       <md-card-content>
-        <p><a href="/clothes/{{c.slug}}">{{c.name}}</a></p>
+        <p><a href="/clothes/{{fav.slug}}">{{fav.name}}</a></p>
       </md-card-content>
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button class="md-icon-button md-accent md-hue-1" data-ng-click="deleteFav(c._id)" data-ng-if="favorited(c._id)" aria-label="unfavorite">
+      <md-card-actions layout="row" layout-align="center center">
+        <md-button class="md-icon-button md-accent md-hue-1" data-ng-click="deleteFav(fav._id)" data-ng-if="favorited(fav._id)" aria-label="unfavorite">
           <md-icon md-svg-icon="favorite"></md-icon>
         </md-button>
         <md-button class="md-accent md-hue-1">Add</md-button>

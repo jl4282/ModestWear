@@ -101,7 +101,12 @@ router.get('/favorites', function(req, res, next){
   if (req.user){
     User.findOne({facebookId: req.user.facebookId}).populate('favorites').exec(function(err, user){
       if (!err){
-        res.json(user.favorites);
+        if (user.favorites){
+          res.json(user.favorites);
+        }
+        else {
+          res.json({});
+        }
       }
       else {
         res.sendStatus(400);
@@ -111,6 +116,7 @@ router.get('/favorites', function(req, res, next){
 });
 
 router.get('/getUser', function(req, res, next){
+  console.log('get user: ', req.user);
   if (req.user && req.user.provider){
     User.findOne({facebookId: req.user.id}, function(err, user, count){
       if (!err){
@@ -118,8 +124,17 @@ router.get('/getUser', function(req, res, next){
         res.json(user);
       }
     });
-  } else {
-    res.json(req.user);
+  }
+  else if (req.user){
+    User.findOne({_id: req.user._id}, function(err, user, count){
+      if (!err){
+        req.user = user;
+        res.json(user);
+      }
+    });
+  }
+  else {
+    res.json({});
   }
 });
 
