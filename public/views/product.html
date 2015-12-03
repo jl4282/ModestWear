@@ -24,8 +24,12 @@
         <span>Price: {{product.price}}</span>
       </div>
       <div class="buttons">
-        <md-button class="md-accent" data-ng-click="favorite(product._id)" data-ng-if="user && (!favorited(product))">Favorite</md-button>
-        <md-button class="md-accent" data-ng-click="deleteFav(product._id)" data-ng-if="user && (favorited(product))">Remove Favorite</md-button>
+        <md-button class="md-icon-button md-accent md-hue-1" data-ng-click="favorite(product._id)" data-ng-if="!favorited(product._id)" aria-label="favorite">
+          <md-icon md-svg-icon="favorite-border"></md-icon>
+        </md-button>
+        <md-button class="md-icon-button md-accent md-hue-1" data-ng-click="deleteFav(product._id)" data-ng-if="favorited(product._id)" aria-label="unfavorite">
+          <md-icon md-svg-icon="favorite"></md-icon>
+        </md-button>
         <md-button class="md-accent">Add to Style</md-button>
         <a href="{{product.url}}"><md-button class="md-accent">Link</md-button></a>
       </div>

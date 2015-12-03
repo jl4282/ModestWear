@@ -15,9 +15,9 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', '$location', '$htt
   });
 
   //checks if item is favorited
-  $scope.favorited = function(c){
-    if ($scope.user){
-      return -1 < $scope.user.favorites.indexOf(c._id);
+  $scope.favorited = function(id){
+    if ($scope.user && $scope.user.favorites){
+      return -1 < $scope.user.favorites.indexOf(id);
     }
   };
 

@@ -101,7 +101,6 @@ router.get('/favorites', function(req, res, next){
   if (req.user){
     User.findOne({facebookId: req.user.facebookId}).populate('favorites').exec(function(err, user){
       if (!err){
-        console.log('===== favorites', user.favorites);
         res.json(user.favorites);
       }
       else {
