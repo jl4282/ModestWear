@@ -60,4 +60,4 @@ mongoose.model('Clothing', Clothing);
 mongoose.model('Style', Style);
 mongoose.model('Outfit', Outfit);
 mongoose.model('User', User);
-mongoose.connect('mongodb://localhost/mwdb');
+mongoose.connect('mongodb://localhost:10371/userdb');
