@@ -5,6 +5,11 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', '$location', '$htt
   // });
   //
   //
+
+  this.openMenu = function($mdOpenMenu, ev) {
+    $mdOpenMenu(ev);
+  };
+
   if (!$scope.user){
     User.getUser().then(function(data){
       $scope.user = data;
