@@ -2,7 +2,7 @@
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
         //still need to be implemented
-        .when('/search/:query?', {
+        .when('/search/', {
             templateUrl: 'views/search.html',
             controller: 'SearchCtrl'
         })
@@ -11,15 +11,19 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             controller: 'OutfitCtrl'
         })
         .when('/style/:slug', {
-            templateUrl: 'views/style',
+            templateUrl: 'views/style.html',
             controller: 'StyleCtrl'
         })
-        .when('/profile/:slug', {
-            templateUrl: 'views/profile',
+        // .when('/profile/:slug', {
+        //     templateUrl: 'views/profile',
+        //     controller: 'ProfileCtrl'
+        // })
+        .when('/profile', {
+            templateUrl: 'views/profile.html',
             controller: 'ProfileCtrl'
         })
         .when('/favorites', {
-            templateUrl: 'views/favorites',
+            templateUrl: 'views/favorites.html',
             controller: 'FavoritesCtrl'
         })
         .when('/', {

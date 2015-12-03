@@ -4,21 +4,59 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', '$location', '$htt
   //   $scope.clothes = data;
   // });
   //
-  User.getUser().then(function(data){
-    $scope.user = data;
+  //
+  if (!$scope.user){
+    User.getUser().then(function(data){
+      $scope.user = data;
+    });
+  }
+  Clothing.searchClothing({limit: 10}).then(function(data){
+    $scope.homeDisplay = data;
   });
 
+  //checks if item is favorited
+  $scope.favorited = function(c){
+    if ($scope.user){
+      return -1 < $scope.user.favorites.indexOf(c._id);
+    }
+  };
+
   $scope.search = function(query){
-    var params = {};
-    if (query.type){
-      params.type = query.type;
+    $scope.showSearch = false;
+    if (query && typeof query === 'String'){
+      query = query.trim();
     }
-    else {
-      params.description = query;
+    if (query){
+      var params = {};
+      if (query.type){
+        params.type = query.type;
+      }
+      else {
+        params.description = query;
+      }
+      $location.path('/search/').search(params);
     }
-    $location.path('/search/').search(params);
-    Clothing.searchClothing(params).then(function(data){
-      $scope.clothes = data;
+  };
+
+  $scope.favorite = function(id){
+    User.favorite(id).then(function(data){
+      if (data.status === 200){
+        $scope.user.favorites.push(id);
+      }
+      else {
+        console.log('grave error');
+      }
+    });
+  };
+
+  $scope.deleteFav = function(id){
+    User.deleteFav(id).then(function(data){
+      if (data.status === 200){
+        $scope.user.favorites.splice($scope.user.favorites.indexOf(id), 1);
+      }
+      else {
+        console.log('grave error');
+      }
     });
   };
 

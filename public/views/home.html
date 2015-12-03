@@ -1,13 +1,15 @@
-<div layout-padding>
-
-  <!-- why isn't MD working? -.- -->
-  <md-content>
-    <md-input-container class="md-icon-float md-block">
-      <!-- Use floating label instead of placeholder -->
-      <label>Search</label>
-      <!-- <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon> -->
-      <input ng-model="user.name" type="text">
-    </md-input-container>
-    <md-button class="md-primary md-raised" data-ng-click="search(user.name)">Search</md-button>
-  <md-content>
+<div layout="row" layout-wrap class="search-container">
+  <div flex="20" layout="column" ng-repeat="c in homeDisplay">
+    <md-card>
+     <a href="/clothes/{{c.slug}}"><img data-ng-if="c.images[0]" src="{{c.images[0]}}" class="md-card-image" alt="{{c.name}}"></a>
+     <md-card-content>
+       <p><a href="/clothes/{{c.slug}}">{{c.name}}</a></p>
+     </md-card-content>
+     <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-accent md-hue-1" data-ng-click="favorite(c._id)" data-ng-if="!favorited(c)">Favorite</md-button>
+        <md-button class="md-accent md-hue-1" data-ng-click="deleteFav(c._id)" data-ng-if="favorited(c)">Remove Favorite</md-button>
+        <md-button class="md-accent md-hue-1">Add</md-button>
+      </md-card-actions>
+    </md-card>
+  </div>
 </div>

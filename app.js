@@ -20,8 +20,10 @@ var routes = require('./routes/index');
 var fb = require('./routes/fb');
 var api = require('./routes/api');
 
-var FACEBOOK_APP_ID = "1666068127010516";
-var FACEBOOK_APP_SECRET = "c92430f3b1228e0d7e8fc548a2b14692";
+var secrets = require('./secrets');
+
+var FACEBOOK_APP_ID = secrets.facebook.appId;
+var FACEBOOK_APP_SECRET = secrets.facebook.secret;
 
 var app = express();
 
@@ -65,8 +67,6 @@ passport.use(new FacebookStrategy({
     //   return done(err, user);
     // });
     User.findOne({facebookId: profile.id}, function(err, user){
-      // console.log('==== user, err ', user, err);
-      console.log('user ',user);
       if (!user){
         new User({
           name: profile.displayName,
@@ -99,21 +99,23 @@ app.get('/auth/facebook',
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
-    // console.log('========req', req.user);
     User.findOne({facebookId: req.user.id}, function(err, user){
       if (!err){
         req.user = user;
+        console.log('==== req.user: ', req.user);
+        res.redirect('/');
       }
-      res.redirect('/');
+      else{
+        console.log(err);
+      }
     });
 
   });
 app.get('/logout', function(req, res){
   req.logout();
-  res.redirect('/');
+  res.sendStatus(200);
 });
 
-// app.use('/auth', fb);
 app.use('/api', api);
 app.use('*', routes);
 

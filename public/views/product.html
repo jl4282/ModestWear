@@ -1,16 +1,45 @@
-<div layout="column" layout-padding>
-  <div layout="row" >
+
+<div layout="column" class="product-container"layout-padding>
+  <div layout="row">
     <h1 class="product-name">{{product.name}}</h1>
   </div>
-  <div layout="row" data-ng-if="product.images" layout-wrap layout-padding>
+  <div layout="row" layout-align="space-around center">
     <div layout="column">
-      <img src="{{featuredImage}}">
+      <div layout="row">
+        <h3>Basic Info</h3>
+      </div>
+      <div layout="row">
+        <span class="info">Sizes: </span><span class="info" data-ng-repeat="s in product.sizes"> {{s}} </span>
+      </div>
+      <div layout="row" data-ng-if="product.length">
+        <span>Length: {{product.length}}</span>
+      </div>
+      <div layout="row" data-ng-if="product.colors">
+        <span class="info">Colors: </span><span class="info" data-ng-repeat="s in product.colors"> {{s}} </span>
+      </div>
+      <div layout="row">
+        <span>Brand: {{product.brand}}</span>
+      </div>
+      <div layout="row">
+        <span>Price: {{product.price}}</span>
+      </div>
+      <div class="buttons">
+        <md-button class="md-accent" data-ng-click="favorite(product._id)" data-ng-if="user && (!favorited(product))">Favorite</md-button>
+        <md-button class="md-accent" data-ng-click="deleteFav(product._id)" data-ng-if="user && (favorited(product))">Remove Favorite</md-button>
+        <md-button class="md-accent">Add to Style</md-button>
+        <a href="{{product.url}}"><md-button class="md-accent">Link</md-button></a>
+      </div>
     </div>
-    <div layout="column" flex="50">
-      <p>{{product.description}}</p>
+    <div layout="column">
+      <div layout="row">
+        <img src="{{featuredImage}}">
+      </div>
+      <div layout="row" layout-padding>
+        <img layout="column" class="product-img" src="{{i}}" data-ng-repeat="i in product.images" max-height="40px">
+      </div>
     </div>
   </div>
-  <div layout="row" layout-padding>
-    <img layout="column" class="product-img" src="{{i}}" data-ng-repeat="i in product.images" max-height="40px">
+  <div layout="row" layout-align="center center">
+    <p flex="50">{{product.description}}</p>
   </div>
 </div>

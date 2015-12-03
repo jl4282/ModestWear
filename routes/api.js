@@ -26,23 +26,102 @@ router.get('/clothes', function(req, res, next) {
 
 //get by searching description
 router.get(/\/search.*/, function(req, res, next){
+  var limit = 1000; //purely because I don't have time to do pagination
+  var query = {};
   console.log('in search');
   console.log(req.query);
-  var query = {};
+  if (req.query && req.query.limit){
+    limit = req.query.limit;
+  }
   if (req.query && req.query.description){
     query.description = new RegExp(decodeURIComponent(req.query.description), 'i');
   }
   if (req.query && req.query.type){
     query.type = req.query.type;
   }
-  Clothing.find(query, function(err, clothes, count){
-    res.json(clothes);
-    console.log(count);
+  Clothing.find(query).limit(limit).exec(function(err, clothes, count){
+    if (!err){
+      res.json(clothes);
+    }
+    else {
+      res.sendStatus(500);
+    }
   });
 });
 
+router.post('/favorite/:id', function(req, res, next){
+
+  //make sure not already in it...?
+  console.log(req.params.id);
+  if (req.user){
+    User.findOneAndUpdate(
+      {facebookId: req.user.facebookId},
+      {$push: {favorites: req.params.id}},
+      {safe: true, upsert: true},
+      function(err, user, count){
+        res.sendStatus(200);
+    });
+    //find one and update with the added favorite
+    //findOneAndUpdate([query], [doc], [options], [callback])
+  }
+});
+
+router.delete('/favorite/:id', function(req, res, next){
+  //get user and add
+  console.log(req.params.id);
+  if (req.user){
+    User.update({facebookId: req.user.facebookId}, {$pull: {favorites: req.params.id}}, function(err, user){
+      console.log(err, user);
+      if (!err){
+        res.sendStatus(200);
+      }
+      else {
+        res.sendStatus(500);
+      }
+    });
+    // User.findOne({facebookId: req.user.facebookId},function(err, user){
+    //   if (!err){
+    //     user.pull({favorites: req.params.id}, function(err, user){});
+    //     user.save(function(err, user){
+    //       if (!err){
+    //         console.log(user);
+    //         res.sendStatus(200);
+    //       }
+    //       else {
+    //         res.sendStatus(500);
+    //       }
+    //     });
+    //   }
+    // });
+  }
+});
+
+
+router.get('/favorites', function(req, res, next){
+  if (req.user){
+    User.findOne({facebookId: req.user.facebookId}).populate('favorites').exec(function(err, user){
+      if (!err){
+        console.log('===== favorites', user.favorites);
+        res.json(user.favorites);
+      }
+      else {
+        res.sendStatus(400);
+      }
+    });
+  }
+});
+
 router.get('/getUser', function(req, res, next){
-  res.json(req.user);
+  if (req.user && req.user.provider){
+    User.findOne({facebookId: req.user.id}, function(err, user, count){
+      if (!err){
+        req.user = user;
+        res.json(user);
+      }
+    });
+  } else {
+    res.json(req.user);
+  }
 });
 
 router.get('/outfit/:id', function(req, res, next){
