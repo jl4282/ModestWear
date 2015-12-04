@@ -11,13 +11,12 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             controller: 'OutfitCtrl'
         })
         .when('/styles', {
-            templateUrl: 'views/styles.html',
-            controller: 'StyleCtrl'
+            templateUrl: 'views/styles.html'
         })
-        // .when('/styles', {
-        //     templateUrl: 'views/styles.html',
-        //     controller: 'StylesCtrl'
-        // })
+        .when('/style/:slug', {
+            templateUrl: 'views/indivStyle.html',
+            controller: 'StylesCtrl'
+        })
         .when('/profile', {
             templateUrl: 'views/profile.html',
             controller: 'ProfileCtrl'

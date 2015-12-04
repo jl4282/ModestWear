@@ -1,19 +1,36 @@
-<h1>Style</h1>
-<div layout="row" layout-wrap class="search-container">
+<div class="column" layout-padding>
+  <h1>Style</h1>
+  <md-list>
+  <!-- link might break ripple -->
+    <a href="/style/{{s.slug}}" data-ng-repeat="s in user.styles"><md-list-item class="md-2-line">
+      <div class="md-list-item-text" layout="column">
+        <h3>{{s.name}}</h3>
+        <p>Clothes: {{s.clothes.length || 0}}</p>
+        <md-icon md-svg-icon="basket" aria-label="go to style" class="md-secondary md-hue-3"></md-icon>
+      </div>
+    </md-list-item></a>
+  </md-list>
+</div>
+
+<!-- <div layout="row" layout-wrap class="search-container">
   <div flex="20" layout="column" ng-repeat="s in user.styles">
     <md-card>
-      <md-card-header>
-        <md-card-header-text>
-          <md-title>{{s.name}}</md-title>
-        </md-card-header-text>
-      </md-card-header>
-      <img data-ng-if="hasImage(s)" src="getImage(s)" class="md-card-image">
-     <md-card-content>
-       <p><a href="/styles/{{s.slug}}">{{s.name}}</a></p>
+      <md-card-title>
+        <md-card-title-text layout-padding>
+          <span class="md-headline">{{s.name}}</span>
+        </md-card-title-text>
+      </md-card-title>
+     <md-card-content latyou="column">
+      <div layout="row">
+        <p>Clothes: {{s.clothes.length}}</a></p>
+      </div>
+      <div layout="row">
+        <p>Outfits: {{s.outfits.length ||0}}</p>
+      </div>
      </md-card-content>
      <md-card-actions layout="row" layout-align="end center">
-        <md-button class="md-accent md-hue-1">Add</md-button>
+        <a href="/styles/{{s.slug}}"><md-button class="md-accent md-hue-1" >View</md-button></a>
       </md-card-actions>
     </md-card>
   </div>
-</div>
+</div> -->

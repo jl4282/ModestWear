@@ -146,8 +146,25 @@ router.post('/outfit/:id', function(req, res, next){
   //update the outfit
 });
 
-router.get('/style/:id', function(req, res, next){
+router.get('/style/:slug', function(req, res, next){
   //return style with all the clothing and outfits
+  Style.findOne(query).populate('clothes', 'outfits').exec(function(err, style){
+    console.log(err, style);
+    if (!err){
+      if (style){
+        console.log(style);
+        res.json(style);
+      }
+      else {
+        res.status(404);
+      }
+    }
+    else {
+      res.sendStatus(500);
+    }
+  });
+
+
 });
 
 router.get('/styles', function(req, res, next){

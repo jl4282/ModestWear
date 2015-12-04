@@ -6,7 +6,12 @@ app.factory('StyleSrvc', ['$http', function($http){
     });
   };
   var getStyles = function(id){
-    return $http.get('/api/styles').then(function(res){
+    return $http.get('/api/style').then(function(res){
+      return res;
+    });
+  };
+  var getStyle = function(slug){
+    return $http.get('/api/style/' + slug).then(function(res){
       return res;
     });
   };
