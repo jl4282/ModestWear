@@ -12,17 +12,29 @@
         <md-button class="md-icon-button md-accent md-hue-1" data-ng-click="deleteFav(c._id)" data-ng-if="favorited(c._id)" aria-label="unfavorite">
           <md-icon md-svg-icon="favorite"></md-icon>
         </md-button>
-        <md-menu>
- <!-- Trigger element is a md-button with an icon -->
-         <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
-           <md-icon md-svg-icon="add"></md-icon>
-         </md-button>
-         <!-- FOR EACH STYLE, IF IT'S IN THE STYLE ALREADY SHOW A CHECK, OTHERWISE DON'T SHOW AN ICON -->
-         <md-menu-content>
-           <md-menu-item><md-button ng-click=""><md-icon md-svg-icon="check"></md-icon>Do Something</md-button></md-menu-item>
-         </md-menu-content>
+        <md-menu data-ng-if="user" md-position-mode="target-right target">
+          <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
+            <md-icon md-svg-icon="add"></md-icon>
+          </md-button>
+          <md-menu-content width="3">
+            <md-menu-item data-ng-repeat="s in user.styles">
+              <md-button ng-click="toggleInStyle(c, s)">
+                <div layout="row">
+                  <p flex>{{s.name}}</p>
+                  <md-icon md-menu-align-target md-svg-icon="check" data-ng-if="inStyle(c._id, s.clothes)"></md-icon><md-icon md-menu-align-target data-ng-if="!inStyle(c._id, s.clothes)"></md-icon>
+                </div>
+              </md-button>
+            </md-menu-item>
+            <md-menu-item >
+              <md-button ng-click="openCreateStyle(c._id)">
+                <div layout="row">
+                  <p flex>Create New</p>
+                  <md-icon md-menu-align-target md-svg-icon="add-circle-outline"></md-icon>
+                </div>
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
         </md-menu>
-<!--         <md-button class="md-accent md-hue-1">Add</md-button> -->
       </md-card-actions>
     </md-card>
   </div>

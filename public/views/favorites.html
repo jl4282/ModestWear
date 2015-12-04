@@ -9,7 +9,21 @@
         <md-button class="md-icon-button md-accent md-hue-1" data-ng-click="deleteFav(fav._id)" data-ng-if="favorited(fav._id)" aria-label="unfavorite">
           <md-icon md-svg-icon="favorite"></md-icon>
         </md-button>
-        <md-button class="md-accent md-hue-1">Add</md-button>
+        <md-menu data-ng-if="user" md-position-mode="target-right target">
+          <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
+            <md-icon md-svg-icon="add"></md-icon>
+          </md-button>
+          <md-menu-content width="3">
+            <md-menu-item data-ng-repeat="s in user.styles">
+              <md-button ng-click="toggleInStyle(fav, s)">
+                <div layout="row">
+                  <p flex>{{s.name}}</p>
+                  <md-icon md-menu-align-target md-svg-icon="check" data-ng-if="inStyle(fav._id, s.clothes)"></md-icon><md-icon md-menu-align-target data-ng-if="!inStyle(fav._id, s.clothes)"></md-icon>
+                </div>
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
       </md-card-actions>
     </md-card>
   </div>

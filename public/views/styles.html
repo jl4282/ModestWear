@@ -1,0 +1,19 @@
+<h1>Style</h1>
+<div layout="row" layout-wrap class="search-container">
+  <div flex="20" layout="column" ng-repeat="s in user.styles">
+    <md-card>
+      <md-card-header>
+        <md-card-header-text>
+          <md-title>{{s.name}}</md-title>
+        </md-card-header-text>
+      </md-card-header>
+      <img data-ng-if="hasImage(s)" src="getImage(s)" class="md-card-image">
+     <md-card-content>
+       <p><a href="/styles/{{s.slug}}">{{s.name}}</a></p>
+     </md-card-content>
+     <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-accent md-hue-1">Add</md-button>
+      </md-card-actions>
+    </md-card>
+  </div>
+</div>

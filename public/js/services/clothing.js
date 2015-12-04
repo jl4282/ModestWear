@@ -5,7 +5,11 @@ app.factory('Clothing', ['$http', function($http){
       return resp.data;
     });
   };
-
+  var getClothingById = function(id){
+    return $http.get('/api/clothesById/' + id).then(function(resp){
+      return resp.data;
+    });
+  };
   var getClothingBySlug = function(slug){
     console.log('slug',slug);
     return $http.get('/api/clothes/' + slug).then(function(resp){
@@ -34,6 +38,7 @@ app.factory('Clothing', ['$http', function($http){
   };
   return {
     getClothes : getClothes,
+    getClothingById : getClothingById,
     getClothingBySlug : getClothingBySlug,
     searchClothing : searchClothing
   };

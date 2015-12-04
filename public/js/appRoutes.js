@@ -10,13 +10,13 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             templateUrl: 'views/outfit.html',
             controller: 'OutfitCtrl'
         })
-        .when('/style/:slug', {
-            templateUrl: 'views/style.html',
+        .when('/styles', {
+            templateUrl: 'views/styles.html',
             controller: 'StyleCtrl'
         })
-        // .when('/profile/:slug', {
-        //     templateUrl: 'views/profile',
-        //     controller: 'ProfileCtrl'
+        // .when('/styles', {
+        //     templateUrl: 'views/styles.html',
+        //     controller: 'StylesCtrl'
         // })
         .when('/profile', {
             templateUrl: 'views/profile.html',
