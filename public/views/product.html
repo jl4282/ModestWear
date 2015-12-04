@@ -43,9 +43,17 @@
                 </div>
               </md-button>
             </md-menu-item>
+            <md-menu-item >
+              <md-button ng-click="openCreateStyle(product._id)">
+                <div layout="row">
+                  <p flex>Create New</p>
+                  <md-icon md-menu-align-target md-svg-icon="add-circle-outline"></md-icon>
+                </div>
+              </md-button>
+            </md-menu-item>
           </md-menu-content>
         </md-menu>
-        <a href="{{product.url}}"><md-button class="md-accent">Link</md-button></a>
+        <a href="{{product.url}}"><md-button class="md-accent"><md-icon md-svg-icon="link"></md-icon></md-button></a>
       </div>
     </div>
     <div layout="column">

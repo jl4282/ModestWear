@@ -8,7 +8,7 @@
      <md-card-content>
        <p><a href="/clothes/{{c.slug}}">{{c.name}}</a></p>
      </md-card-content>
-     <md-card-actions layout="row" layout-align="end center">
+     <md-card-actions layout="row" layout-align="center center">
         <md-button class="md-icon-button md-accent md-hue-1" data-ng-click="favorite(c._id)" data-ng-if="!favorited(c._id)" aria-label="favorite">
           <md-icon md-svg-icon="favorite-border"></md-icon>
         </md-button>
@@ -25,6 +25,14 @@
                 <div layout="row">
                   <p flex>{{s.name}}</p>
                   <md-icon md-menu-align-target md-svg-icon="check" data-ng-if="inStyle(c._id, s.clothes)"></md-icon><md-icon md-menu-align-target data-ng-if="!inStyle(c._id, s.clothes)"></md-icon>
+                </div>
+              </md-button>
+            </md-menu-item>
+            <md-menu-item >
+              <md-button ng-click="openCreateStyle(c._id)">
+                <div layout="row">
+                  <p flex>Create New</p>
+                  <md-icon md-menu-align-target md-svg-icon="add-circle-outline"></md-icon>
                 </div>
               </md-button>
             </md-menu-item>
