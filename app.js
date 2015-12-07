@@ -25,7 +25,16 @@ var secrets = require('./secrets');
 var FACEBOOK_APP_ID = secrets.facebook.appId;
 var FACEBOOK_APP_SECRET = secrets.facebook.secret;
 
+var callbackURL = getCallback();
+
 var app = express();
+
+function getCallback(){
+  if (process.env.NODE_ENV === 'PROD'){
+    return "http://i6.cims.nyu.edu:10370/auth/facebook/callback";
+  }
+  return "http://localhost:3000/auth/facebook/callback";
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -59,7 +68,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "http://i6.cims.nyu.edu:10370/auth/facebook/callback",
+    callbackURL: callbackURL,
     profileFields: ['id', 'displayName', 'email']
   },
   function(accessToken, refreshToken, profile, done) {

@@ -60,4 +60,9 @@ mongoose.model('Clothing', Clothing);
 mongoose.model('Style', Style);
 mongoose.model('Outfit', Outfit);
 mongoose.model('User', User);
-mongoose.connect('mongodb://localhost:10371/userdb');
+if (process.env.NODE_ENV === 'PROD'){
+  mongoose.connect('mongodb://localhost:10371/userdb');
+}
+else {
+  mongoose.connect('mongodb://localhost/mwdb');
+}
