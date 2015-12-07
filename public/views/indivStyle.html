@@ -1,9 +1,9 @@
 <div layout-padding>
   <h1>In Indiv Style</h1>
 </div>
-<div layout="row" layout-padding>
-  <div flex="70" layout="column">
-    <div layout="row">
+<div layout="row" flex="100" layout-padding>
+  <div flex="70" layout="column" layout-wrap>
+    <div layout="row" flex="100" layout-wrap>
       <div flex="30" layout="column" ng-repeat="c in clothing">
         <md-card>
           <a href="/clothes/{{c.slug}}"><img data-ng-if="c.images[0]" src="{{c.images[0]}}" class="md-card-image" alt="{{c.name}}"></a>
@@ -18,7 +18,6 @@
               <md-icon md-svg-icon="favorite-border"></md-icon>
             </md-button>
             <md-button ng-click="toggleInStyle(c)" class="md-icon-button" aria-label="Open sample menu">
-            <!-- NOT JUST IDs IN STYLE... -> need to alter inStyle code to reflect this -->
               <md-icon md-svg-icon="add" data-ng-if="!inStyle(c._id)"></md-icon>
               <md-icon md-svg-icon="check" data-ng-if="inStyle(c._id)"></md-icon>
             </md-button>
@@ -27,12 +26,9 @@
       </div>
     </div>
   </div>
-  <div flex="5">
-
-  </div>
-  <div flex="25" layout="column">
+  <div flex="30" layout="column" layout-wrap>
     <div layout="row">
-      <h2>favorites</h2>
+      <h2>Favorites</h2>
     </div>
     <div layout="row">
       <div flex="50" layout="column" ng-repeat="fav in favorites">
