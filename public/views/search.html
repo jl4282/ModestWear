@@ -8,7 +8,7 @@
      <md-card-content>
        <p><a href="/clothes/{{c.slug}}">{{c.name}}</a></p>
      </md-card-content>
-     <md-card-actions layout="row" layout-align="center center">
+     <md-card-actions layout="row" layout-align="center center" ng-if="user">
         <md-button class="md-icon-button md-accent md-hue-1" data-ng-click="favorite(c._id)" data-ng-if="!favorited(c._id)" aria-label="favorite">
           <md-icon md-svg-icon="favorite-border"></md-icon>
         </md-button>

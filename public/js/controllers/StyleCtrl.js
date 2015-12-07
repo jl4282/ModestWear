@@ -1,21 +1,21 @@
 app.controller('StyleCtrl', ['$scope', 'UserSrvc', 'StyleSrvc', 'Clothing', '$location', '$routeParams',
   function($scope, User, Style, Clothing, $location, $routeParams){
 
-  console.log('style controller');
-
-  if ($routeParams.slug){
+  console.log($scope.user);
+  if ($routeParams.slug && $scope.user){
     //retrieve style from db
     Style.getStyle($routeParams.slug).then(function(res){
-      console.log('response', res);
       $scope.style = res.data;
       $scope.clothing = res.data.clothes;
     });
 
     //get favorites for the user
     User.getFavorites().then(function(res){
-      console.log('getFavs ', res);
       $scope.favorites = res;
     });
+  }
+  else {
+    $location.path('/');
   }
 
   $scope.toggleInStyle = function(clothing){

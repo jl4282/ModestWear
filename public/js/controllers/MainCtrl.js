@@ -44,14 +44,19 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc' , '$lo
   };
 
   $scope.favorite = function(id){
-    User.favorite(id).then(function(data){
-      if (data.status === 200){
-        $scope.user.favorites.push(id);
-      }
-      else {
-        console.log('grave error');
-      }
-    });
+    if (!$scope.user){
+
+    }
+    else {
+      User.favorite(id).then(function(data){
+        if (data.status === 200){
+          $scope.user.favorites.push(id);
+        }
+        else {
+          console.log('grave error');
+        }
+      });
+    }
   };
 
   $scope.toggleInStyle = function(clothing, style){

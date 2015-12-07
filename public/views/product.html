@@ -24,10 +24,10 @@
         <span>Price: {{product.price}}</span>
       </div>
       <div class="buttons">
-        <md-button class="md-icon-button md-accent md-hue-1" data-ng-click="favorite(product._id)" data-ng-if="!favorited(product._id)" aria-label="favorite">
+        <md-button class="md-icon-button md-accent md-hue-1" data-ng-click="favorite(product._id)" data-ng-if="!favorited(product._id) && user" aria-label="favorite">
           <md-icon md-svg-icon="favorite-border"></md-icon>
         </md-button>
-        <md-button class="md-icon-button md-accent md-hue-1" data-ng-click="deleteFav(product._id)" data-ng-if="favorited(product._id)" aria-label="unfavorite">
+        <md-button class="md-icon-button md-accent md-hue-1" data-ng-click="deleteFav(product._id)" data-ng-if="favorited(product._id) && user" aria-label="unfavorite">
           <md-icon md-svg-icon="favorite"></md-icon>
         </md-button>
         <md-menu data-ng-if="user" md-position-mode="target-right target">
