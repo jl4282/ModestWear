@@ -33,6 +33,7 @@
         <span flex></span>
         <md-button class="md-flat" aria-label="b.name" data-ng-click="search(b.search)" data-ng-repeat="b in buttons">{{b.name}}</md-button>
         <a href="/favorites" data-ng-if="user"><md-button class="md-flat" aria-label="Favorites">Favorites</md-button></a>
+        <a href="/styles" data-ng-if="user"><md-button class="md-flat" aria-label="Styles">Styles</md-button></a>
         <a href="/auth/facebook" target="_self" data-ng-if="!user"><md-button class="md-flat" aria-label="Login" >Login</md-button></a>
         <a href="/profile" data-ng-if="user"><md-button class="md-flat" aria-label="Profile">Profile</md-button></a>
         <md-button class="md-fab md-mini md-accent" aria-label="Search" data-ng-click="showSearch = !showSearch">
@@ -87,8 +88,11 @@
   <script src="js/controllers/FBCtrl.js"></script>
   <script src="js/controllers/ProfileCtrl.js"></script>
   <script src="js/controllers/FavoritesCtrl.js"></script>
+  <script src="js/controllers/StyleCtrl.js"></script>
+  <script src="js/controllers/StylesCtrl.js"></script>
   <!-- Services -->
   <script src="js/services/clothing.js"></script>
   <script src="js/services/UserSrvc.js"></script>
+  <script src="js/services/StyleSrvc.js"></script>
 </body>
 </html>

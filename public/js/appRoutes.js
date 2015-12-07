@@ -10,14 +10,14 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             templateUrl: 'views/outfit.html',
             controller: 'OutfitCtrl'
         })
+        .when('/styles', {
+            templateUrl: 'views/styles.html',
+            controller: 'StylesCtrl'
+        })
         .when('/style/:slug', {
-            templateUrl: 'views/style.html',
+            templateUrl: 'views/indivStyle.html',
             controller: 'StyleCtrl'
         })
-        // .when('/profile/:slug', {
-        //     templateUrl: 'views/profile',
-        //     controller: 'ProfileCtrl'
-        // })
         .when('/profile', {
             templateUrl: 'views/profile.html',
             controller: 'ProfileCtrl'
@@ -26,15 +26,18 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             templateUrl: 'views/favorites.html',
             controller: 'FavoritesCtrl'
         })
-        .when('/', {
-            templateUrl: 'views/home.html'
-        })
         //when viewing an article of clothing
         .when('/clothes/:slug', {
             templateUrl: 'views/product.html',
             controller: 'ProductCtrl'
-        });
+        })
         // home page
+        .when('/', {
+            templateUrl: 'views/home.html'
+        })
+        .otherwise({
+            templateUrl: 'views/home.html'
+        });
     $locationProvider.html5Mode(true);
 
 }]);

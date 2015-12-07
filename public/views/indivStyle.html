@@ -1,0 +1,62 @@
+<div layout-padding>
+  <h1>In Indiv Style</h1>
+</div>
+<div layout="row" flex="100" layout-padding>
+  <div flex="70" layout="column" layout-wrap>
+    <div layout="row" flex="100" layout-wrap>
+      <div flex="30" layout="column" ng-repeat="c in clothing">
+        <md-card>
+          <a href="/clothes/{{c.slug}}"><img data-ng-if="c.images[0]" src="{{c.images[0]}}" class="md-card-image" alt="{{c.name}}"></a>
+          <md-card-content>
+            <p><a href="/clothes/{{c.slug}}">{{c.name}}</a></p>
+          </md-card-content>
+          <md-card-actions layout="row" layout-align="center center">
+            <md-button class="md-icon-button md-accent md-hue-1" data-ng-click="deleteFav(c._id)" data-ng-if="favorited(c._id)" aria-label="unfavorite">
+              <md-icon md-svg-icon="favorite"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button md-accent md-hue-1" data-ng-click="favorite(c._id)" data-ng-if="!favorited(c._id)" aria-label="favorite">
+              <md-icon md-svg-icon="favorite-border"></md-icon>
+            </md-button>
+            <md-button ng-click="toggleInStyle(c)" class="md-icon-button" aria-label="Open sample menu">
+              <md-icon md-svg-icon="add" data-ng-if="!inStyle(c._id)"></md-icon>
+              <md-icon md-svg-icon="check" data-ng-if="inStyle(c._id)"></md-icon>
+            </md-button>
+          </md-card-actions>
+        </md-card>
+      </div>
+    </div>
+  </div>
+  <div flex="30" layout="column" layout-wrap ng-if="user">
+    <div layout="row">
+      <h2>Favorites</h2>
+    </div>
+    <div layout="row">
+      <div flex="50" layout="column" ng-repeat="fav in favorites">
+        <md-card>
+          <a href="/clothes/{{fav.slug}}"><img data-ng-if="fav.images[0]" src="{{fav.images[0]}}" class="md-card-image" alt="{{fav.name}}"></a>
+          <md-card-content>
+            <p><a href="/clothes/{{fav.slug}}">{{fav.name}}</a></p>
+          </md-card-content>
+          <md-card-actions layout="row" layout-align="center center">
+            <md-button class="md-icon-button md-accent md-hue-1" data-ng-click="deleteFav(fav._id)" data-ng-if="favorited(fav._id)" aria-label="unfavorite">
+              <md-icon md-svg-icon="favorite"></md-icon>
+            </md-button>
+            <md-button ng-click="toggleInStyle(fav)" class="md-icon-button" aria-label="Open sample menu">
+              <md-icon md-svg-icon="add" data-ng-if="!inStyle(fav._id)"></md-icon>
+              <md-icon md-svg-icon="check" data-ng-if="inStyle(fav._id)"></md-icon>
+            </md-button>
+          </md-card-actions>
+        </md-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--
+  if user
+  split page 50/50
+    cards of what's in style
+    cards of what's in favorites
+  -->
+

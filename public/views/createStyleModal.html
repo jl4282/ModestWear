@@ -1,0 +1,14 @@
+<md-dialog flex="40">
+  <md-dialog-content layout="column" layout-align="end center">
+    <h1 class="md-display-1" layout="row">Create New Style</h1>
+    <md-content layout="row">
+      <md-input-container flex="100" layout="row">
+        <label>Name</label>
+        <input type="text" data-ng-model="name">
+      </md-input-container>
+    </md-content>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button ng-click="closeDialog()" class="md-flat">Cancel</md-button><md-button ng-click="createStyle(name)" class="md-primary">Create</md-button>
+  </md-dialog-actions>
+</md-dialog>
