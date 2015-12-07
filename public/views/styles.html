@@ -2,12 +2,12 @@
   <h1>Style</h1>
   <md-list>
   <!-- link might break ripple -->
-    <a href="/style/{{s.slug}}" data-ng-repeat="s in user.styles"><md-list-item class="md-2-line">
+    <md-list-item class="md-2-line" data-ng-repeat="s in user.styles" ng-click="styleClick(s.slug)">
       <div class="md-list-item-text" layout="column">
         <h3>{{s.name}}</h3>
         <p>Clothes: {{s.clothes.length || 0}}</p>
         <md-icon md-svg-icon="basket" aria-label="go to style" class="md-secondary md-hue-3"></md-icon>
       </div>
-    </md-list-item></a>
+    </md-list-item>
   </md-list>
 </div>

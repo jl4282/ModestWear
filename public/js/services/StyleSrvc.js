@@ -29,6 +29,7 @@ app.factory('StyleSrvc', ['$http', function($http){
   return {
     createStyle : createStyle,
     getStyles : getStyles,
+    getStyle : getStyle,
     addToStyle : addToStyle,
     removeFromStyle : removeFromStyle
   };

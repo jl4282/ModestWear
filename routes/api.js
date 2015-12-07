@@ -148,7 +148,8 @@ router.post('/outfit/:id', function(req, res, next){
 
 router.get('/style/:slug', function(req, res, next){
   //return style with all the clothing and outfits
-  Style.findOne(query).populate('clothes').populate('outfits').exec(function(err, style){
+  console.log('in getStyle');
+  Style.findOne({slug: req.params.slug}).populate('clothes').populate('outfits').exec(function(err, style){
     console.log(err, style);
     if (!err){
       if (style){
@@ -160,6 +161,7 @@ router.get('/style/:slug', function(req, res, next){
       }
     }
     else {
+      console.log('grave error:', err);
       res.sendStatus(500);
     }
   });

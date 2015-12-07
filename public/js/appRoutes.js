@@ -11,11 +11,12 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             controller: 'OutfitCtrl'
         })
         .when('/styles', {
-            templateUrl: 'views/styles.html'
+            templateUrl: 'views/styles.html',
+            controller: 'StylesCtrl'
         })
         .when('/style/:slug', {
             templateUrl: 'views/indivStyle.html',
-            controller: 'StylesCtrl'
+            controller: 'StyleCtrl'
         })
         .when('/profile', {
             templateUrl: 'views/profile.html',
@@ -25,15 +26,18 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             templateUrl: 'views/favorites.html',
             controller: 'FavoritesCtrl'
         })
-        .when('/', {
-            templateUrl: 'views/home.html'
-        })
         //when viewing an article of clothing
         .when('/clothes/:slug', {
             templateUrl: 'views/product.html',
             controller: 'ProductCtrl'
-        });
+        })
         // home page
+        .when('/', {
+            templateUrl: 'views/home.html'
+        })
+        .otherwise({
+            templateUrl: 'views/home.html'
+        });
     $locationProvider.html5Mode(true);
 
 }]);
