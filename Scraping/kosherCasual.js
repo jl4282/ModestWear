@@ -29,7 +29,7 @@ function kosherScrape(url, links, type){
   request(url, function(error, response, body){
     if(!error){
       var $ = cheerio.load(body);
-      $('.info a').each(function(i, elem){
+      $('.price a').each(function(i, elem){
         console.log($(this).attr('href'));
         links.push($(this).attr('href'));
       });
@@ -38,6 +38,7 @@ function kosherScrape(url, links, type){
       }
       else{
         //final page so call function that will scrape individual pages
+        console.log(links); //not getting links
         links.forEach(function(link){
           scrapeProductPage(link, type);
           links = [];
@@ -58,6 +59,7 @@ function scrapeProductPage(link, type){
       var $ = cheerio.load(body);
       var item = {};
       //name
+      console.log('scraping product');
       $('h1').each(function(i, elem){
         if($(this).attr('itemprop') === 'name'){
           item.name = $(this).text().trim();
@@ -120,7 +122,7 @@ function scrapeProductPage(link, type){
       //approved
       item.approved = true;
 
-      // console.log(item);
+      console.log(item);
 
       //INSERT INTO DB
       new Clothing(item).save(function(err, clothing, count){
