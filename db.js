@@ -61,7 +61,6 @@ mongoose.model('Style', Style);
 mongoose.model('Outfit', Outfit);
 mongoose.model('User', User);
 if (process.env.NODE_ENV === 'PROD'){
-  console.log('in prod');
   mongoose.connect('mongodb://localhost:10371/userdb');
 }
 else {
