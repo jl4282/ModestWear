@@ -20,22 +20,11 @@ ModestWear is a website that aggregates modest clothing so that users don't need
   - I want to lay out the project in a Model - View - Controller format
   - Need to research Polymer and MVC
 - Using pre-built Express project templates (1) - created `app using npm install express-generator`
-- Phantom.js (3) 
-  - We want to use Phantom.js to test our routes
-  - Need to research it more [here](http://phantomjs.org/)
-- Less (1?) - If we need to add any aditional CSS we want to use LESS
-- Minification (1) - We want to minify everything on our production server
-- grunt to automatically (1): 
-  - precompile Less (if used) 
-  - run scraping algorithms
-  - minify the files
-- JSHint (1) - we want to install JSHint for SublimeText2
 - User Authentication (4)- use Facebook
-- CSS Framework (1) - Either Material Design Lite or the framework that Polymer comes with.
+- CSS Framework (1) - Using Angular Material CSS framework for layouts.
 - client side library (3) - Angular 
-- visual effects (1) - we want to use Material Design motions to create visual effects and turn it into a living, breathing site.
 
-Total: 13? (I'm bad with numbers)
+Total: 10? (I'm bad with numbers)
 
 ###Some Wireframes
 
@@ -50,7 +39,7 @@ Total: 13? (I'm bad with numbers)
 
 ### Use Cases
 
-####Outfits
+####Outfits -> Never made it to production
 - Summmary: Aggregation of clothing that is an outfit belongs to a style and contains articles of clothing from that style
 - Rationale: User might have items in a style, but wants to determine what items go together
 - Users: All users
@@ -84,7 +73,7 @@ Total: 13? (I'm bad with numbers)
   - A user can copy a style from another user
 - Postconditions: The style will appear on the user's profile
  
-####Personalized Search
+####Personalized Search -> Search exists, but never made personalized searches or search filters
 - Summmary: A user might want to search for clothing
 - Rationale: User might want to search for clothing and have personalized results based on his or her preferences.
 - Users: All users
@@ -110,7 +99,7 @@ Total: 13? (I'm bad with numbers)
 - Alternate Paths
 - Postconditions: User will see this item in his or her favorites category on pages and in results
 
-####Follow Other Users
+####Follow Other Users -> never made it into production
 - Summmary: User can follow Styles, or other users
 - Rationale: User might like the styles or particular style that someone created, and want to see when the user changes it
 - Users: All users
@@ -251,8 +240,8 @@ var Style = new mongoose.Schema({
 ####Religious-Oriented Stores: 
 - [x] Kosher Casual
 - [ ] Modest Apparel USA
-- [ ] Junees
-- [ ] Mode-sty
+- [x] Junees
+- [x] Mode-sty
 
 ####Department Stores
 - [ ] Century 21
@@ -274,7 +263,7 @@ var Style = new mongoose.Schema({
 
 ##Design
 
-We're using Material Design themes. We hope to abide the MD standards and create meaningful transitions.
+We're using Material Design themes.
 
 
 ##Instructions - Quick Guide to MEAN
