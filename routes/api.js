@@ -165,8 +165,6 @@ router.get('/style/:slug', function(req, res, next){
       res.sendStatus(500);
     }
   });
-
-
 });
 
 router.get('/styles', function(req, res, next){
@@ -203,43 +201,46 @@ router.post('/style/create', function(req, res, next){
 
   if (req.user){
     // && req.user._id === req.body.id
-
-    var query = {_id: req.user._id};
-    if (req.user.provider){
-      query = {facebookId: req.user.id};
+    if (((req.body.name.search('>') < 0) && (req.body.name.search('<') < 0)) && (req.body.name.trim()) ){ //check for HTML injection
+      var query = {_id: req.user._id};
+      if (req.user.provider){
+        query = {facebookId: req.user.id};
+      }
+      User.findOne(query, function(err, user){
+        console.log(err,req.body.id, user._id, req.body.id === user._id);
+        if (!err && user._id == (req.body.id + '')){
+          var item = {
+            name: req.body.name,
+            owner: req.body.id,
+            clothes: req.body.clothes || []
+          };
+          new Style(item).save(function(err, style, count){
+            console.log('saved style', style);
+            if (!err){
+              //update user with style id
+              User.update({_id: item.owner}, {$push: {styles: style._id}}, function(err, user, count){
+                console.log('saved user', err, user);
+                if (!err){
+                  res.status(200).json(style);
+                }
+                else {
+                  res.sendStatus(500);
+                }
+              });
+            }
+            else{
+              console.log('error: ', err);
+              res.sendStatus(500);
+            }
+          });
+        }
+        else{
+          res.sendStatus(403);
+        }
+      });
+    } else {
+      res.sendStatus(500).json('Improper character');
     }
-    User.findOne(query, function(err, user){
-      console.log(err,req.body.id, user._id, req.body.id === user._id);
-      if (!err && user._id == (req.body.id + '')){
-        var item = {
-          name: req.body.name,
-          owner: req.body.id,
-          clothes: req.body.clothes || []
-        };
-        new Style(item).save(function(err, style, count){
-          console.log('saved style', style);
-          if (!err){
-            //update user with style id
-            User.update({_id: item.owner}, {$push: {styles: style._id}}, function(err, user, count){
-              console.log('saved user', err, user);
-              if (!err){
-                res.status(200).json(style);
-              }
-              else {
-                res.sendStatus(500);
-              }
-            });
-          }
-          else{
-            console.log('error: ', err);
-            res.sendStatus(500);
-          }
-        });
-      }
-      else{
-        res.sendStatus(403);
-      }
-    });
   }
   else{
     console.log('didnt work');
