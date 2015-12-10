@@ -120,21 +120,23 @@ router.get('/favorites', function(req, res, next){
 });
 
 router.get('/getUser', function(req, res, next){
-  console.log('get user: ', req.user);
-  var query = {_id: req.user._id};
-  if (req.user && req.user.provider){
-    query = {facebookId: req.user.id};
-  }
   if (req.user){
+    var query = {_id: req.user._id};
+    if (req.user.provider){
+      query = {facebookId: req.user.id};
+    }
     User.findOne(query).populate('styles').exec(function(err, user, count){
       if (!err){
         req.user = user;
         res.json(user);
       }
+      else {
+        res.sendStatus(404);
+      }
     });
   }
   else {
-    res.json();
+    res.sendStatus(404);
   }
 });
 
