@@ -270,6 +270,7 @@ We're using Material Design themes.
 
 1. Download
 2. run `npm install`
+3. run `bower install`
 
 ## Running Website
 `node bin/www`
