@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   console.log('in home', req.user);
   res.sendfile('./public/views/index.html');
 });
-
+/*
 //Routes NEEDS TO BE MOVED TO ANGULAR!
 router.get('/search/:query', function(req, res, next) {
   //get query
@@ -56,5 +56,5 @@ router.get('/favorites', function(req, res, next) {
   //populate results
   res.render('favorites', {  });
 });
-
+*/
 module.exports = router;
