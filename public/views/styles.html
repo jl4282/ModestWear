@@ -1,16 +1,37 @@
-<div class="column" layout-padding>
-  <h1>Style</h1>
-  <md-list>
-  <!-- link might break ripple -->
-    <md-list-item class="md-2-line" data-ng-repeat="s in user.styles" ng-click="styleClick(s.slug)">
-      <div class="md-list-item-text" layout="column">
-        <h3>{{s.name}}</h3>
-        <p>Clothes: {{s.clothes.length || 0}}</p>
-        <md-icon md-svg-icon="basket" aria-label="go to style" class="md-secondary md-hue-3"></md-icon>
-      </div>
-    </md-list-item>
-  </md-list>
-</div>
+
+<div class="column style-page" layout-padding>
+  <!-- <h1>Style</h1> -->
+  <div flex>
+    <md-toolbar layout="row" class="md-hue-2">
+        <div class="md-toolbar-tools">
+          <span>Styles</span>
+        </div>
+      </md-toolbar>
+    <!-- link might break ripple -->
+      <div flex="100" flex-sm="50" flex-md="33" flex-lg="25" flex-gt-lg="20" layout="column" data-ng-repeat="s in user.styles" ng-click="styleClick(s.slug)">
+        <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{s.name}}</span>
+            <span> {{s.clothes[0]}} </span>
+            <span class="md-subhead">Items: {{s.clothes.length || 0 }}</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-lg card-media"></div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>Action 1</md-button>
+          <md-button>Action 2</md-button>
+        </md-card-actions>
+      </md-card>
+       <!--  <div class="md-list-item-text" layout="column">
+          <h3>{{s.name}}</h3>
+          <p>Clothes: {{s.clothes.length || 0}}</p>
+          <md-icon md-svg-icon="basket" aria-label="go to style" class="md-secondary md-hue-3"></md-icon>
+        </div>
+      </md-list-item> -->
+  </div>
 <div layout-padding data-ng-if="!user.styles || user.styles.length === 0">
   <h1>Get out there and create a style!</h1>
 </div>

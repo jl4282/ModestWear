@@ -1,5 +1,5 @@
 <div layout="row" layout-wrap class="favorites-container">
-  <div flex="20" layout="column" ng-repeat="fav in favorites">
+  <div flex="100" flex-sm="50" flex-md="33" flex-lg="25" flex-gt-lg="20"layout="column" ng-repeat="fav in favorites">
     <md-card>
       <a href="/clothes/{{fav.slug}}"><img data-ng-if="fav.images[0]" src="{{fav.images[0]}}" class="md-card-image" alt="{{fav.name}}"></a>
       <md-card-content>
