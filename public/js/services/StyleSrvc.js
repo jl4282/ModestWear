@@ -1,7 +1,7 @@
 'use strict';
 app.factory('StyleSrvc', ['$http', function($http){
   var createStyle = function(name, id, clothingId){
-    return $http.post('/api/style/create', {name: name, id: id, clothes: [clothingId]}).then(function(res){
+    return $http.post('/api/style/create', {name: name, id: id, clothes: clothingId}).then(function(res){
       return res;
     });
   };
