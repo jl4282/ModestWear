@@ -1,4 +1,11 @@
 require('../db');
+
+/*
+A router object is an isolated instance of middleware and routes. 
+You can think of it as a “mini-application,” capable only of performing 
+middleware and routing functions. Every Express application has a built-in app router.
+*/
+
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
@@ -56,6 +63,7 @@ router.get(/\/search.*/, function(req, res, next){
   });
 });
 
+// 
 router.post('/favorite/:id', function(req, res, next){
 
   //make sure not already in it...?
@@ -76,6 +84,7 @@ router.post('/favorite/:id', function(req, res, next){
   }
 });
 
+// 
 router.delete('/favorite/:id', function(req, res, next){
   //get user and add
   var query = {_id: req.user._id};
@@ -95,7 +104,7 @@ router.delete('/favorite/:id', function(req, res, next){
   }
 });
 
-
+// GET method router for favorites
 router.get('/favorites', function(req, res, next){
   console.log('favorites', req.user);
   var query = {_id: req.user._id};
