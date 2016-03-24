@@ -63,7 +63,7 @@ router.get(/\/search.*/, function(req, res, next){
   });
 });
 
-// 
+
 router.post('/favorite/:id', function(req, res, next){
 
   //make sure not already in it...?
@@ -84,7 +84,7 @@ router.post('/favorite/:id', function(req, res, next){
   }
 });
 
-// 
+// Router -> delete favorite
 router.delete('/favorite/:id', function(req, res, next){
   //get user and add
   var query = {_id: req.user._id};
@@ -149,10 +149,12 @@ router.get('/getUser', function(req, res, next){
   }
 });
 
+// Outfit GET method
 router.get('/outfit/:id', function(req, res, next){
   //return outfit with all the clothing
 });
 
+// Outfit POST method
 router.post('/outfit/:id', function(req, res, next){
   //update the outfit
 });

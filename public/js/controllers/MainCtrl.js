@@ -5,6 +5,7 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc' , '$lo
   // });
   //
   //
+  console.log("In MainCtrl");
 
   this.openMenu = function($mdOpenMenu, ev) {
     $mdOpenMenu(ev);

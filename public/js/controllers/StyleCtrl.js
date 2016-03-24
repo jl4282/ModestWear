@@ -2,6 +2,7 @@ app.controller('StyleCtrl', ['$scope', 'UserSrvc', 'StyleSrvc', 'Clothing', '$lo
   function($scope, User, Style, Clothing, $location, $routeParams){
 
   console.log($scope.user);
+  console.log("StyleCtrl --> singular!!");
   if ($routeParams.slug && $scope.user){
     //retrieve style from db
     Style.getStyle($routeParams.slug).then(function(res){

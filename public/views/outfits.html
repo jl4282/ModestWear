@@ -1,0 +1,18 @@
+<!-- outfits.html -->
+<!-- TODO : EDIT LAYOUT, but for now it should do the trick -->
+<!-- TODO : WHY IS THIS NOT HAPPENING WHEN OUTFITS GETS CALLED -->
+<div class="column" layout-padding>
+  <h1>This is the outfits page!!!</h1>
+  <md-list>
+    <md-list-item class="md-2-line" data-ng-repeat="o in user.outfits" ng-click="styleClick(s.slug)">
+      <div class="md-list-item-text" layout="column">
+        <h3>{{s.name}}</h3>
+        <p>Clothes: {{s.clothes.length || 0}}</p>
+        <md-icon md-svg-icon="basket" aria-label="go to style" class="md-secondary md-hue-3"></md-icon>
+      </div>
+    </md-list-item>
+  </md-list>
+</div>
+<div layout-padding data-ng-if="!user.outfits || user.styles.outfits === 0">
+  <h1>Come on. Go make some outfits!</h1>
+</div>
