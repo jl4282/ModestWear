@@ -159,6 +159,36 @@ router.post('/outfit/:id', function(req, res, next){
   //update the outfit
 });
 
+router.get('/outfits', function(req, res, next){
+  //return outfit with all the clothing and outfits
+  if (req.user){
+    console.log('in outfits');
+    var query = {_id: req.user._id};
+    if (req.user && req.user.provider){
+      query = {facebookId: req.user.id};
+    }
+    User.findOne(query).populate('outfits').exec(function(err, user){
+      console.log(err, user);
+      if (!err){
+        if (user.outfits){
+          console.log(user.outfits);
+          res.json(user.outfits);
+        }
+        else {
+          res.status(404);
+        }
+      }
+      else {
+        res.sendStatus(500);
+      }
+    });
+  }
+  else {
+    res.status(403);
+  }
+
+});
+
 router.get('/style/:slug', function(req, res, next){
   //return style with all the clothing and outfits
   console.log('in getStyle');

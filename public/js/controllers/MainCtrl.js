@@ -1,5 +1,6 @@
 'use strict';
-app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc' , '$location', '$http', '$mdDialog' , function($scope, Clothing, User, Style, $location, $http, $mdDialog){
+// TODO : Add OutfitSrvc
+app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc', '$location', '$http', '$mdDialog' , function($scope, Clothing, User, Style, $location, $http, $mdDialog){
   // Clothing.searchClothing('winter').then(function(data){
   //   $scope.clothes = data;
   // });

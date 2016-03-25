@@ -1,6 +1,10 @@
 // OutfitCtrl.js
 // This is really just copied from Style... but changed to Outfit
-app.controller('OutfitCtrl', ['$scope', 'UserSrvc', 'OutfitSrvc', 'Clothing', '$location', '$routeParams',
+/*
+  TODO:
+    - add OutfitSrvc
+*/
+app.controller('OutfitCtrl', ['$scope', 'UserSrvc', 'Clothing', '$location', '$routeParams',
   function($scope, User, Outfit, Clothing, $location, $routeParams){
 
   console.log($scope.user);
