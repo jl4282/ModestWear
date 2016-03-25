@@ -39,7 +39,6 @@ app.controller('OutfitCtrl', ['$scope', 'UserSrvc', 'Clothing', '$location', '$r
         $scope.clothing.splice($scope.clothing.indexOf(clothing), 1);
       });
     }
-
   };
 
   $scope.inOutfit = function (clothingId){

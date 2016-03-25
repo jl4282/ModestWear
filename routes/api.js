@@ -161,6 +161,7 @@ router.post('/outfit/:id', function(req, res, next){
 
 router.get('/outfits', function(req, res, next){
   //return outfit with all the clothing and outfits
+  console.log("IN OUTFITS IN THE API!!!");
   if (req.user){
     console.log('in outfits');
     var query = {_id: req.user._id};
