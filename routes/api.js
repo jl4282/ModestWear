@@ -152,6 +152,23 @@ router.get('/getUser', function(req, res, next){
 // Outfit GET method
 router.get('/outfit/:id', function(req, res, next){
   //return outfit with all the clothing
+  console.log('in getOutfit');
+  Outfit.findOne({slug: req.params.slug}).populate('clothes').populate('outfits').exec(function(err, style){
+    console.log(err, style);
+    if (!err){
+      if (style){
+        console.log(style);
+        res.json(style);
+      }
+      else {
+        res.status(404);
+      }
+    }
+    else {
+      console.log('grave error:', err);
+      res.sendStatus(500);
+    }
+  });
 });
 
 // Outfit POST method
@@ -163,7 +180,6 @@ router.get('/outfits', function(req, res, next){
   //return outfit with all the clothing and outfits
   console.log("IN OUTFITS IN THE API!!!");
   if (req.user){
-    console.log('in outfits');
     var query = {_id: req.user._id};
     if (req.user && req.user.provider){
       query = {facebookId: req.user.id};
@@ -192,8 +208,8 @@ router.get('/outfits', function(req, res, next){
 
 // START COPY PASTE
 // TODO : Make API calls for Outfits
-/*
-router.post('/style/create', function(req, res, next){
+
+router.post('/outfit/create', function(req, res, next){
   if (req.user){
     // && req.user._id === req.body.id
     if (((req.body.name.search('>') < 0) && (req.body.name.search('<') < 0)) && (req.body.name.trim()) ){ //check for HTML injection
@@ -209,14 +225,14 @@ router.post('/style/create', function(req, res, next){
             owner: req.body.id,
             clothes: req.body.clothes || []
           };
-          new Style(item).save(function(err, style, count){
-            console.log('saved style', style);
+          new Outfit(item).save(function(err, outfit, count){
+            console.log('saved outfit', outfit);
             if (!err){
               //update user with style id
-              User.update({_id: item.owner}, {$push: {styles: style._id}}, function(err, user, count){
+              User.update({_id: item.owner}, {$push: {outfits: outfit._id}}, function(err, user, count){
                 console.log('saved user', err, user);
                 if (!err){
-                  res.status(200).json(style);
+                  res.status(200).json(outfit);
                 }
                 else {
                   res.sendStatus(500);
@@ -243,25 +259,25 @@ router.post('/style/create', function(req, res, next){
   }
 });
 
-router.post('/style/add', function(req, res, next){
-  //add clothing to style
+router.post('/outfit/add', function(req, res, next){
+  // add clothing to style
   // console.log('that matchup... ', req.user, req.body.styleId);
   //
 
-  console.log('IN ADD',req.user, req.body.styleId);
+  console.log('IN ADD',req.user, req.body.outfitId);
   if (req.user){
     var query = {_id: req.user._id};
     if (req.user.provider){
       query = {facebookId: req.user.id};
     }
     User.findOne(query, function(err, user){
-      if (user.styles.indexOf(req.body.styleId) > -1){
-        Style.findOneAndUpdate(
-          {_id: req.body.styleId},
+      if (user.outfits.indexOf(req.body.outfitId) > -1){
+        Outfit.findOneAndUpdate(
+          {_id: req.body.outfitId},
           {$push: {clothes: req.body.clothingId}},
           {safe: true, upsert: true},
-          function(err, style, count){
-            console.log('saving.... ',err, style);
+          function(err, outfit, count){
+            console.log('saving.... ',err, outfit);
             if (!err){
               res.sendStatus(200);
             }
@@ -279,7 +295,25 @@ router.post('/style/add', function(req, res, next){
     res.sendStatus(403);
   }
 });
-*/
+
+// TODO : THIS DOESNT WORK FOR SOME REASON
+router.delete('/outfit/remove/:outfitId/:clothingId', function(req, res, next){
+  if (req.user && (req.user.outfits.indexOf(req.params.outfitId) > -1)){
+    Outfit.update({_id: req.params.outfitId}, {$pull: {clothes: req.params.clothingId}}, function(err, user){
+      console.log(err, user);
+      if (!err){
+        res.sendStatus(200);
+      }
+      else {
+        res.sendStatus(500);
+      }
+    });
+  }
+  else {
+    res.sendStatus(403);
+  }
+});
+
 // END COPY PASTE
 
 router.get('/style/:slug', function(req, res, next){

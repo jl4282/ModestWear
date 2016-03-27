@@ -38,6 +38,30 @@
             </md-menu-item>
           </md-menu-content>
         </md-menu>
+        <!-- Add Outfit -->
+        <md-menu data-ng-if="user" md-position-mode="target-left target">
+          <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
+            <md-icon md-svg-icon="add"></md-icon>
+          </md-button>
+          <md-menu-content width="3">
+            <md-menu-item data-ng-repeat="o in user.outfits">
+              <md-button ng-click="toggleInStyle(c, o)">
+                <div layout="row">
+                  <p flex>{{s.name}}</p>
+                  <md-icon md-menu-align-target md-svg-icon="check" data-ng-if="inOutfit(c._id, o.outfits)"></md-icon><md-icon md-menu-align-target data-ng-if="!inOutfits(c._id, o.clothes)"></md-icon>
+                </div>
+              </md-button>
+            </md-menu-item>
+            <md-menu-item >
+              <md-button ng-click="openCreateOutfit(o._id)">
+                <div layout="row">
+                  <p flex>Create New</p>
+                  <md-icon md-menu-align-target md-svg-icon="add-circle-outline"></md-icon>
+                </div>
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
       </md-card-actions>
     </md-card>
   </div>
