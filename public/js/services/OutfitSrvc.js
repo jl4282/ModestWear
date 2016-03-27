@@ -1,6 +1,9 @@
 // TODO : DONT KNOW IF THIS IS GOOD
+// be sure to check what params everything takes
+
 'use strict';
 app.factory('OutfitSrvc', ['$http', function($http){
+  
   /*
   var createOutfit = function(name, id, clothingId){
     return $http.post('/api/outfit/create', {name: name, id: id, clothes: clothingId}).then(function(res){
@@ -14,7 +17,7 @@ app.factory('OutfitSrvc', ['$http', function($http){
       return res;
     });
   };
-  
+
   /*
   var getOutfit = function(slug){
     return $http.get('/api/outfit/' + slug).then(function(res){
@@ -32,6 +35,7 @@ app.factory('OutfitSrvc', ['$http', function($http){
       return res;
     });
   };
+  
   */
   return {
     /*
@@ -39,8 +43,7 @@ app.factory('OutfitSrvc', ['$http', function($http){
     getOutfits : getOutfits,
     getOutfit : getOutfit,
     addToOutfit : addToOutfit,
-    removeFromOutfit : removeOutfit
-    */
-    getOutfits : getOutfits
+    removeFromOutfit : removeOutfit 
+    */   
   };
 }]);

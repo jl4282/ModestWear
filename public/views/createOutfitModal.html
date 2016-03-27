@@ -1,0 +1,18 @@
+
+<!-- Add form element -->
+<md-dialog flex="40">
+  <md-dialog-content layout="column" layout-align="end center">
+    <h1 class="md-display-1" layout="row">Create New Outfit</h1>
+    <md-content layout="row">
+      <form name="newOutfit">
+        <md-input-container flex="100" layout="row">
+          <label>Name</label>
+          <input type="text" data-ng-model="name" required>
+        </md-input-container>
+      </form>
+    </md-content>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button ng-click="closeDialog()" class="md-flat">Cancel</md-button><md-button ng-click="createOutfit(name)" class="md-primary">Create</md-button>
+  </md-dialog-actions>
+</md-dialog>

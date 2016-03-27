@@ -1,5 +1,5 @@
 <div class="column" layout-padding>
-  <h1>Style</h1>
+  <h1>Styles</h1>
   <md-list>
   <!-- link might break ripple -->
     <md-list-item class="md-2-line" data-ng-repeat="s in user.styles" ng-click="styleClick(s.slug)">
@@ -12,5 +12,6 @@
   </md-list>
 </div>
 <div layout-padding data-ng-if="!user.styles || user.styles.length === 0">
-  <h1>Get out there and create a style!</h1>
+  <h4>Styles are meant to keep track of types of clothing. Like "winter wonderland", "hipster", or "night out".</h4>
+  <h3>Now get out there and make some styles!</h3>
 </div>

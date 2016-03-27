@@ -190,6 +190,98 @@ router.get('/outfits', function(req, res, next){
 
 });
 
+// START COPY PASTE
+// TODO : Make API calls for Outfits
+/*
+router.post('/style/create', function(req, res, next){
+  if (req.user){
+    // && req.user._id === req.body.id
+    if (((req.body.name.search('>') < 0) && (req.body.name.search('<') < 0)) && (req.body.name.trim()) ){ //check for HTML injection
+      var query = {_id: req.user._id};
+      if (req.user.provider){
+        query = {facebookId: req.user.id};
+      }
+      User.findOne(query, function(err, user){
+        console.log(err,req.body.id, user._id, req.body.id === user._id);
+        if (!err && user._id == (req.body.id + '')){
+          var item = {
+            name: req.body.name,
+            owner: req.body.id,
+            clothes: req.body.clothes || []
+          };
+          new Style(item).save(function(err, style, count){
+            console.log('saved style', style);
+            if (!err){
+              //update user with style id
+              User.update({_id: item.owner}, {$push: {styles: style._id}}, function(err, user, count){
+                console.log('saved user', err, user);
+                if (!err){
+                  res.status(200).json(style);
+                }
+                else {
+                  res.sendStatus(500);
+                }
+              });
+            }
+            else{
+              console.log('error: ', err);
+              res.sendStatus(500);
+            }
+          });
+        }
+        else{
+          res.sendStatus(403);
+        }
+      });
+    } else {
+      res.sendStatus(500).json('Improper character');
+    }
+  }
+  else{
+    console.log('didnt work');
+    res.sendStatus(404);
+  }
+});
+
+router.post('/style/add', function(req, res, next){
+  //add clothing to style
+  // console.log('that matchup... ', req.user, req.body.styleId);
+  //
+
+  console.log('IN ADD',req.user, req.body.styleId);
+  if (req.user){
+    var query = {_id: req.user._id};
+    if (req.user.provider){
+      query = {facebookId: req.user.id};
+    }
+    User.findOne(query, function(err, user){
+      if (user.styles.indexOf(req.body.styleId) > -1){
+        Style.findOneAndUpdate(
+          {_id: req.body.styleId},
+          {$push: {clothes: req.body.clothingId}},
+          {safe: true, upsert: true},
+          function(err, style, count){
+            console.log('saving.... ',err, style);
+            if (!err){
+              res.sendStatus(200);
+            }
+            else {
+              res.sendStatus(500);
+            }
+        });
+      }
+      else {
+        res.sendStatus(403);
+      }
+    });
+  }
+  else{
+    res.sendStatus(403);
+  }
+});
+*/
+// END COPY PASTE
+
 router.get('/style/:slug', function(req, res, next){
   //return style with all the clothing and outfits
   console.log('in getStyle');
@@ -242,7 +334,6 @@ router.get('/styles', function(req, res, next){
 });
 
 router.post('/style/create', function(req, res, next){
-
   if (req.user){
     // && req.user._id === req.body.id
     if (((req.body.name.search('>') < 0) && (req.body.name.search('<') < 0)) && (req.body.name.trim()) ){ //check for HTML injection

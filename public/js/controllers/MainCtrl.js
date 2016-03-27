@@ -1,6 +1,6 @@
 'use strict';
 // TODO : Add OutfitSrvc
-app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc', '$location', '$http', '$mdDialog' , function($scope, Clothing, User, Style, $location, $http, $mdDialog){
+app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc', 'OutfitSrvc', '$location', '$http', '$mdDialog' , function($scope, Clothing, User, Style, $location, $http, $mdDialog){
   // Clothing.searchClothing('winter').then(function(data){
   //   $scope.clothes = data;
   // });
@@ -113,6 +113,35 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc', '$loc
           }
           else {
             console.log('grave error. could not create style');
+          }
+          $mdDialog.hide();
+        });
+      };
+    }
+  };
+
+  $scope.openCreateOutfit = function(clothingId){
+    $scope.temp = clothingId; 
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      scope: $scope,
+      preserveScope: true,
+      controller: DialogController,
+      // todo -> createOutfitModal
+      templateUrl: 'views/createOutfitModal.html'
+    });
+    function DialogController($scope, $http, OutfitSrvc, $mdDialog){
+      $scope.closeDialog = function() {
+        $mdDialog.hide();
+      };
+      $scope.createOutfit = function(name) {
+        OutfitSrvc.createOutfit(name, $scope.user._id, [$scope.temp]).then(function(res){
+          if (res.status === 200){
+            console.log(res.data);
+            $scope.user.outfits.push(res.data);
+          }
+          else {
+            console.log('grave error. could not create outfit');
           }
           $mdDialog.hide();
         });

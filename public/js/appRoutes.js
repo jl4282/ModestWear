@@ -6,10 +6,6 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             templateUrl: 'views/search.html',
             controller: 'SearchCtrl'
         })
-        // .when('/outfit/', {
-        //     templateUrl: 'views/indivOutfit.html',
-        //     controller: 'OutfitCtrl'
-        // })
         .when('/outfits/', {
             templateUrl: 'views/outfits.html',
             controller: 'OutfitsCtrl'
