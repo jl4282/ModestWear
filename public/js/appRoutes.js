@@ -10,10 +10,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             templateUrl: 'views/outfits.html',
             controller: 'OutfitsCtrl'
         })
-        // .when('/outfit/:slug', {
-        //     templateUrl: 'views/indivOutfit.html',
-        //     controller: 'OutfitCtrl'
-        // })
+        .when('/outfit/:slug', {
+            templateUrl: 'views/indivOutfit.html',
+            controller: 'OutfitCtrl'
+        })
         .when('/styles', {
             templateUrl: 'views/styles.html',
             controller: 'StylesCtrl'

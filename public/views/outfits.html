@@ -3,7 +3,7 @@
 <div class="column" layout-padding>
   <h1>This is the outfits page!!!</h1>
   <md-list>
-    <md-list-item class="md-2-line" data-ng-repeat="s in user.outfits" ng-click="styleClick(s.slug)">
+    <md-list-item class="md-2-line" data-ng-repeat="s in user.outfits" ng-click="outfitClick(s.slug)">
       <div class="md-list-item-text" layout="column">
         <h3>{{s.name}}</h3>
         <p>Clothes: {{s.clothes.length || 0}}</p>

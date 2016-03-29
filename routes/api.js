@@ -245,6 +245,7 @@ router.post('/outfit/create', function(req, res, next){
             if (!err){
               //update user with style id
               User.update({_id: item.owner}, {$push: {outfits: outfit._id}}, function(err, user, count){
+                console.log(user);
                 console.log('saved user', err, user);
                 if (!err){
                   res.status(200).json(outfit);

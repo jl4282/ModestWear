@@ -4,15 +4,15 @@
 */
 app.controller('OutfitsCtrl', ['$scope', '$location', '$routeParams', function($scope, $location, $routeParams){
 
-  console.log('outfits controller'); 
-  console.log($scope.user);
+  // console.log('outfits controller'); 
+  // console.log($scope.user);
   if (!$scope.user){
     $location.path('/');
   }
 
-  $scope.styleClick = function(slug){
-    console.log('in clickStyle');
-    $location.path('outfit/'+ slug);
+  $scope.outfitClick = function(slug){
+    console.log('in clickOutfit');
+    $location.path('/outfit/'+ slug);
   };
 
 
