@@ -4,8 +4,8 @@
 'use strict';
 app.factory('OutfitSrvc', ['$http', function($http){
   
-  
   var createOutfit = function(name, id, clothingId){
+    console.log("--- in outfit service")
     return $http.post('/api/outfit/create', {name: name, id: id, clothes: clothingId}).then(function(res){
       return res;
     });

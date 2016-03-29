@@ -172,9 +172,11 @@ router.get('/outfit/:id', function(req, res, next){
 });
 
 // Outfit POST method
+/*
 router.post('/outfit/:id', function(req, res, next){
   //update the outfit
 });
+*/
 
 router.get('/outfits', function(req, res, next){
   //return outfit with all the clothing and outfits
@@ -208,11 +210,18 @@ router.get('/outfits', function(req, res, next){
 
 // START COPY PASTE
 // TODO : Make API calls for Outfits
-
+// TODO : WHY NO SEE /outfit/create
 router.post('/outfit/create', function(req, res, next){
+  console.log("in the api call!");
   if (req.user){
+    // console.log("Req.name");
+    // console.log(req.name);
+    // console.log("Req.body");
+    // console.log(req.body);
+    
     // && req.user._id === req.body.id
     if (((req.body.name.search('>') < 0) && (req.body.name.search('<') < 0)) && (req.body.name.trim()) ){ //check for HTML injection
+      console.log(req.body.name);
       var query = {_id: req.user._id};
       if (req.user.provider){
         query = {facebookId: req.user.id};
@@ -225,7 +234,13 @@ router.post('/outfit/create', function(req, res, next){
             owner: req.body.id,
             clothes: req.body.clothes || []
           };
-          new Outfit(item).save(function(err, outfit, count){
+          // TODO : THE OUTFIT CREATES
+          var newOutfit= new Outfit(item);
+          console.log(newOutfit);
+          // BUT DOES NOT SAVE -> OUTFIT BECOMES NULL HERE...
+          newOutfit.save(function(err, outfit, count){
+            // TODO: outfit -> null
+            console.log(count);
             console.log('saved outfit', outfit);
             if (!err){
               //update user with style id
@@ -254,7 +269,7 @@ router.post('/outfit/create', function(req, res, next){
     }
   }
   else{
-    console.log('didnt work');
+    console.log('didnt work -> no req.user');
     res.sendStatus(404);
   }
 });
@@ -383,6 +398,7 @@ router.post('/style/create', function(req, res, next){
             owner: req.body.id,
             clothes: req.body.clothes || []
           };
+          // console.log(Style);
           new Style(item).save(function(err, style, count){
             console.log('saved style', style);
             if (!err){

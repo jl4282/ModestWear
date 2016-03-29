@@ -4,7 +4,7 @@
 */
 app.controller('OutfitsCtrl', ['$scope', '$location', '$routeParams', function($scope, $location, $routeParams){
 
-  console.log('outfits controller');
+  console.log('outfits controller'); 
 
   if (!$scope.user){
     $location.path('/');

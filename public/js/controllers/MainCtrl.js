@@ -1,6 +1,7 @@
 'use strict';
 // TODO : Add OutfitSrvc
-app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc', 'OutfitSrvc', '$location', '$http', '$mdDialog' , function($scope, Clothing, User, Style, $location, $http, $mdDialog){
+app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc', 'OutfitSrvc', '$location', '$http', '$mdDialog', 
+  function($scope, Clothing, User, Style, Outfit, $location, $http, $mdDialog){
   // Clothing.searchClothing('winter').then(function(data){
   //   $scope.clothes = data;
   // });
@@ -77,9 +78,30 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc', 'Outf
     }
   };
 
+  $scope.toggleInOutfit = function(clothing, outfit){
+    //check if in style, if clothing is undefined, empty, or within the style
+
+    if (outfit.clothes && ((outfit.clothes.indexOf(clothing._id) < 0) || (outfit.clothes.length === 0))) {
+      //not in style - add to it
+      Outfit.addToStyle(outfit._id, clothing._id).then(function(res){
+        outfit.clothes.push(clothing._id);
+      });
+    }
+    else {
+      Outfit.removeFromStyle(outfit._id, clothing._id).then(function(res){
+        outfit.clothes.splice(outfit.clothes.indexOf(clothing._id), 1);
+      });
+    }
+  };
+
   $scope.inStyle = function(cid, clothes){
     return (clothes && clothes.length > 0)? clothes.indexOf(cid) > -1 : false;
   };
+
+  $scope.inOutfit = function(cid, clothes){
+    return (clothes && clothes.length > 0)? clothes.indexOf(cid) > -1 : false;
+  };
+
 
   $scope.deleteFav = function(id){
     User.deleteFav(id).then(function(data){
@@ -121,6 +143,8 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc', 'Outf
   };
 
   $scope.openCreateOutfit = function(clothingId){
+    console.log("creating new outfit -> in main ctrl");
+    console.log(clothingId);
     $scope.temp = clothingId; 
     $mdDialog.show({
       clickOutsideToClose: true,
@@ -135,10 +159,14 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc', 'Outf
         $mdDialog.hide();
       };
       $scope.createOutfit = function(name) {
+        // TODO : How do we debug that?
+        console.log("trying to create an outfit");
         OutfitSrvc.createOutfit(name, $scope.user._id, [$scope.temp]).then(function(res){
+          console.log("did I create?");
           if (res.status === 200){
             console.log(res.data);
-            $scope.user.outfits.push(res.data);
+            // TODO : OUTFIT or OUTFITS?
+            $scope.user.outfit.push(res.data);
           }
           else {
             console.log('grave error. could not create outfit');
@@ -172,5 +200,4 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc', 'Outf
       }
     }
   ];
-
 }]);
