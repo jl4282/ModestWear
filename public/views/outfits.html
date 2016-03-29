@@ -3,7 +3,7 @@
 <div class="column" layout-padding>
   <h1>This is the outfits page!!!</h1>
   <md-list>
-    <md-list-item class="md-2-line" data-ng-repeat="o in user.outfits" ng-click="styleClick(s.slug)">
+    <md-list-item class="md-2-line" data-ng-repeat="s in user.outfits" ng-click="styleClick(s.slug)">
       <div class="md-list-item-text" layout="column">
         <h3>{{s.name}}</h3>
         <p>Clothes: {{s.clothes.length || 0}}</p>
@@ -13,6 +13,6 @@
   </md-list>
 </div>
 <!-- Why not coming on...  -->
-<div layout-padding data-ng-if="!user.outfits || user.styles.outfits === 0">
+<div layout-padding data-ng-if="!user.outfits || user.outfits.length === 0">
   <h4>Outfits are to keep track of things you might wear together. Not everything in your "winter wonderland" style will look good together, so keep track of what your future outfits here!</h4>
 </div>

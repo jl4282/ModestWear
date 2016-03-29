@@ -166,7 +166,7 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc', 'Outf
           if (res.status === 200){
             console.log(res.data);
             // TODO : OUTFIT or OUTFITS?
-            $scope.user.outfit.push(res.data);
+            $scope.user.outfits.push(res.data);
           }
           else {
             console.log('grave error. could not create outfit');

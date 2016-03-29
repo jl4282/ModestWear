@@ -45,6 +45,7 @@ var User = new mongoose.Schema({
   name: String, //name of user
   styles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Style'}], //should be name of style with array of clothes
   favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}], //items the user has favorited
+  outfits: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
   following:
   {
     users: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
