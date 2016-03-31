@@ -83,12 +83,12 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc', 'Outf
 
     if (outfit.clothes && ((outfit.clothes.indexOf(clothing._id) < 0) || (outfit.clothes.length === 0))) {
       //not in style - add to it
-      Outfit.addToStyle(outfit._id, clothing._id).then(function(res){
+      Outfit.addToOutfit(outfit._id, clothing._id).then(function(res){
         outfit.clothes.push(clothing._id);
       });
     }
     else {
-      Outfit.removeFromStyle(outfit._id, clothing._id).then(function(res){
+      Outfit.removeFromOutfit(outfit._id, clothing._id).then(function(res){
         outfit.clothes.splice(outfit.clothes.indexOf(clothing._id), 1);
       });
     }

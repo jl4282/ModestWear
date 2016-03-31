@@ -27,6 +27,7 @@ var Outfit = new mongoose.Schema({
   name: String,
   clothes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
   style: {type: mongoose.Schema.Types.ObjectId, ref: 'Style'},
+  // Add comments
   owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   created: { type: Date, default: Date.now }
 });
@@ -36,6 +37,7 @@ var Style = new mongoose.Schema({
   name: String, //name of the Style
   clothes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
   outfits: [{type: mongoose.Schema.Types.ObjectId, ref: 'Outfit'}],
+  // Add comments
   owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   created: { type: Date, default: Date.now }
 });
@@ -45,7 +47,7 @@ var User = new mongoose.Schema({
   name: String, //name of user
   styles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Style'}], //should be name of style with array of clothes
   favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}], //items the user has favorited
-  outfits: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
+  outfits: [{type: mongoose.Schema.Types.ObjectId, ref: 'Outfit'}],
   following:
   {
     users: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],

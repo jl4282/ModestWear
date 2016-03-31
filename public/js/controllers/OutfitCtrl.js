@@ -4,13 +4,17 @@
   TODO:
     - add OutfitSrvc
 */
-app.controller('OutfitCtrl', ['$scope', 'UserSrvc', 'Clothing', '$location', '$routeParams',
+app.controller('OutfitCtrl', ['$scope', 'UserSrvc', 'OutfitSrvc', 'Clothing', '$location', '$routeParams',
   function($scope, User, Outfit, Clothing, $location, $routeParams){
 
   console.log($scope.user);
   console.log("OutfitCtrl --> singular!!");
+  console.log("Slug " + $routeParams.slug);
+
   if ($routeParams.slug && $scope.user){
     //retrieve Outfit from db
+    console.log("supposed to be getting outfit");
+    console.log("getting outfit")
     Outfit.getOutfit($routeParams.slug).then(function(res){
       $scope.Outfit = res.data;
       $scope.clothing = res.data.clothes;

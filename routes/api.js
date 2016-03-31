@@ -134,8 +134,9 @@ router.get('/getUser', function(req, res, next){
     if (req.user.provider){
       query = {facebookId: req.user.id};
     }
-    User.findOne(query).populate('styles').exec(function(err, user, count){
+    User.findOne(query).populate('styles outfits').exec(function(err, user, count){
       if (!err){
+        console.log('user in getUser: ', user);
         req.user = user;
         res.json(user);
       }
@@ -151,7 +152,7 @@ router.get('/getUser', function(req, res, next){
 
 // Katie : Route Handler 1
 // Outfit GET method
-router.get('/outfit/:id', function(req, res, next){
+router.get('/outfit/:slug', function(req, res, next){
   //return outfit with all the clothing
   console.log('in getOutfit');
   Outfit.findOne({slug: req.params.slug}).populate('clothes').populate('outfits').exec(function(err, style){

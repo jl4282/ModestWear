@@ -2,7 +2,7 @@
 /* 
 	TODO : Dont even know if this is right... 
 */
-app.controller('OutfitsCtrl', ['$scope', '$location', '$routeParams', function($scope, $location, $routeParams){
+app.controller('OutfitsCtrl', ['$scope', '$location', '$routeParams', 'OutfitSrvc', function($scope, $location, $routeParams, Outfit){
 
   // console.log('outfits controller'); 
   // console.log($scope.user);
@@ -14,6 +14,11 @@ app.controller('OutfitsCtrl', ['$scope', '$location', '$routeParams', function($
     console.log('in clickOutfit');
     $location.path('/outfit/'+ slug);
   };
+
+  // Outfit.getOutfits().then(function(res){
+  //   $scope.outfits = res.data;
+  //   console.log(res.data);
+  // });
 
 
 }]);

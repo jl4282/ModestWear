@@ -3,11 +3,11 @@
 <div class="column" layout-padding>
   <h1>This is the outfits page!!!</h1>
   <md-list>
-    <md-list-item class="md-2-line" data-ng-repeat="s in user.outfits" ng-click="outfitClick(s.slug)">
+    <md-list-item class="md-2-line" data-ng-repeat="outfit in user.outfits" ng-click="outfitClick(outfit.slug)">
       <div class="md-list-item-text" layout="column">
-        <h3>{{s.name}}</h3>
-        <p>Clothes: {{s.clothes.length || 0}}</p>
-        <md-icon md-svg-icon="basket" aria-label="go to style" class="md-secondary md-hue-3"></md-icon>
+        <h3>{{outfit.name}}</h3>
+        <p>Clothes: {{outfit.clothes.length || 0}}</p>
+        <md-icon md-svg-icon="basket" aria-label="go to outfit" class="md-secondary md-hue-3"></md-icon>
       </div>
     </md-list-item>
   </md-list>
