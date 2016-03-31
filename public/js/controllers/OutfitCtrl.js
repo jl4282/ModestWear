@@ -14,7 +14,6 @@ app.controller('OutfitCtrl', ['$scope', 'UserSrvc', 'OutfitSrvc', 'Clothing', '$
   if ($routeParams.slug && $scope.user){
     //retrieve Outfit from db
     console.log("supposed to be getting outfit");
-    console.log("getting outfit")
     Outfit.getOutfit($routeParams.slug).then(function(res){
       $scope.Outfit = res.data;
       $scope.clothing = res.data.clothes;
