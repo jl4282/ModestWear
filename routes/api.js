@@ -149,6 +149,7 @@ router.get('/getUser', function(req, res, next){
   }
 });
 
+// Katie : Route Handler 1
 // Outfit GET method
 router.get('/outfit/:id', function(req, res, next){
   //return outfit with all the clothing
@@ -178,6 +179,7 @@ router.post('/outfit/:id', function(req, res, next){
 });
 */
 
+// Katie : Route Handler 2
 router.get('/outfits', function(req, res, next){
   //return outfit with all the clothing and outfits
   console.log("IN OUTFITS IN THE API!!!");
@@ -208,18 +210,10 @@ router.get('/outfits', function(req, res, next){
 
 });
 
-// START COPY PASTE
-// TODO : Make API calls for Outfits
-// TODO : WHY NO SEE /outfit/create
+// Katie : Route Handler 3
 router.post('/outfit/create', function(req, res, next){
   console.log("in the api call!");
   if (req.user){
-    // console.log("Req.name");
-    // console.log(req.name);
-    // console.log("Req.body");
-    // console.log(req.body);
-    
-    // && req.user._id === req.body.id
     if (((req.body.name.search('>') < 0) && (req.body.name.search('<') < 0)) && (req.body.name.trim()) ){ //check for HTML injection
       console.log(req.body.name);
       var query = {_id: req.user._id};
@@ -275,6 +269,7 @@ router.post('/outfit/create', function(req, res, next){
   }
 });
 
+// Katie : Route Handler 4
 router.post('/outfit/add', function(req, res, next){
   // add clothing to style
   // console.log('that matchup... ', req.user, req.body.styleId);
@@ -312,6 +307,7 @@ router.post('/outfit/add', function(req, res, next){
   }
 });
 
+// Katie : Route Handler 5
 // TODO : THIS DOESNT WORK FOR SOME REASON
 router.delete('/outfit/remove/:outfitId/:clothingId', function(req, res, next){
   if (req.user && (req.user.outfits.indexOf(req.params.outfitId) > -1)){

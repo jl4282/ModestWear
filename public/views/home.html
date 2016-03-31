@@ -18,51 +18,51 @@
           <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
             <md-icon md-svg-icon="add"></md-icon>
           </md-button>
-          <md-menu-content width="6">
+          <md-menu-content>
             <!-- TODO : WHY DOESNT THIS WORK -->
             <!-- Styles -->
-            <div layout="column">
-              <div layout="row" align="center">
+            <div layout="row" width="6">
+              <div layout="column" width="100%" align="center" id="addToStyle">
                 <h3 flex>Styles</h3>
+                <md-menu-item data-ng-repeat="s in user.styles">
+                  <md-button ng-click="toggleInStyle(c, s)">
+                    <div layout="column">
+                      <p>{{s.name}}</p>
+                      <md-icon md-menu-align-target md-svg-icon="check" data-ng-if="inStyle(c._id, s.clothes)"></md-icon><md-icon md-menu-align-target data-ng-if="!inStyle(c._id, s.clothes)"></md-icon>
+                    </div>
+
+                  </md-button>
+                </md-menu-item>
+                <md-menu-item >
+                  <md-button ng-click="openCreateStyle(c._id)">
+                    <div layout="column">
+                      <p flex>Create New</p>
+                      <md-icon md-menu-align-target md-svg-icon="add-circle-outline"></md-icon>
+                    </div>
+                  </md-button>
+                </md-menu-item>
               </div>
-              <md-menu-item data-ng-repeat="s in user.styles">
-                <md-button ng-click="toggleInStyle(c, s)">
-                  <div layout="row">
-                    <p flex>{{s.name}}</p>
-                    <md-icon md-menu-align-target md-svg-icon="check" data-ng-if="inStyle(c._id, s.clothes)"></md-icon><md-icon md-menu-align-target data-ng-if="!inStyle(c._id, s.clothes)"></md-icon>
-                  </div>
-                </md-button>
-              </md-menu-item>
-              <md-menu-item >
-                <md-button ng-click="openCreateStyle(c._id)">
-                  <div layout="row">
-                    <p flex>Create New</p>
-                    <md-icon md-menu-align-target md-svg-icon="add-circle-outline"></md-icon>
-                  </div>
-                </md-button>
-              </md-menu-item>
-            </div>
             <!-- Outfits -->
-            <div layout="column">
-              <div layout="row" align="center">
+              <div layout="column" width="50%" align="center" id="addToOutfit">
                 <h3 flex>Outfits</h3>
+              
+                <md-menu-item data-ng-repeat="s in user.outfits">
+                  <md-button ng-click="toggleInOutfit(c, s)">
+                    <div layout="column">
+                      <p flex>{{s.name}}</p>
+                      <md-icon md-menu-align-target md-svg-icon="check" data-ng-if="inOutfit(c._id, o.outfits)"></md-icon><md-icon md-menu-align-target data-ng-if="!inOutfit(c._id, o.clothes)"></md-icon>
+                    </div>
+                  </md-button>
+                </md-menu-item>
+                <md-menu-item >
+                  <md-button ng-click="openCreateOutfit(c._id)">
+                    <div layout="row">
+                      <p flex>Create New</p>
+                      <md-icon md-menu-align-target md-svg-icon="add-circle-outline"></md-icon>
+                    </div>
+                  </md-button>
+                </md-menu-item>
               </div>
-              <md-menu-item data-ng-repeat="s in user.outfits">
-                <md-button ng-click="toggleInOutfit(c, s)">
-                  <div layout="row">
-                    <p flex>{{s.name}}</p>
-                    <md-icon md-menu-align-target md-svg-icon="check" data-ng-if="inOutfit(c._id, o.outfits)"></md-icon><md-icon md-menu-align-target data-ng-if="!inOutfit(c._id, o.clothes)"></md-icon>
-                  </div>
-                </md-button>
-              </md-menu-item>
-              <md-menu-item >
-                <md-button ng-click="openCreateOutfit(c._id)">
-                  <div layout="row">
-                    <p flex>Create New</p>
-                    <md-icon md-menu-align-target md-svg-icon="add-circle-outline"></md-icon>
-                  </div>
-                </md-button>
-              </md-menu-item>
             </div>
           </md-menu-content>
         </md-menu>

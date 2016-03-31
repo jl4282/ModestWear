@@ -32,6 +32,18 @@
     color: white !important;
 }
 
+/*#addToStyle .layout-column, #addToOutfit .layout-column{
+  min-width: 150px;
+  padding: 0px !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}*/
+/*
+md-menu-item>.md-button p, md-menu-item>.md-button md-icon {
+   margin-left: 0px !important;
+    margin-right: 0px !important;
+}*/
+
 ::-webkit-input-placeholder {
     color: white;
 }

@@ -11,7 +11,6 @@ app.factory('OutfitSrvc', ['$http', function($http){
     });
   };
   
-
   var getOutfits = function(id){
     return $http.get('/api/outfits').then(function(res){
       return res;

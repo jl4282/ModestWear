@@ -22,7 +22,7 @@ var Clothing = new mongoose.Schema({
 });
 Clothing.plugin(URLSlugs('name'));
 
-// Already have an outfit schema
+// Mongoose Schema 1
 var Outfit = new mongoose.Schema({
   name: String,
   clothes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
