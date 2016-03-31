@@ -14,5 +14,6 @@ var app = angular.module('ModestWear', ['ngRoute', 'ngMaterial'])
     .icon('add-circle-outline', '../../../node_modules/material-design-icons/content/svg/production/ic_add_circle_outline_48px.svg')
     .icon('link', '../../../node_modules/material-design-icons/content/svg/production/ic_link_48px.svg')
     .icon('basket', '../../../node_modules/material-design-icons/action/svg/production/ic_shopping_basket_48px.svg')
+    .icon('perm_identity', '../../../node_modules/material-design-icons/action/svg/production/ic_perm_identity_48px.svg')
     ;
 });
