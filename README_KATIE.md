@@ -110,6 +110,7 @@ var Outfit = new mongoose.Schema({
 ```
 
 #### Style - with comments
+```
 var Style = new mongoose.Schema({
   name: String, //name of the Style
   clothes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
@@ -118,3 +119,4 @@ var Style = new mongoose.Schema({
   owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   created: { type: Date, default: Date.now }
 });
+```
