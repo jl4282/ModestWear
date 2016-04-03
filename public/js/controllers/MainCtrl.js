@@ -42,6 +42,7 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc', 'Outf
       else {
         params.description = query;
       }
+      console.log(params);
       $location.path('/search/').search(params);
     }
   };
