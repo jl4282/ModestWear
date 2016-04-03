@@ -272,10 +272,6 @@ router.post('/outfit/create', function(req, res, next){
 
 // Katie : Route Handler 4
 router.post('/outfit/add', function(req, res, next){
-  // add clothing to style
-  // console.log('that matchup... ', req.user, req.body.styleId);
-  //
-
   console.log('IN ADD',req.user, req.body.outfitId);
   if (req.user){
     var query = {_id: req.user._id};

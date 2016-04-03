@@ -1,0 +1,65 @@
+<md-card id="favoritesCard">
+  <a href="/clothes/{{fav.slug}}"><img data-ng-if="fav.images[0]" src="{{fav.images[0]}}" class="md-card-image" alt="{{fav.name}}"></a>
+  <md-card-content>
+    <p><a href="/clothes/{{fav.slug}}">{{fav.name}}</a></p>
+  </md-card-content>
+  <!-- Card actions -->
+  <md-card-actions layout="row" layout-align="center center">
+    <!-- Delete a favorite Button -->
+    <md-button class="md-icon-button md-accent md-hue-1" data-ng-click="deleteFav(fav._id)" data-ng-if="favorited(fav._id)" aria-label="unfavorite">
+      <md-icon md-svg-icon="favorite"></md-icon>
+    </md-button>
+    <!-- Display the style Button -->
+    <md-menu data-ng-if="user" md-position-mode="target-right target">
+      <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
+        <md-icon md-svg-icon="add"></md-icon>
+      </md-button>
+      <md-menu-content width="3">
+        <!-- For each of the outfits, display -->
+        <md-menu-item data-ng-repeat="s in user.styles">
+          <md-button ng-click="toggleInStyle(fav, s)">
+            <div layout="row">
+              <p flex>{{s.name}}</p>
+              <md-icon md-menu-align-target md-svg-icon="check" data-ng-if="inStyle(fav._id, s.clothes)"></md-icon><md-icon md-menu-align-target data-ng-if="!inStyle(fav._id, s.clothes)"></md-icon>
+            </div>
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <!-- Create new Button -->
+          <md-button ng-click="openCreateStyle(fav._id)">
+            <div layout="row">
+              <p flex>Create New</p>
+              <md-icon md-menu-align-target md-svg-icon="add-circle-outline"></md-icon>
+            </div>
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+    <md-menu>
+      <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
+        <md-icon md-svg-icon="perm_identity"></md-icon>
+      </md-button>
+      <md-menu-content width="3">
+        <h3 flex align="center">Outfits</h3>
+          <md-menu-item data-ng-repeat="outfit in user.outfits">
+            <md-button ng-click="toggleInOutfit(c, outfit)">
+              <div layout="row">
+                <p flex>{{outfit.name}}</p>
+                <md-icon md-menu-align-target md-svg-icon="check" data-ng-if="inOutfit(c._id, outfit.outfits)"></md-icon><md-icon md-menu-align-target data-ng-if="!inOutfit(c._id, outfit.clothes)"></md-icon>
+              </div>
+            </md-button>
+          </md-menu-item>
+          <md-menu-item >
+            <md-button ng-click="openCreateOutfit(c._id)">
+              <div layout="row">
+                <p flex>Create New</p>
+                <md-icon md-menu-align-target md-svg-icon="add-circle-outline"></md-icon>
+              </div>
+            </md-button>
+          </md-menu-item>
+          </div>
+        </div>
+      </md-menu-content>
+    </md-menu>
+  </md-card-actions>
+</md-card>

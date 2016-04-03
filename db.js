@@ -43,6 +43,14 @@ var Style = new mongoose.Schema({
 });
 Style.plugin(URLSlugs('name'));
 
+// Make comment Schema
+// var Comment = new mongoose.Schema({
+//   name: String,
+//   commentOn: [{type: mongoose.Schema.Types.ObjectId, ref: 'Outfit'}],
+//   owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+//   created: { type: Date, default: Date.now }
+// });
+
 var User = new mongoose.Schema({
   name: String, //name of user
   styles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Style'}], //should be name of style with array of clothes

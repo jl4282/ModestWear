@@ -2,10 +2,20 @@
 .product-img {
   max-height:50px;
 }
+
+.outfits-container md-card {
+  margin: 15px;
+  background-color: #edf2f7;
+}
+
+h1 {
+  margin:15px;
+}
+
 .search-container, .favorites-container {
 	background-color: #edf2f7 !important;
 }
-.search-container p a, .favorites-container p a {
+.search-container p a, .favorites-container p a, .outfits-container p a {
     color: inherit;
     text-decoration: none;
 }
@@ -16,7 +26,7 @@
     margin-right: 10px;
 }
 
-.search.md-toolbar button {
+.search.md-toolbar button, {
     border-radius: 99%;
 }
 
