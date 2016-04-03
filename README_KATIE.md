@@ -16,16 +16,27 @@
 
 #### Requirements
 ##### Core Requirements
-- 5 Route Handlers: Outfits, Following, Forms
-- 4 Mongoose Schemas: Outfits, Following (edit User Schema), Comments, and Styles (add Comments to them).
-- 3 Forms: Contact us, form to comment on outfits and styles
+- [ ] 5 Route Handlers: 
+  - [ ] Outfits
+  - [ ] Following
+  - [ ] Contact Me Form
+  - [ ] Comments Forms
+- [ ] 4 Mongoose Schemas: 
+  - [ ] Outfits 
+  - [ ] Following (edit User Schema) 
+  - [ ] Comments
+  - [ ] Styles (add Comments).
+- [ ] 3 Forms: 
+  - [ ] Contact us 
+  - [ ] Forms to comment on outfits and styles
+
 ##### Additional Requirements
-- Grunt: 1 point
-- JSHint: 1 point
-- CSS Preprocessor: Angular.less: 1 point
-- Client Side Validation: Parsley: 2 point
-- Angular MD: 1 point
-- Client Side JS Library: Angular: 1 point
+- [ ] Grunt: 1 point
+- [ ] JSHint: 1 point
+- [ ] CSS Preprocessor: Angular.less: 1 point
+- [ ] Client Side Validation: Parsley: 2 point
+- [ ] Angular MD: 1 point
+- [ ] Client Side JS Library: Angular: 1 point
 1 + 1 + 1 + 2 + 1 + 1 = 7 -> so if I don't get everything done, I'm good?
 
 ## Modules / Concepts
