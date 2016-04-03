@@ -1,7 +1,10 @@
 #ModestWear
 
 ##Overview
-ModestWear is a website that aggregates modest clothing so that users don't need to search countless sites to find something modest. ModestWear allows the user to login through Facebook, and create their own "style" and "outfits". Styles are groups of clothing that go together, whereas outfits are different outfits that you can create using the clothes in your styles. Users will then be allowed to follow each other and see each other's styles and outfits. Anothre pillar of our website is custom recommendations. When creating an outfit or style, or perusing through search results, we want to give you personal recommendations.
+ModestWear is a website meant to be a way to simplify online shopping, based on what type of clothing a person wears. ModestWear originated from thinking about Modest clothing, how the people who want to dress modestly, which is a broad definition, scroll through countless sites to find something to wear. ModestWear allows the user to login through Facebook, and create their own "style" and "outfits". Styles are groups of clothing that go together, whereas outfits are different outfits that you can create using the clothes in your styles. Users will then be allowed to follow each other and see each other's styles and outfits - and ideally be recommended based on their pairings and level of modesty / what they feel comfortable wearing. With that information, we hope to recommend clothing to people as they add to their favorites, outfits, and styles. 
+
+##Katie's README - AIT Spring 2016
+Since I am continuing an already-existing project, I'd like to keep the (mostly) original README, and just list my own in a different place. 
 
 ##Logistics
 
