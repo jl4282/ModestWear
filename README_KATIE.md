@@ -8,10 +8,12 @@
 - Edit the scraping algorithm queries so the db does not store doubles
 - Use CSS Preprocessor and Angular MD to make it look nicer
 
-#### Just going through the Requirements
-- 5 Route Handlers: Outfits, Favorites, Forms
-- 4 Mongoose Schemas: Outfits, Favorites, Comments, edit Styles
+#### Requirements
+##### Core Requirements
+- 5 Route Handlers: Outfits, Following, Forms
+- 4 Mongoose Schemas: Outfits, Following (edit User Schema), Comments, and Styles (add Comments to them).
 - 3 Forms: Contact us, form to comment on outfits and styles
+##### Additional Requirements
 - Grunt: 1 point
 - JSHint: 1 point
 - CSS Preprocessor: Angular.less: 1 point
@@ -63,6 +65,8 @@
 - Preconditions: User is logged in
 - Basic Course of Events
   1. User clicks on a style, outfit, or even user page and can add it to following.
+- Alternate Paths
+	- A user can search on a style, outfit, or user and then follow it
 - Postconditions: The things that a user follows will appear on the user's profile
 
 ####Contact Us
@@ -120,3 +124,22 @@ var Style = new mongoose.Schema({
   created: { type: Date, default: Date.now }
 });
 ```
+
+#### Following
+**Should probably be in user because following is not an object, but a user can either follow a user, style, our outfit.**
+var User = new mongoose.Schema({
+  name: String, //name of user
+  styles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Style'}], //should be name of style with array of clothes
+  favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}], //items the user has favorited
+  outfits: [{type: mongoose.Schema.Types.ObjectId, ref: 'Outfit'}],
+  following:
+  {
+    users: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+    styles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Style'}],
+    outfits: {type: mongoose.Schema.Types.ObjectId, ref: 'Outfit'}]
+  }, //which users the person is following
+  searches: [String],
+  facebookId: [String], //probably want to store more FB data as well
+  email: String,
+  created: { type: Date, default: Date.now }
+});
