@@ -1,12 +1,18 @@
 # ModestWear - Katie's Additions
 
 ## New Features
-- Implement an Outfits and Following pages using Angular
-- Contact Me Form (using Client-Side Validation)
-- Comments for Outfits and Styles using forms
-- Automate scraping algorithms 
-- Edit the scraping algorithm queries so the db does not store doubles
-- Use CSS Preprocessor and Angular MD to make it look nicer
+- [x] Implement an Outfits feature
+- [] Set up a way to follow outfits, styles, and users
+  - [] Add outfits, styles, and users to the db
+  - [] Way to delete them from the db
+  - [] Search for outfits, styles and users
+  - [] Be able to follow them
+- [] Contact Me Form (with Client-Side Validation)
+- [] Comments for Outfits and Styles using forms
+- [] Automate scraping algorithms 
+  - [] Edit the scraping algorithm queries so the db does not store doubles
+- [] Use CSS Preprocessor and Angular MD to make it look nicer
+- [x] Run JSHint to fix mistakes in the code
 
 #### Requirements
 ##### Core Requirements
