@@ -7,8 +7,19 @@
 - Automate scraping algorithms
 - Use CSS Preprocessor and Angular MD to make it look nicer
 
-## Site Map
-![sitemap page image](/documentation/SiteMap.jpg?raw=true "SiteMap")
+#### Just going through the Requirements
+- 5 Route Handlers: Outfits, Favorites, Forms
+- 4 Mongoose Schemas: Outfits, Favorites, Comments, edit Styles
+- 3 Forms: Contact us, form to comment on outfits and styles
+
+- Grunt: 1 point
+- JSHint: 1 point
+- CSS Preprocessor: Angular.less: 1 point
+- Client Side Validation: Parsley: 2 point
+- Angular MD: 1 point
+- Client Side JS Library: Angular: 1 point
+=====================
+1 + 1 + 1 + 2 + 1 + 1 = 7 -> so if I don't get everything done, I'm good?
 
 ## Modules / Concepts
 - [Grunt](http://gruntjs.com/) - Automate running the scraping algorithm
@@ -17,6 +28,9 @@
 - [Angular MD](https://material.angularjs.org/latest/) - Enhance to make it responsive and look better
 - [Angular.less](https://www.npmjs.com/package/angular-less)
 - [Angular.js](https://angularjs.org/) - Client Side Library, use it for routing
+
+## Site Map
+![sitemap page image](/documentation/SiteMap.jpg?raw=true "SiteMap")
 
 ## Wireframes
 ##### Outfits
