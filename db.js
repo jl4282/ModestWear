@@ -22,12 +22,21 @@ var Clothing = new mongoose.Schema({
 });
 Clothing.plugin(URLSlugs('name'));
 
+// Make comment Schema
+var Comment = new mongoose.Schema({
+  name: String,
+  commentOn: {type: mongoose.Schema.Types.Mixed},
+  owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  created: { type: Date, default: Date.now }
+});
+Comment.plugin(URLSlugs('name'));
+
 // Mongoose Schema 1
 var Outfit = new mongoose.Schema({
   name: String,
   clothes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
   style: {type: mongoose.Schema.Types.ObjectId, ref: 'Style'},
-  // Add comments
+  comment: {type: mongoose.Schema.Types.ObjectId, ref: 'Comment'},
   owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   created: { type: Date, default: Date.now }
 });
@@ -37,19 +46,11 @@ var Style = new mongoose.Schema({
   name: String, //name of the Style
   clothes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
   outfits: [{type: mongoose.Schema.Types.ObjectId, ref: 'Outfit'}],
-  // Add comments
+  comment: {type: mongoose.Schema.Types.ObjectId, ref: 'Comment'},
   owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   created: { type: Date, default: Date.now }
 });
 Style.plugin(URLSlugs('name'));
-
-// Make comment Schema
-// var Comment = new mongoose.Schema({
-//   name: String,
-//   commentOn: [{type: mongoose.Schema.Types.ObjectId, ref: 'Outfit'}],
-//   owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-//   created: { type: Date, default: Date.now }
-// });
 
 var User = new mongoose.Schema({
   name: String, //name of user
@@ -59,7 +60,8 @@ var User = new mongoose.Schema({
   following:
   {
     users: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-    styles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Style'}]
+    styles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Style'}],
+    outfits: [{type: mongoose.Schema.Types.ObjectId, ref: 'Outfit'}]
   }, //which users the person is following
   searches: [String],
   facebookId: [String], //probably want to store more FB data as well
@@ -69,9 +71,11 @@ var User = new mongoose.Schema({
 User.plugin(URLSlugs('name'));
 
 mongoose.model('Clothing', Clothing);
-mongoose.model('Style', Style);
 mongoose.model('Outfit', Outfit);
+mongoose.model('Style', Style);
+mongoose.model('Comment', Comment);
 mongoose.model('User', User);
+
 if (process.env.NODE_ENV === 'PROD'){
   mongoose.connect('mongodb://localhost:10371/userdb');
 }
