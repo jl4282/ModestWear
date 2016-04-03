@@ -4,14 +4,14 @@
 - Implement an Outfits and Following pages using Angular
 - Contact Me Form (using Client-Side Validation)
 - Comments for Outfits and Styles using forms
-- Automate scraping algorithms
+- Automate scraping algorithms 
+- Edit the scraping algorithm queries so the db does not store doubles
 - Use CSS Preprocessor and Angular MD to make it look nicer
 
 #### Just going through the Requirements
 - 5 Route Handlers: Outfits, Favorites, Forms
 - 4 Mongoose Schemas: Outfits, Favorites, Comments, edit Styles
 - 3 Forms: Contact us, form to comment on outfits and styles
-
 - Grunt: 1 point
 - JSHint: 1 point
 - CSS Preprocessor: Angular.less: 1 point
@@ -83,3 +83,38 @@
   1. User goes to either the style or outfits page
   2. Submits the filled out form with comments about the style/outfit
 - Postconditions: The comment would then appear as part of the style/outfit
+
+##Example Code
+
+#### Comment
+```
+var Comment = new mongoose.Schema({
+   name: String,
+   // Comment can either be an outfit or a style.
+   commentOn: {type: Schema.Types.Mixed},
+   owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+   created: { type: Date, default: Date.now }
+});
+```
+
+#### Outfit
+```
+var Outfit = new mongoose.Schema({
+  name: String,
+  clothes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
+  style: {type: mongoose.Schema.Types.ObjectId, ref: 'Style'},
+  comments: [{type: mongoose.Schema.Types.ObjectID, ref: 'Comment'}],
+  owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  created: { type: Date, default: Date.now }
+});
+```
+
+#### Style - with comments
+var Style = new mongoose.Schema({
+  name: String, //name of the Style
+  clothes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clothing'}],
+  outfits: [{type: mongoose.Schema.Types.ObjectId, ref: 'Outfit'}],
+  comments: [{type: mongoose.Schema.Types.ObjectID, ref: 'Comment'}],
+  owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  created: { type: Date, default: Date.now }
+});
