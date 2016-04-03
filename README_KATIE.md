@@ -127,6 +127,7 @@ var Style = new mongoose.Schema({
 
 #### Following
 **Should probably be in user because following is not an object, but a user can either follow a user, style, our outfit.**
+```
 var User = new mongoose.Schema({
   name: String, //name of user
   styles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Style'}], //should be name of style with array of clothes
@@ -143,3 +144,4 @@ var User = new mongoose.Schema({
   email: String,
   created: { type: Date, default: Date.now }
 });
+```

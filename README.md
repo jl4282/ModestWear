@@ -6,6 +6,8 @@ ModestWear is a website meant to be a way to simplify online shopping, based on 
 ##Katie's README - AIT Spring 2016
 Since I am continuing an already-existing project, I'd like to keep the (mostly) original README, and just list my own in a different [place](../README_KATIE.md). 
 
+Everything under this is Jesse's old README, from AIT Fall 2015. 
+
 ##Logistics
 
 ###Modules, Concepts, Technologies
