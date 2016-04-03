@@ -17,3 +17,4 @@ var app = angular.module('ModestWear', ['ngRoute', 'ngMaterial'])
     .icon('perm_identity', '../../../node_modules/material-design-icons/action/svg/production/ic_perm_identity_48px.svg')
     ;
 });
+
