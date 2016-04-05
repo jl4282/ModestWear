@@ -3,6 +3,8 @@
 ## New Features
 - [x] Implement an Outfits feature
 - [ ] Edit the profile page - have it show the user's outfits, styles, and favorites
+  - [x] Change the layout
+  - [x] Add more information / cards showing some styles and outfits and favorites
   - [ ] Make the routes load pictures from styles and outfits
 - [ ] Set up a way to follow outfits, styles, and users
   - [ ] Add outfits, styles, and users to the db
