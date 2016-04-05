@@ -2,24 +2,25 @@
 
 ## New Features
 - [ ] Implement an Outfits feature
-   - [x] Create outfits
-   - [ ] Delete outfits
-   - [ ] Comment on Outfits
-- [ ] Styles
-   - [ ] Comment on Styles
-   - [ ] Delete styles
 - [x] Edit the profile page - have it show the user's outfits, styles, and favorites
   - [x] Change the layout
   - [x] Add more information / cards showing some styles and outfits and favorites
   - [x] Make the routes load pictures from styles and outfits
-- [ ] Following outfits/styles/users
-  - [ ] Search for outfits/styles/users
+  - [x] Create outfits and add to them
+  - [ ] Delete outfits
+  - [x] Update DB with outfits 
+  - [ ] Set up comments for outfits
+- [ ] Styles
+  - [ ] Delete style 
+  - [ ] Set up comments for styles
+- [ ] Set up a way to follow outfits, styles, and users
   - [ ] Unfollow outfits/styles/users
-  - [ ] Follow
+  - [ ] Be able to follow them
+- [ ] Search for outfits, styles and users
 - [ ] Contact Me Form (with Client-Side Validation)
 - [ ] Automate scraping algorithms 
   - [ ] Edit the scraping algorithm queries so the db does not store doubles
-  - [ ] Set up grunt/gulp
+  - [ ] Set up grunt or gulp
 - [ ] Use CSS Preprocessor and Angular MD to make it look nicer
 - [x] Run JSHint to fix mistakes in the code
 
@@ -30,11 +31,11 @@
   - [ ] Following
   - [ ] Contact Me Form
   - [ ] Comments Forms
-- [ ] 4 Mongoose Schemas: 
-  - [ ] Outfits 
-  - [ ] Following (edit User Schema) 
-  - [ ] Comments
-  - [ ] Styles (add Comments).
+- [x] 4 Mongoose Schemas: 
+  - [x] Outfits 
+  - [x] Following (edit User Schema) 
+  - [x] Comments
+  - [x] Styles (add Comments).
 - [ ] 3 Forms: 
   - [ ] Contact us 
   - [ ] Forms to comment on outfits and styles
