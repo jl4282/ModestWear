@@ -1,6 +1,10 @@
 app.controller('ProfileCtrl', ['$scope', 'Clothing', 'UserSrvc', '$location', 'OutfitSrvc', 'StyleSrvc',
 	function($scope, Clothing, User, $location, Outfits, Styles){
   
+  if (!$scope.user){
+  	$location.path('/');
+  }
+
   User.getFavorites().then(function(data){
     $scope.favorites = data;
   });
