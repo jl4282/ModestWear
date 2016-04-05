@@ -1,16 +1,22 @@
 # ModestWear - Katie's Additions
 
 ## New Features
-- [x] Implement an Outfits feature
+- [ ] Implement an Outfits feature
+  - [x] Create outfits and add to them
+  - [ ] Delete outfits
+  - [x] Update DB with outfits 
+  - [ ] Set up comments for outfits
+- [ ] Styles
+  - [ ] Delete style 
+  - [ ] Set up comments for styles
 - [ ] Set up a way to follow outfits, styles, and users
-  - [ ] Add outfits, styles, and users to the db
-  - [ ] Way to delete them from the db
-  - [ ] Search for outfits, styles and users
+  - [ ] Unfollow outfits/styles/users
   - [ ] Be able to follow them
+- [ ] Search for outfits, styles and users
 - [ ] Contact Me Form (with Client-Side Validation)
-- [ ] Comments for Outfits and Styles using forms
 - [ ] Automate scraping algorithms 
   - [ ] Edit the scraping algorithm queries so the db does not store doubles
+  - [ ] Set up grunt or gulp
 - [ ] Use CSS Preprocessor and Angular MD to make it look nicer
 - [x] Run JSHint to fix mistakes in the code
 
@@ -21,11 +27,11 @@
   - [ ] Following
   - [ ] Contact Me Form
   - [ ] Comments Forms
-- [ ] 4 Mongoose Schemas: 
-  - [ ] Outfits 
-  - [ ] Following (edit User Schema) 
-  - [ ] Comments
-  - [ ] Styles (add Comments).
+- [x] 4 Mongoose Schemas: 
+  - [x] Outfits 
+  - [x] Following (edit User Schema) 
+  - [x] Comments
+  - [x] Styles (add Comments).
 - [ ] 3 Forms: 
   - [ ] Contact us 
   - [ ] Forms to comment on outfits and styles
