@@ -11,7 +11,10 @@
     </md-list-item>
   </md-list>
 </div>
+
 <div layout-padding data-ng-if="!user.styles || user.styles.length === 0">
   <h4>Styles are meant to keep track of types of clothing. Like "winter wonderland", "hipster", or "night out".</h4>
   <h3>Now get out there and make some styles!</h3>
 </div>
+  <md-button class="md-accent md-raised" data-ng-click="search()">Search For Other's Styles</md-button>
+

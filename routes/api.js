@@ -65,6 +65,34 @@ router.get(/\/search.*/, function(req, res, next){
   });
 });
 
+// Get by searching description
+// router.get('/outfits/search/', function(req, res, next){
+//   console.log("SEARCHING FOR OUTFITS");
+//   var limit = 1000; //purely because I don't have time to do pagination
+//   var query = {};
+//   console.log('in search');
+//   console.log(req.query);
+//   if (req.query && req.query.limit){
+//     limit = req.query.limit;
+//   }
+//   if (req.query && req.query.description){
+//     query.description = new RegExp(decodeURIComponent(req.query.description), 'i');
+//   }
+//   if (req.query && req.query.type){
+//     query.type = req.query.type;
+//   }
+//   console.log("Finding " + query);
+//   // Find outfits
+//   Outfit.find(query).limit(limit).exec(function(err, clothes, count){
+//     if (!err){
+//       res.json(clothes);
+//     }
+//     else {
+//       res.sendStatus(500);
+//     }
+//   });
+// });
+
 // We want to also search outfits and styles...
 router.get(/\/searchOutfits.*/, function(req, res, next){
   var limit = 1000; //purely because I don't have time to do pagination

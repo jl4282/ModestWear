@@ -7,11 +7,11 @@ app.controller('SearchCtrl', ['$scope', 'Clothing', 'OutfitSrvc', 'StyleSrvc','$
     });
   };
 
-  $scope.searchOutfits = function(query) {
-  	OutfitSrvc.searchClothing(query).then(function(data){
-      $scope.clothes = data;
-    });
-  }
+  // $scope.searchOutfits = function(query) {
+  // 	OutfitSrvc.searchClothing(query).then(function(data){
+  //     $scope.clothes = data;
+  //   });
+  // }
 
   if($location.search()){
     $scope.search($location.search());

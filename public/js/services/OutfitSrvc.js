@@ -37,28 +37,28 @@ app.factory('OutfitSrvc', ['$http', function($http){
     });
   }
 
-  var searchOutfits = function(query){
-    console.log("Searching outfits");
-    var params = {};
-    console.log(query);
-    if (query.type){
-      params.type = query.type;
-    }
-    else if (query.description){
-      params.description = query.description;
-    }
-    else if (query.limit){
-      params.limit = query.limit;
-    }
-    else {
-      params.description = query;
-    }
-    return $http.get('/api/searchOutfits', {
-      params: params
-    }).then(function(resp){
-      return resp.data;
-    });
-  };
+  // var searchOutfits = function(query){
+  //   console.log("Searching outfits");
+  //   var params = {};
+  //   console.log(query);
+  //   if (query.type){
+  //     params.type = query.type;
+  //   }
+  //   else if (query.description){
+  //     params.description = query.description;
+  //   }
+  //   else if (query.limit){
+  //     params.limit = query.limit;
+  //   }
+  //   else {
+  //     params.description = query;
+  //   }
+  //   return $http.get('/api/searchOutfits', {
+  //     params: params
+  //   }).then(function(resp){
+  //     return resp.data;
+  //   });
+  // };
 
   /*
   var removeFromOutfit = function(outfitId, clothingId){
@@ -73,7 +73,7 @@ app.factory('OutfitSrvc', ['$http', function($http){
     getOutfits : getOutfits,
     getOutfit : getOutfit,
     addToOutfit : addToOutfit,
-    searchOutfits : searchOutfits,
+    // searchOutfits : searchOutfits,
     getOutfitCover : getOutfitCover
     // removeFromOutfit : removeOutfit    
   };
