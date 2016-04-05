@@ -28,17 +28,23 @@ app.factory('UserSrvc', ['$http', function($http){
     });
   }
 
-  // var getOutfitsFull = function() {
-  //   return $http.get('/api/outfitsFull').then(function(res){
-  //     return res.data;
-  //   });
-  // }
+  var getOutfitsFull = function() {
+    return $http.get('/api/outfitsFull').then(function(res){
+      return res.data;
+    });
+  }
 
   var getStyles = function() {
     return $http.get('/api/styles').then(function(res){
       return res.data;
     });
   }
+
+  // var getStylesFull = function() {
+  //   return $http.get('/api/stylesFull').then(function(res){
+  //     return res.data;
+  //   });
+  // }
 
   var logout = function(){
     return $http.get('/logout').then(function(res){
@@ -51,8 +57,9 @@ app.factory('UserSrvc', ['$http', function($http){
     getUser : getUser,
     getFavorites : getFavorites,
     getStyles: getStyles,
+    // getStylesFull : getStylesFull,
     getOutfits : getOutfits,
-    // getOutfitsFull : getOutfitsFull,
+    getOutfitsFull : getOutfitsFull,
     logout: logout,
     deleteFav: deleteFav
   };

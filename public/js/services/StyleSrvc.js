@@ -26,10 +26,29 @@ app.factory('StyleSrvc', ['$http', function($http){
       return res;
     });
   };
+
+  var getStyleCover = function(slug){
+    console.log('slug: ', slug);
+    
+    return $http.get('/api/style/cover/' + slug).then(function(res){
+      console.log(res);
+      return res.data;
+    });
+  }
+
+  // var getStyleCover = function(slug){
+  //   console.log('slug: ', slug);
+    
+  //   return $http.get('api/stylesFull/').then(function(res){
+  //     // console.log(res);
+  //     return res;
+  //   });
+  // }
   return {
     createStyle : createStyle,
     getStyles : getStyles,
     getStyle : getStyle,
+    getStyleCover : getStyleCover,
     addToStyle : addToStyle,
     removeFromStyle : removeFromStyle
   };

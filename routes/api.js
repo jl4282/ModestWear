@@ -275,48 +275,59 @@ router.get('/outfits', function(req, res, next){
 
 });
 
-router.get('/outfitsFull', function(req, res, next){
-  //return outfit with all the clothing and outfits
+router.get('/outfit/cover/:slug', function(req, res, next){
   if (req.user){
     var query = {_id: req.user._id};
     if (req.user && req.user.provider){
       query = {facebookId: req.user.id};
     }
-    User.findOne(query).populate('outfits').exec(function(err, user){
-      console.log(err, user);
+    Outfit.findOne({slug: req.params.slug}).populate('clothes').exec(function(err, outfit){
+      console.log('OUTFIT IS: ', outfit);
       if (!err){
-        if (user.outfits){
-          Outfit.findOne({slug: user.outfits}).populate('clothes').populate('outfits').exec(function(err, style){
-            console.log(err, style);
-            if (!err){
-              if (style){
-                console.log(style);
-                res.json(style);
-              }
-              else {
-                res.status(404);
-              }
-            }
-            else {
-              console.log('grave error:', err);
-              res.sendStatus(500);
-            }
-          });
-        }
-        else {
-          res.status(404);
+        //this can probably be trimmed, but not checking for edge cases at the moment
+        if (outfit.clothes &&  outfit.clothes[0] && outfit.clothes[0].images && outfit.clothes[0].images[0]){
+          console.log(outfit.clothes[0].images[0], outfit.slug);
+          res.json({image: outfit.clothes[0].images[0], slug : outfit.slug});
         }
       }
-      else {
-        res.sendStatus(500);
-      }
+      else res.status(500);
     });
   }
-  else {
-    res.status(403);
-  }
-
+  
 });
+
+// router.get('/stylesFull', function(req, res, next){
+//   //return outfit with all the clothing and outfits
+//   console.log("IN OUTFITS FULL");
+//   if (req.user){
+//     var query = {_id: req.user._id};
+//     if (req.user && req.user.provider){
+//       query = {facebookId: req.user.id};
+//     }
+//     User.findOne(query).populate('styles').populate('clothes').exec(function(err, user){
+//       console.log(err, user);
+//       if (!err){
+//         if (user.styles){
+//           // for (var user in user.outfits) {
+//           //   console.log(user);
+
+//           console.log(user.styles);
+//           res.json(user.styles);
+//         }
+//         else {
+//           res.status(404);
+//         }
+//       }
+//       else {
+//         res.sendStatus(500);
+//       }
+//     });
+//   }
+//   else {
+//     res.status(403);
+//   }
+
+// });
 
 // Katie : Route Handler 3
 router.post('/outfit/create', function(req, res, next){
@@ -483,6 +494,27 @@ router.get('/styles', function(req, res, next){
     res.status(403);
   }
 
+});
+
+router.get('/style/cover/:slug', function(req, res, next){
+  if (req.user){
+    var query = {_id: req.user._id};
+    if (req.user && req.user.provider){
+      query = {facebookId: req.user.id};
+    }
+    Style.findOne({slug: req.params.slug}).populate('clothes').exec(function(err, style){
+      console.log('STYLE IS: ', style);
+      if (!err){
+        //this can probably be trimmed, but not checking for edge cases at the moment
+        if (style.clothes &&  style.clothes[0] && style.clothes[0].images && style.clothes[0].images[0]){
+          console.log(style.clothes[0].images[0], style.slug);
+          res.json({image: style.clothes[0].images[0], slug : style.slug});
+        }
+      }
+      else res.status(500);
+    });
+  }
+  
 });
 
 router.post('/style/create', function(req, res, next){

@@ -28,6 +28,15 @@ app.factory('OutfitSrvc', ['$http', function($http){
     });
   };
 
+  var getOutfitCover = function(slug){
+    // console.log('slug: ', slug);
+    
+    return $http.get('api/outfit/cover/' + slug).then(function(res){
+      console.log(res);
+      return res.data;
+    });
+  }
+
   var searchOutfits = function(query){
     console.log("Searching outfits");
     var params = {};
@@ -64,7 +73,8 @@ app.factory('OutfitSrvc', ['$http', function($http){
     getOutfits : getOutfits,
     getOutfit : getOutfit,
     addToOutfit : addToOutfit,
-    searchOutfits : searchOutfits
+    searchOutfits : searchOutfits,
+    getOutfitCover : getOutfitCover
     // removeFromOutfit : removeOutfit    
   };
 }]);

@@ -35,6 +35,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             templateUrl: 'views/product.html',
             controller: 'ProductCtrl'
         })
+        // contact form
+        .when('/contact', {
+            templateUrl: 'views/contact.html',
+            controller: 'ContactCtrl'
+        })
         // home page
         .when('/', {
             templateUrl: 'views/home.html'
