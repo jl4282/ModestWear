@@ -21,6 +21,25 @@ app.factory('UserSrvc', ['$http', function($http){
       return res.data;
     });
   };
+
+  var getOutfits = function() {
+    return $http.get('/api/outfits').then(function(res){
+      return res.data;
+    });
+  }
+
+  // var getOutfitsFull = function() {
+  //   return $http.get('/api/outfitsFull').then(function(res){
+  //     return res.data;
+  //   });
+  // }
+
+  var getStyles = function() {
+    return $http.get('/api/styles').then(function(res){
+      return res.data;
+    });
+  }
+
   var logout = function(){
     return $http.get('/logout').then(function(res){
       console.log(res);
@@ -31,6 +50,9 @@ app.factory('UserSrvc', ['$http', function($http){
     favorite : favorite,
     getUser : getUser,
     getFavorites : getFavorites,
+    getStyles: getStyles,
+    getOutfits : getOutfits,
+    // getOutfitsFull : getOutfitsFull,
     logout: logout,
     deleteFav: deleteFav
   };

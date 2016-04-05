@@ -1,6 +1,5 @@
 // TODO : DONT KNOW IF THIS IS GOOD
 // be sure to check what params everything takes
-
 'use strict';
 app.factory('OutfitSrvc', ['$http', function($http){
   
@@ -29,6 +28,29 @@ app.factory('OutfitSrvc', ['$http', function($http){
     });
   };
 
+  var searchOutfits = function(query){
+    console.log("Searching outfits");
+    var params = {};
+    console.log(query);
+    if (query.type){
+      params.type = query.type;
+    }
+    else if (query.description){
+      params.description = query.description;
+    }
+    else if (query.limit){
+      params.limit = query.limit;
+    }
+    else {
+      params.description = query;
+    }
+    return $http.get('/api/searchOutfits', {
+      params: params
+    }).then(function(resp){
+      return resp.data;
+    });
+  };
+
   /*
   var removeFromOutfit = function(outfitId, clothingId){
     return $http.delete('/api/outfit/remove/' + outfitId + '/' + clothingId).then(function(res){
@@ -41,7 +63,8 @@ app.factory('OutfitSrvc', ['$http', function($http){
     createOutfit : createOutfit,
     getOutfits : getOutfits,
     getOutfit : getOutfit,
-    addToOutfit : addToOutfit
+    addToOutfit : addToOutfit,
+    searchOutfits : searchOutfits
     // removeFromOutfit : removeOutfit    
   };
 }]);

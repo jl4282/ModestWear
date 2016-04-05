@@ -38,7 +38,7 @@ router.get('/clothes', function(req, res, next) {
   });
 });
 
-//get by searching description
+// Get by searching description
 router.get(/\/search.*/, function(req, res, next){
   var limit = 1000; //purely because I don't have time to do pagination
   var query = {};
@@ -53,11 +53,68 @@ router.get(/\/search.*/, function(req, res, next){
   if (req.query && req.query.type){
     query.type = req.query.type;
   }
+  console.log("Finding " + query);
+  // Find outfits
   Clothing.find(query).limit(limit).exec(function(err, clothes, count){
     if (!err){
       res.json(clothes);
     }
     else {
+      res.sendStatus(500);
+    }
+  });
+});
+
+// We want to also search outfits and styles...
+router.get(/\/searchOutfits.*/, function(req, res, next){
+  var limit = 1000; //purely because I don't have time to do pagination
+  var query = {};
+  console.log('in search');
+  console.log(req.query);
+  if (req.query && req.query.limit){
+    limit = req.query.limit;
+  }
+  if (req.query && req.query.description){
+    query.description = new RegExp(decodeURIComponent(req.query.description), 'i');
+  }
+  if (req.query && req.query.type){
+    query.type = req.query.type;
+  }
+  console.log("Finding " + query);
+  // Find outfits
+  
+  Outfits.find(query).limit(limit).exec(function(err, outfits, count) {
+    console.log(outfits);
+    if (!err) {
+      res.json(outfits);
+    } else {
+      res.sendStatus(500);
+    }
+  });
+});
+
+router.get(/\/searchStyles.*/, function(req, res, next){
+  var limit = 1000; //purely because I don't have time to do pagination
+  var query = {};
+  console.log('in search');
+  console.log(req.query);
+  if (req.query && req.query.limit){
+    limit = req.query.limit;
+  }
+  if (req.query && req.query.description){
+    query.description = new RegExp(decodeURIComponent(req.query.description), 'i');
+  }
+  if (req.query && req.query.type){
+    query.type = req.query.type;
+  }
+  console.log("Finding " + query);
+  // Find outfits
+  
+  Styles.find(query).limit(limit).exec(function(err, outfits, count) {
+    console.log(outfits);
+    if (!err) {
+      res.json(outfits);
+    } else {
       res.sendStatus(500);
     }
   });
@@ -180,6 +237,13 @@ router.post('/outfit/:id', function(req, res, next){
 });
 */
 
+/*
+Clothing.findOne({'slug': req.params.slug}, function(err, clothes, count){
+    console.log(count, clothes);
+    res.json(clothes);
+  });
+*/
+
 // Katie : Route Handler 2
 router.get('/outfits', function(req, res, next){
   //return outfit with all the clothing and outfits
@@ -195,6 +259,49 @@ router.get('/outfits', function(req, res, next){
         if (user.outfits){
           console.log(user.outfits);
           res.json(user.outfits);
+        }
+        else {
+          res.status(404);
+        }
+      }
+      else {
+        res.sendStatus(500);
+      }
+    });
+  }
+  else {
+    res.status(403);
+  }
+
+});
+
+router.get('/outfitsFull', function(req, res, next){
+  //return outfit with all the clothing and outfits
+  if (req.user){
+    var query = {_id: req.user._id};
+    if (req.user && req.user.provider){
+      query = {facebookId: req.user.id};
+    }
+    User.findOne(query).populate('outfits').exec(function(err, user){
+      console.log(err, user);
+      if (!err){
+        if (user.outfits){
+          Outfit.findOne({slug: user.outfits}).populate('clothes').populate('outfits').exec(function(err, style){
+            console.log(err, style);
+            if (!err){
+              if (style){
+                console.log(style);
+                res.json(style);
+              }
+              else {
+                res.status(404);
+              }
+            }
+            else {
+              console.log('grave error:', err);
+              res.sendStatus(500);
+            }
+          });
         }
         else {
           res.status(404);
@@ -345,6 +452,8 @@ router.get('/style/:slug', function(req, res, next){
     }
   });
 });
+
+
 
 router.get('/styles', function(req, res, next){
   //return style with all the clothing and outfits

@@ -1,7 +1,15 @@
-
 <!-- Code for displaying search results -->
 
 <div layout="row" layout-wrap class="search-container">
+  <!-- Get outfits -->
+  <div flex="100" flex-sm="50" flex-md="33" flex-lg="25" flex-gt-lg="20" layout="column" ng-repeat="o in outfits">
+    <md-card>
+       <a href="/outfits/{{o.slug}}">
+         <md-card-content>
+           <p><a href="/outfits/{{o.slug}}">{{o}}</a></p>
+         </md-card-content>
+    </md-card>
+  </div>
   <div flex="100" flex-sm="50" flex-md="33" flex-lg="25" flex-gt-lg="20" layout="column" ng-repeat="c in clothes">
     <md-card>
      <a href="/clothes/{{c.slug}}"><img data-ng-if="c.images[0]" src="{{c.images[0]}}" class="md-card-image" alt="{{c.name}}"></a>
@@ -68,4 +76,5 @@
       </md-card-actions>
     </md-card>
   </div>
+
 </div>

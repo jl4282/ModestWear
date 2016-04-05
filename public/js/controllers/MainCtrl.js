@@ -47,6 +47,25 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc', 'Outf
     }
   };
 
+  $scope.searchOutfits = function(query){
+    console.log("searching outfits");
+    $scope.showSearch = false;
+    if (query && typeof query === 'String'){
+      query = query.trim();
+    }
+    if (query){
+      var params = {};
+      if (query.type){
+        params.type = query.type;
+      }
+      else {
+        params.description = query;
+      }
+      console.log(params);
+      $location.path('/searchOutfits/').search(params);
+    }
+  };
+
   $scope.favorite = function(id){
     if (!$scope.user){
 

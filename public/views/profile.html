@@ -1,16 +1,55 @@
 <div layout="column" layout-padding>
-  <div layout="row">
-    <h1>Welcome {{user.name}}</h1>
+  <div layout="row" width="100%">
+    <h1>Welcome, {{user.name}}</h1>
+    <md-button class="md-flat" data-ng-click="logout()">(Logout)</md-button>
   </div>
+
   <div layout="column">
     <h2>Stats:</h2>
-    <p>Total Favorites: {{user.favorites.length}}</p>
-  </div>
-  <div layout="row">
-      <a href="/favorites"><md-button class="md-accent md-raised">View Favorites</md-button></a>
+    <!-- Favorites -->
+    <div layout="row">
+      <p>Total Favorites: {{user.favorites.length}}</p>
+      <div flex="10" layout="column" ng-repeat="fav in favorites" ng-if="$index < 5">
+        <md-card>
+          <a href="/clothes/{{fav.slug}}"><img data-ng-if="fav.images[0]" src="{{fav.images[0]}}" class="md-card-image" alt="{{fav.name}}"></a>
+          <md-card-content>
+            <p><a href="/clothes/{{fav.slug}}">{{fav.name}}</a></p>
+          </md-card-content>
+        </md-card>
+      </div>
+      <a href="/favorites"><md-button class="md-accent md-raised">View More</md-button></a>
     </div>
-  <div layout="row">
-    <md-button class="md-flat" data-ng-click="logout()">Logout</md-button>
   </div>
+    <div layout="row">
+      <p>Number Outfits: {{user.outfits.length}}</p>
+        <div flex="10" layout="column" ng-repeat="outfit in outfits" ng-if="$index < 3">
+          <!-- {{outfit.clothes}} -->
+          <md-card>
+            <a href="/outfits/{{outfit.slug}}"><img data-ng-if="outfit.images[0]" src="{{outfit.images[0]}}" class="md-card-image" alt="{{outfit.name}}"></a>
+            <md-card-content>
+              <p><a href="/outfits/{{outfit.slug}}">{{outfit.name}}</a></p>
+              <!-- <p>{{outfit}}</p> -->
+            </md-card-content>
+          </md-card>
+        </div>
+        <a href="/outfits"><md-button class="md-accent md-raised">View More</md-button></a>
+    </div>
+
+    <div layout="row">
+      <p>Number Styles: {{user.styles.length}}</p>        
+      <div flex="10" layout="column" ng-repeat="outfit in outfits" ng-if="$index < 3">
+          <!-- {{outfit.clothes}} -->
+          <md-card>
+            <a href="/outfits/{{outfit.slug}}"><img data-ng-if="outfit.images[0]" src="{{outfit.images[0]}}" class="md-card-image" alt="{{outfit.name}}"></a>
+            <md-card-content>
+              <p><a href="/outfits/{{outfit.slug}}">{{outfit.name}}</a></p>
+              <!-- <p>{{outfit}}</p> -->
+            </md-card-content>
+          </md-card>
+        </div>
+        <a href="/styles"><md-button class="md-accent md-raised">View More</md-button></a>
+    </div>
+  </div>
+  
 </div>
 
