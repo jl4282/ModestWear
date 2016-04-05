@@ -1,20 +1,25 @@
 # ModestWear - Katie's Additions
 
 ## New Features
-- [x] Implement an Outfits feature
-- [ ] Edit the profile page - have it show the user's outfits, styles, and favorites
+- [ ] Implement an Outfits feature
+   - [x] Create outfits
+   - [ ] Delete outfits
+   - [ ] Comment on Outfits
+- [ ] Styles
+   - [ ] Comment on Styles
+   - [ ] Delete styles
+- [x] Edit the profile page - have it show the user's outfits, styles, and favorites
   - [x] Change the layout
   - [x] Add more information / cards showing some styles and outfits and favorites
-  - [ ] Make the routes load pictures from styles and outfits
-- [ ] Set up a way to follow outfits, styles, and users
-  - [ ] Add outfits, styles, and users to the db
-  - [ ] Way to delete them from the db
-  - [ ] Search for outfits, styles and users
-  - [ ] Be able to follow them
+  - [x] Make the routes load pictures from styles and outfits
+- [ ] Following outfits/styles/users
+  - [ ] Search for outfits/styles/users
+  - [ ] Unfollow outfits/styles/users
+  - [ ] Follow
 - [ ] Contact Me Form (with Client-Side Validation)
-- [ ] Comments for Outfits and Styles using forms
 - [ ] Automate scraping algorithms 
   - [ ] Edit the scraping algorithm queries so the db does not store doubles
+  - [ ] Set up grunt/gulp
 - [ ] Use CSS Preprocessor and Angular MD to make it look nicer
 - [x] Run JSHint to fix mistakes in the code
 
