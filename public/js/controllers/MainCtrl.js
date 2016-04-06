@@ -42,6 +42,7 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc', 'Outf
       else {
         params.description = query;
       }
+      params.searchType = $scope.searchRadio[$scope.searchType].value;
       console.log(params);
       $location.path('/search/').search(params);
     }
@@ -220,4 +221,28 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc', 'Outf
       }
     }
   ];
+
+  $scope.searchType = 0;
+
+  /*
+  add in different search options:
+    * regular
+    * outfits
+    * styles
+  */
+  $scope.searchRadio = [
+    {
+      name : 'Clothes',
+      value : 'clothing'
+    },
+    {
+      name : 'Outfits',
+      value : 'outfits'
+    },
+    {
+      name : 'Styles',
+      value : 'styles'
+    }
+  ];
+
 }]);
