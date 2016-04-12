@@ -2,21 +2,24 @@
 
 ## New Features
 - [ ] Implement an Outfits feature
+  - [x] Create outfits and be able to add to them
+  - [x] Delete outfits
+  - [x] Update DB with outfits
+  - [ ] Comments for outfits
 - [x] Edit the profile page - have it show the user's outfits, styles, and favorites
   - [x] Change the layout
   - [x] Add more information / cards showing some styles and outfits and favorites
   - [x] Make the routes load pictures from styles and outfits
-  - [x] Create outfits and add to them
-  - [ ] Delete outfits
-  - [x] Update DB with outfits 
-  - [ ] Set up comments for outfits
 - [ ] Styles
   - [ ] Delete style 
   - [ ] Set up comments for styles
+- [ ] Comments
+  - [ ] Set up routing for comments
+  - [ ] Integrate comments with outfits and styles on the respective pages
 - [ ] Set up a way to follow outfits, styles, and users
   - [ ] Unfollow outfits/styles/users
   - [ ] Be able to follow them
-- [ ] Search for outfits, styles and users
+- [x] Search for outfits, styles and users
 - [ ] Contact Me Form (with Client-Side Validation)
 - [ ] Automate scraping algorithms 
   - [ ] Edit the scraping algorithm queries so the db does not store doubles
