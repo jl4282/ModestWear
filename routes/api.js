@@ -42,56 +42,44 @@ router.get('/clothes', function(req, res, next) {
 router.get(/\/search.*/, function(req, res, next){
   var limit = 1000; //purely because I don't have time to do pagination
   var query = {};
-  console.log('in search');
-  console.log(req.query);
+  // console.log(req.query);
+  var searchType = 'clothing';
   if (req.query && req.query.limit){
     limit = req.query.limit;
   }
+  if (req.query && req.query.searchType){
+    searchType = req.query.searchType;
+  }
   if (req.query && req.query.description){
-    query.description = new RegExp(decodeURIComponent(req.query.description), 'i');
+    if (searchType === 'clothing'){
+      query.description = new RegExp(decodeURIComponent(req.query.description), 'i');  
+    }
+    else {
+      query.name = new RegExp(decodeURIComponent(req.query.description), 'i');
+    }
   }
   if (req.query && req.query.type){
     query.type = req.query.type;
   }
-  console.log("Finding " + query);
+  var model = {
+    clothing : Clothing,
+    styles : Style,
+    outfits : Outfit
+  };
   // Find outfits
-  Clothing.find(query).limit(limit).exec(function(err, clothes, count){
+  // if (searchType === 'clothing'){
+  model[searchType].find(query).limit(limit).exec(function(err, result, count){
     if (!err){
-      res.json(clothes);
+      console.log(result);
+      res.json(result);
     }
     else {
       res.sendStatus(500);
     }
   });
+  
 });
 
-// Get by searching description
-// router.get('/outfits/search/', function(req, res, next){
-//   console.log("SEARCHING FOR OUTFITS");
-//   var limit = 1000; //purely because I don't have time to do pagination
-//   var query = {};
-//   console.log('in search');
-//   console.log(req.query);
-//   if (req.query && req.query.limit){
-//     limit = req.query.limit;
-//   }
-//   if (req.query && req.query.description){
-//     query.description = new RegExp(decodeURIComponent(req.query.description), 'i');
-//   }
-//   if (req.query && req.query.type){
-//     query.type = req.query.type;
-//   }
-//   console.log("Finding " + query);
-//   // Find outfits
-//   Outfit.find(query).limit(limit).exec(function(err, clothes, count){
-//     if (!err){
-//       res.json(clothes);
-//     }
-//     else {
-//       res.sendStatus(500);
-//     }
-//   });
-// });
 
 // We want to also search outfits and styles...
 router.get(/\/searchOutfits.*/, function(req, res, next){
@@ -304,24 +292,17 @@ router.get('/outfits', function(req, res, next){
 });
 
 router.get('/outfit/cover/:slug', function(req, res, next){
-  if (req.user){
-    var query = {_id: req.user._id};
-    if (req.user && req.user.provider){
-      query = {facebookId: req.user.id};
-    }
-    Outfit.findOne({slug: req.params.slug}).populate('clothes').exec(function(err, outfit){
-      console.log('OUTFIT IS: ', outfit);
-      if (!err){
-        //this can probably be trimmed, but not checking for edge cases at the moment
-        if (outfit.clothes &&  outfit.clothes[0] && outfit.clothes[0].images && outfit.clothes[0].images[0]){
-          console.log(outfit.clothes[0].images[0], outfit.slug);
-          res.json({image: outfit.clothes[0].images[0], slug : outfit.slug});
-        }
+  Outfit.findOne({slug: req.params.slug}).populate('clothes').exec(function(err, outfit){
+    console.log('OUTFIT IS: ', outfit);
+    if (!err){
+      //this can probably be trimmed, but not checking for edge cases at the moment
+      if (outfit.clothes &&  outfit.clothes[0] && outfit.clothes[0].images && outfit.clothes[0].images[0]){
+        console.log(outfit.clothes[0].images[0], outfit.slug);
+        res.json({image: outfit.clothes[0].images[0], slug : outfit.slug});
       }
-      else res.status(500);
-    });
-  }
-  
+    }
+    else res.status(500);
+  });
 });
 
 // router.get('/stylesFull', function(req, res, next){
@@ -525,24 +506,17 @@ router.get('/styles', function(req, res, next){
 });
 
 router.get('/style/cover/:slug', function(req, res, next){
-  if (req.user){
-    var query = {_id: req.user._id};
-    if (req.user && req.user.provider){
-      query = {facebookId: req.user.id};
-    }
-    Style.findOne({slug: req.params.slug}).populate('clothes').exec(function(err, style){
-      console.log('STYLE IS: ', style);
-      if (!err){
-        //this can probably be trimmed, but not checking for edge cases at the moment
-        if (style.clothes &&  style.clothes[0] && style.clothes[0].images && style.clothes[0].images[0]){
-          console.log(style.clothes[0].images[0], style.slug);
-          res.json({image: style.clothes[0].images[0], slug : style.slug});
-        }
+  Style.findOne({slug: req.params.slug}).populate('clothes').exec(function(err, style){
+    console.log('STYLE IS: ', style);
+    if (!err){
+      //this can probably be trimmed, but not checking for edge cases at the moment
+      if (style.clothes &&  style.clothes[0] && style.clothes[0].images && style.clothes[0].images[0]){
+        console.log(style.clothes[0].images[0], style.slug);
+        res.json({image: style.clothes[0].images[0], slug : style.slug});
       }
-      else res.status(500);
-    });
-  }
-  
+    }
+    else res.status(500);
+  });
 });
 
 router.post('/style/create', function(req, res, next){

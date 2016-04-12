@@ -1,7 +1,9 @@
 <!-- Code for displaying search results -->
 
-<div layout="row" layout-wrap class="search-container">
-  <!-- Get outfits -->
+
+<!-- for clothes... -->
+<div layout="row" layout-wrap class="search-container" data-ng-if="searchType === 'clothing'">
+  
   <div flex="100" flex-sm="50" flex-md="33" flex-lg="25" flex-gt-lg="20" layout="column" ng-repeat="o in outfits">
     <md-card>
        <a href="/outfits/{{o.slug}}">
@@ -76,5 +78,23 @@
       </md-card-actions>
     </md-card>
   </div>
-
+</div>
+<!-- Add code for Styles or Outfits -->
+<div flex="20" layout="column" ng-repeat="outfit in outfits">
+          <!-- {{outfit.clothes}} -->
+  <md-card>
+    <a href="/outfits/{{outfit.slug}}"><img id="outfit-{{$index}}" src="outfits.coverImage" class="md-card-image" alt="{{outfit.name}}"></a>
+    <md-card-content>
+      <p><a href="/outfits/{{outfit.slug}}">{{outfit.name}}</a></p>
+      <!-- <p>{{outfit}}</p> -->
+    </md-card-content>
+  </md-card>
+</div>
+<div flex="20" layout="column" ng-repeat="style in styles">    
+  <md-card>
+    <a href="/styles/{{style.slug}}"><img id="style-{{$index}}" src="styles.coverImage" class="md-card-image" alt="{{style.name}}"></a>
+    <md-card-content>
+      <p><a href="/styles/{{style.slug}}">{{style.name}}</a></p>
+    </md-card-content>
+  </md-card>
 </div>

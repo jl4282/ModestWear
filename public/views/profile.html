@@ -40,8 +40,8 @@
       <p>Number Styles: {{user.styles.length}}</p>        
       <div flex="10" layout="column" ng-repeat="style in styles" ng-if="$index < 3">
 <!--           {{outfit.clothes}}
- -->          <md-card>
-
+ -->          
+          <md-card>
             <a href="/styles/{{style.slug}}"><img id="style-{{$index}}" src="styles.coverImage" class="md-card-image" alt="{{style.name}}"></a>
             <md-card-content>
               <p><a href="/styles/{{style.slug}}">{{style.name}}</a></p>

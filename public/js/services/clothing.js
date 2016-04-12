@@ -18,6 +18,7 @@ app.factory('Clothing', ['$http', function($http){
   };
   var searchClothing = function(query){
     var params = {};
+    params.searchType = query.searchType || 'clothing';
     if (query.type){
       params.type = query.type;
     }

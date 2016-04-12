@@ -45,8 +45,8 @@
       </div>
     </md-toolbar>
     <!-- added ng enter -->
-    <md-toolbar class="md-accent search" ng-show="showSearch" ng-enter="showSearch">
-      <div class="md-toolbar-tools">
+    <md-toolbar class="md-accent search" ng-show="showSearch" ng-enter="showSearch" layout="column">
+      <div class="md-toolbar-tools" flex>
         <md-button data-ng-click="showSearch = !showSearch" aria-label="Back" class="md-icon-button">
           <md-icon md-svg-icon="arrow-back"></md-icon>
         </md-button>
@@ -60,6 +60,14 @@
         <md-button class="md-icon-button" aria-label="Search" data-ng-click="search(query)">
           <md-icon md-svg-icon="search"></md-icon>
         </md-button>
+      </div>
+      <div class="md-toolbar-tools" flex>
+      <!-- TODO: fix the coloring on the radio -->
+        <md-radio-group ng-model="searchType" layout="row" class="md-primary"> 
+          <md-radio-button ng-repeat="search in searchRadio" ng-value="{{$index}}" aria-label="{{ search.name }}">
+            {{ search.name }}
+          </md-radio-button>
+        </md-radio-group>
       </div>
     </md-toolbar>
   </md-content>
