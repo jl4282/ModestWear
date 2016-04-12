@@ -20,6 +20,8 @@
   - [ ] Unfollow outfits/styles/users
   - [ ] Be able to follow them
 - [x] Search for outfits, styles and users
+  - [x] Edit the form to choose if you want to search for outfits, styles, or clothing
+  - [x] Actually search for it
 - [ ] Contact Me Form (with Client-Side Validation)
 - [ ] Automate scraping algorithms 
   - [ ] Edit the scraping algorithm queries so the db does not store doubles
