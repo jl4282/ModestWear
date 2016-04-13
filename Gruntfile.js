@@ -7,11 +7,6 @@ module.exports = function(grunt) {
     	all: ['public/*.js', 'routes/*.js', 'Gruntfile.js', 'Scraping/*.js', './*.js']
   	},
   	less: {
-  		/*
-  		TODO:
-  		 - add less parameters so it runs
-  		 - convert css to less 
-  		*/
   		development: {
 		     options: {
 		         paths: ["public/stylesheets"]

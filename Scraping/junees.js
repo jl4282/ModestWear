@@ -58,7 +58,7 @@
 
   //scrape the individual product page
   function scrapeProductPage(link, type){
-    if (link == undefined) {
+    if (link === undefined) {
       return;
     }
     var fullUrl = "http://www.junees.com" + link;
@@ -74,7 +74,7 @@
         //name
         $('.product-title').each(function(i, elem){
           // TODO : bounce out if the name already exists!!!
-          item.name = elem.children[0]['data'];
+          item.name = elem.children[0].data;
           // console.log(item.name);
         });
 
@@ -84,7 +84,7 @@
           // console.log(elem);
           var array = elem.children;
           for (var a in array) {
-            var attribs = array[a].attribs
+            var attribs = array[a].attribs;
             for (var b in attribs) {
               // console.log(attribs[b]);
               if (attribs[b].indexOf('//') > -1) {
@@ -120,7 +120,7 @@
 
         // price
         $('.product-prices').each(function(i, elem){
-          var pr = elem.children[1]['children'][0]['data'];
+          var pr = elem.children[1].children[0].data;
           // console.log(elem.children[1]['children'][0]['data']);
           pr = pr.split('$')[1].trim();
           item.price = pr.split('.')[0];
@@ -172,7 +172,7 @@
               var len = textarray[a].split('"')[0];
 
               // console.log(length);
-              len = len.match(/\d+/)[0] // "3"
+              len = len.match(/\d+/)[0]; // "3"
               item.length = len;
               /*
               if (len.match(/^[0-9]+$/) != null) {
@@ -241,4 +241,4 @@
   function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
   }
-})()
+})();

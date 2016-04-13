@@ -65,7 +65,7 @@
   function scrapeProductPage(link, type){
 
     // console.log("trying to scrape a link");
-    if (link == undefined) {
+    if (link === undefined) {
       return;
     }
     var fullUrl = "http://www.mode-sty.com/" + link;
@@ -95,7 +95,7 @@
           var array = elem.children;
 
           for (var a in array) {
-            var attribs = array[a].attribs
+            var attribs = array[a].attribs;
             for (var b in attribs) {
               if (b == 'data-thumb') {
                 // console.log(attribs[b]);
@@ -123,12 +123,12 @@
           for (var a in size_array) {
             //console.log(a);
             //console.log(size_array[a]);
-            var data = size_array[a]['data'];
+            var d = size_array[a].data;
             //console.log(data);
             // console.log(data);
-            if (data != 'Waist' && data != 'Bust' && data != 'Hips' && data != 'Length') {
-              if (data) {
-                item.sizes.push(data);
+            if (d != 'Waist' && d != 'Bust' && d != 'Hips' && d != 'Length') {
+              if (d) {
+                item.sizes.push(d);
               } 
             }
             // item.sizes.push(size_array[a]['data']);
@@ -138,7 +138,7 @@
         // price
         var price = $('span.current_price');
         
-        item.price = price[0].parent.attribs['content'];
+        item.price = price[0].parent.attribs.content;
 
         // TODO : NEED COLOR
         // QUESTION : I'M NOT SURE THAT THEY PUT COLOR HERE BECAUSE THEY'RE MULTICOLOR
@@ -214,7 +214,7 @@
       }
     });
   }    
-})()
+})();
 
 
 

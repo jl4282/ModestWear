@@ -1,0 +1,115 @@
+Katies-MacBook-Pro:ModestWear Katie$ grunt
+Running "less:development" (less) task
+>> 1 stylesheet created.
+
+Running "less:production" (less) task
+>> 1 stylesheet created.
+
+Running "jshint:all" (jshint) task
+
+   Scraping/junees.js
+     61 |    if (link == undefined) {
+                      ^ Use '===' to compare with 'undefined'.
+     77 |          item.name = elem.children[0]['data'];
+                                               ^ ['data'] is better written in dot notation.
+     87 |            var attribs = array[a].attribs
+                                                   ^ Missing semicolon.
+    123 |          var pr = elem.children[1]['children'][0]['data'];
+                                            ^ ['children'] is better written in dot notation.
+    123 |          var pr = elem.children[1]['children'][0]['data'];
+                                                           ^ ['data'] is better written in dot notation.
+    175 |              len = len.match(/\d+/)[0] // "3"
+                                                ^ Missing semicolon.
+    244 |})()
+             ^ Missing semicolon.
+   Scraping/kosherCasual.js
+    141 |})()
+             ^ Missing semicolon.
+   Scraping/modeSty.js
+     68 |    if (link == undefined) {
+                      ^ Use '===' to compare with 'undefined'.
+     98 |            var attribs = array[a].attribs
+                                                   ^ Missing semicolon.
+    126 |            var data = size_array[a]['data'];
+                         ^ 'data' is already defined.
+    126 |            var data = size_array[a]['data'];
+                                             ^ ['data'] is better written in dot notation.
+    141 |        item.price = price[0].parent.attribs['content'];
+                                                     ^ ['content'] is better written in dot notation.
+    217 |})()
+             ^ Missing semicolon.
+   Scraping/scrapingTemplate.js
+     11 |    link: // link to category results page ex: http://www.koshercasual.com/category.asp?id=368
+                 ^ Expected '}' to match '{' from line 9 and instead saw ':'.
+     12 |  }
+           ^ Expected ']' to match '[' from line 8 and instead saw '}'.
+     12 |  }
+            ^ Missing semicolon.
+     16 |];
+         ^ Expected an identifier and instead saw ']'.
+     16 |];
+         ^ Expected an assignment or function call and instead saw an expression.
+     39 |      if( /* there is another page */){
+                                              ^ Expected an identifier and instead saw ')'.
+     39 |      if( /* there is another page */){
+                                               ^ Expected ')' to match '(' from line 39 and instead saw '{'.
+     40 |        getAllLinks( /* get the link */, links, type);
+                                                ^ Expected an identifier and instead saw ','.
+     40 |        getAllLinks( /* get the link */, links, type);
+                                                  ^ Expected ')' and instead saw 'links'.
+     40 |        getAllLinks( /* get the link */, links, type);
+                                                         ^ Expected an assignment or function call and instead saw an expression.
+     40 |        getAllLinks( /* get the link */, links, type);
+                                                             ^ Missing semicolon.
+     40 |        getAllLinks( /* get the link */, links, type);
+                                                             ^ Expected an identifier and instead saw ')'.
+     40 |        getAllLinks( /* get the link */, links, type);
+                                                             ^ Expected an assignment or function call and instead saw an expression.
+     50 |    if(error){
+             ^ Expected ')' and instead saw 'if'.
+     50 |    if(error){
+                      ^ Missing semicolon.
+     53 |  });
+            ^ Expected an identifier and instead saw ')'.
+     53 |  });
+            ^ Expected an assignment or function call and instead saw an expression.
+>> Unrecoverable syntax error. (38% scanned).
+   Scraping/testImport.js
+     17 |      if (str != "") {
+                       ^ Use '!==' to compare with ''.
+   ./db.js
+      1 |'use strict';
+         ^ Use the function form of "use strict".
+      3 |var mongoose = require('mongoose'),
+                        ^ 'require' is not defined.
+      4 |    URLSlugs = require('mongoose-url-slugs');
+                        ^ 'require' is not defined.
+     79 |if (process.env.NODE_ENV === 'PROD'){
+             ^ 'process' is not defined.
+   ./fb.js
+      6 |  , passport = require('passport')
+           ^ Comma warnings can be turned off with 'laxcomma'.
+      5 |var express = require('express')
+                                        ^ Bad line breaking before ','.
+      6 |  , passport = require('passport')
+                                          ^ Bad line breaking before ','.
+      7 |  , util = require('util')
+                                  ^ Bad line breaking before ','.
+      8 |  , FacebookStrategy = require('passport-facebook').Strategy
+                                                             ^ Bad line breaking before ','.
+      9 |  , logger = require('morgan')
+                                      ^ Bad line breaking before ','.
+     10 |  , session = require('express-session')
+                                                ^ Bad line breaking before ','.
+     11 |  , bodyParser = require("body-parser")
+                                               ^ Bad line breaking before ','.
+     12 |  , cookieParser = require("cookie-parser")
+                                                   ^ Bad line breaking before ','.
+   ./secrets.js
+      6 |}
+          ^ Missing semicolon.
+
+>> 47 errors in 19 files
+Warning: Task "jshint:all" failed. Use --force to continue.
+
+Aborted due to warnings.
