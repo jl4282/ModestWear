@@ -1,6 +1,20 @@
 module.exports = function(grunt) {
   // Do grunt-related things in here
   // grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+
+  grunt.config.init({
+  	jshint: {
+    	all: ['public/*.js', 'routes/*.js', 'Gruntfile.js', 'Scraping/*.js', './*.js']
+  	}
+  });
+
+  /*
+	Running the command 'grunt' will run the defaut task which is jshint
+  */
+  grunt.registerTask('default', ['jshint']);
+
+
+
   grunt.registerTask('scrape', 'runs all the scraping algorithms', function(){
   	// run each scraping algorithm
   	var done = this.async();
@@ -12,4 +26,6 @@ module.exports = function(grunt) {
 	    done();
 	}, 30000); // set to 30 seconds because one of the KosheCasual one doesn't exit on it's own
   });
+
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 };
