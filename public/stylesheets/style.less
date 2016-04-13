@@ -1,11 +1,112 @@
 /* Mixin */
-.border-radius (@radius: 5px) {
+/*.border-radius (@radius: 5px) {
 	-webkit-border-radius: @radius;
 	-moz-border-radius: @radius;
 	border-radius: @radius;
-}
+}*/
 
 /* Implementation */
-.card {
+/*.card {
 	.border-radius(20px);
-} 
+} */
+
+
+
+.product-img {
+  max-height:50px;
+}
+
+.outfits-container md-card {
+  margin: 15px;
+  background-color: #edf2f7;
+}
+
+h1 {
+  margin:15px;
+}
+
+.search-container, .favorites-container {
+	background-color: #edf2f7 !important;
+}
+.search-container, .favorites-container, .outfits-container {
+	p a {
+		color: inherit;
+    	text-decoration: none;	
+	}
+}
+.parent {
+    display: block;
+}
+.product-container .info {
+    margin-right: 10px;
+}
+
+.search{
+    color: white !important;
+    h3 {
+    	text-align: center;
+    }
+    .md-toolbar button{
+    	border-radius: 99%;
+    }
+    &:focus{
+    	border-color: white !important;
+    }
+}
+
+/*#addToStyle .layout-column, #addToOutfit .layout-column{
+  min-width: 150px;
+}*/
+/*
+md-menu-item>.md-button p, md-menu-item>.md-button md-icon {
+   margin-left: 0px !important;
+    margin-right: 0px !important;
+}*/
+
+::-webkit-input-placeholder {
+    color: white;
+}
+:-moz-placeholder {
+   color:    white;
+   opacity:  1;
+}
+::-moz-placeholder {
+   color:    white;
+   opacity:  1;
+}
+:-ms-input-placeholder {
+   color:    white;
+}
+
+.productImg {
+  max-height: 350px;
+}
+
+/*input-container:not(.md-input-invalid).md-input-focused .md-input {
+    border-color: white;
+}*/
+
+
+/*
+md-card md-card-content {
+	padding: 8px;
+	height: 50px;
+}
+
+md-card img {
+    height: 100%;
+    width: 90%;
+    height: 250px;
+    overflow: hidden;
+
+}
+
+.parent {
+    display: block;
+}
+
+
+md-card md-card-content, md-card-actions {
+	background-color: pink;
+}
+*/
