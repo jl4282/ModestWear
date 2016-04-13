@@ -46,12 +46,12 @@
   - [ ] Forms to comment on outfits and styles
 
 ##### Additional Requirements
-- [ ] Grunt: 1 point
-- [ ] JSHint: 1 point
-- [ ] CSS Preprocessor: Angular.less: 1 point
+- [x] Grunt: 1 point
+- [x] JSHint: 1 point
+- [x] CSS Preprocessor: less (public/stylesheets/style.less): 1 point
 - [ ] Client Side Validation: Parsley: 2 point
-- [ ] Angular MD: 1 point
-- [ ] Client Side JS Library: Angular: 1 point
+- [x] Angular MD: 1 point
+- [x] Client Side JS Library: Angular: 1 point
 
 1 + 1 + 1 + 2 + 1 + 1 = 7 -> so if I don't get everything done, I'm good?
 

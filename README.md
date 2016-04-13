@@ -276,6 +276,7 @@ We're using Material Design themes.
 1. Download
 2. run `npm install`
 3. run `bower install`
+4. compile less by running 'grunt' in terminal
 
 ## Running Website
 `node bin/www`
