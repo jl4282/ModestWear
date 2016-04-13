@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 
   grunt.config.init({
   	jshint: {
-    	all: ['public/*.js', 'routes/*.js', 'Gruntfile.js', 'Scraping/*.js', './*.js']
+    	all: ['public/*.js', 'routes/*.js', 'Gruntfile.js', 'Scraping/junees.js', 'Scraping/modeSty.js', 'Scraping/kosherCasual.js', './*.js']
   	},
   	less: {
   		development: {

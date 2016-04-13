@@ -2,15 +2,15 @@
 //why isn't MDL working with links?
 
 
-var express = require('express')
-  , passport = require('passport')
-  , util = require('util')
-  , FacebookStrategy = require('passport-facebook').Strategy
-  , logger = require('morgan')
-  , session = require('express-session')
-  , bodyParser = require("body-parser")
-  , cookieParser = require("cookie-parser")
-  , methodOverride = require('method-override');
+var express = require('express'), 
+  passport = require('passport'), 
+  util = require('util'), 
+  FacebookStrategy = require('passport-facebook').Strategy, 
+  logger = require('morgan'), 
+  session = require('express-session'), 
+  bodyParser = require("body-parser"), 
+  cookieParser = require("cookie-parser"), 
+  methodOverride = require('method-override');
 
 var FACEBOOK_APP_ID = "1666068127010516";
 var FACEBOOK_APP_SECRET = "c92430f3b1228e0d7e8fc548a2b14692";
