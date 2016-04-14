@@ -19,6 +19,7 @@
     "mongoose": "^4.2.3",
     "mongoose-url-slugs": "^0.1.4",
     "morgan": "~1.6.1",
+    "nodemailer": "^2.3.2",
     "parsleyjs": "^2.3.7",
     "passport": "latest",
     "passport-facebook": "^2.0.0",

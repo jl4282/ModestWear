@@ -8,6 +8,8 @@ middleware and routing functions. Every Express application has a built-in app r
 
 var express = require('express');
 var router = express.Router();
+var nodemailer = require('nodemailer');
+var secrets = require('../secrets');
 var mongoose = require('mongoose');
 var Clothing = mongoose.model('Clothing');
 var Outfit = mongoose.model('Outfit');
@@ -611,6 +613,26 @@ router.post('/user/follow/:user', function(req, res, next){
   //save the front end user object with the new User in the followed category
 });
 
+router.post('/contact', function(req, res, next){
+  var transporter = nodemailer.createTransport('smtps://' + secrets.email.email + '%40gmail.com:' + secrets.email.pass + '@smtp.gmail.com');
+
+  var mailOptions = {
+    from: '"' + req.body.name + '" <' + req.body.email + '>', // sender address 
+    to: 'jesselifshitz@gmail.com, 7katie@gmail.com', // list of receivers 
+    subject: 'Hello', // Subject line 
+    replyTo: req.body.email,
+    text: req.body.comment, // plaintext body 
+    // html: '<b>Hello world 🐴</b>' // html body 
+  };
+  transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        return console.log(error);
+    }
+    console.log('Message sent: ' + info.response);
+  });
+
+
+});
 
 
 module.exports = router;

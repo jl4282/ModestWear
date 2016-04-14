@@ -6,10 +6,28 @@
     Last name:<br>
     <input type="text" name="lastname"> -->
     Hello
-    <md-contact-chips ng-model="ctrl.contacts" md-contacts="ctrl.querySearch($query)" md-contact-name="name" md-contact-image="image" md-contact-email="email" placeholder="To">
-    </md-contact-chips>
-  </form>
+    <!-- <md-contact-chips ng-model="ctrl.contacts" md-contacts="ctrl.querySearch($query)" md-contact-name="name" md-contact-image="image" md-contact-email="email" placeholder="To">
+    </md-contact-chips> -->
+    </form>
 </div>
+
+<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+<div>
+  <md-input-container>
+    <label>Name</label>
+    <input ng-model="form.name">
+  </md-input-container>
+  <md-input-container>
+    <label>Email</label>
+    <input ng-model="form.email" type="email">
+  </md-input-container>
+  <md-input-container>
+    <label>Comment</label>
+    <input ng-model="form.comment" type="text">
+  </md-input-container>
+</div>
+</md-content>
+<md-button class="md-raised md-primary" data-ng-click="submit()">Submit</md-button>
 
 <!-- <div class="vertical-middle">
     <div class="container">
