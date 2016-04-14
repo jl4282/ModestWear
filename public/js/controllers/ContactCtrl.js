@@ -7,7 +7,8 @@ app.controller('ContactCtrl', ['$scope', '$http',
 			email : '',
 			comment: ''
 		}	
-	$scope.submit = function(){
+	$scope.sent = false;
+	$scope.submit = function(form){
 		/* Flow
 
 		TODO: 
@@ -19,10 +20,12 @@ app.controller('ContactCtrl', ['$scope', '$http',
 		4. display message to user saying something...
 
 		*/
-		$http.post('/api/contact', $scope.form).then(function(res){
-			console.log('sent');
-
-		});	
+		if (form.$valid){
+			$scope.sent = true;
+			$http.post('/api/contact', $scope.form).then(function(res){
+				console.log('sent');
+			});
+		}
 	};
 
 }]);

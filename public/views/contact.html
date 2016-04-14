@@ -12,22 +12,35 @@
 </div>
 
 <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-<div>
+<form name="contactForm" data-ng-submit="submit(contactForm)" novalidate data-ng-if="!sent">
   <md-input-container>
     <label>Name</label>
-    <input ng-model="form.name">
+    <input ng-model="form.name" type="text", name="name" required>
+    <div ng-messages="contactForm.name.$error">
+      <div ng-message="required">This is required.</div>
+    </div>
   </md-input-container>
   <md-input-container>
     <label>Email</label>
-    <input ng-model="form.email" type="email">
+    <input ng-model="form.email" type="email" name="email" required>
+    <div ng-messages="contactForm.email.$error">
+      <div ng-message="required">This is required.</div>
+      <div ng-message="type">
+        Needs to be a valid email address.
+      </div>
+    </div>
   </md-input-container>
   <md-input-container>
     <label>Comment</label>
-    <input ng-model="form.comment" type="text">
+    <input ng-model="form.comment" type="text" name="comment" required>
+    <div ng-messages="contactForm.comment.$error">
+      <div ng-message="required">This is required.</div>
+    </div>
   </md-input-container>
-</div>
+  <md-button class="md-raised md-primary" type="submit" data-ng-disabled="contactForm.$invalid">Submit</md-button>
+</form>
 </md-content>
-<md-button class="md-raised md-primary" data-ng-click="submit()">Submit</md-button>
+
 
 <!-- <div class="vertical-middle">
     <div class="container">
