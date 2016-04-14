@@ -62,7 +62,7 @@
 - [x] Grunt: 1 point
 - [x] JSHint: 1 point
 - [x] CSS Preprocessor: less (public/stylesheets/style.less): 1 point
-- [ ] Client Side Validation: Parsley: 2 point
+- [x] Client Side Validation: Angular: 2 point
 - [x] Angular MD: 1 point
 - [x] Client Side JS Library: Angular: 1 point
 
