@@ -77,7 +77,7 @@
   mongoose.model('User', User);
 
   if (process.env.NODE_ENV === 'PROD'){
-    mongoose.connect('mongodb://localhost:10371/userdb');
+    mongoose.connect('mongodb://localhost:10371/userdb'); // TODO: CHANGE TO MY PORT NUMBER WHEN ASSIGNED
   }
   else {
     mongoose.connect('mongodb://localhost/mwdb');

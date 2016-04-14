@@ -6,10 +6,6 @@
   - [x] Update DB with outfits
   - [ ] Comments for outfits
   - [ ] Delete outfits
-- [x] Edit the profile page - have it show the user's outfits, styles, and favorites
-  - [x] Change the layout
-  - [x] Add more information / cards showing some styles and outfits and favorites
-  - [x] Make the routes load pictures from styles and outfits
 - [ ] Styles
   - [ ] Delete style 
   - [ ] Set up comments for styles
@@ -22,6 +18,10 @@
 - [x] Search for outfits, styles and users
   - [x] Edit the form to choose if you want to search for outfits, styles, or clothing
   - [x] Actually search for it
+- [x] Edit the profile page - have it show the user's outfits, styles, and favorites
+  - [x] Change the layout
+  - [x] Add more information / cards showing some styles and outfits and favorites
+  - [x] Make the routes load pictures from styles and outfits
 - [ ] Set up Contact Me Form 
   - [ ] Use parsley for Client Side Validation
 - [ ] Grunt 
@@ -30,19 +30,28 @@
   - [ ] Automate running the scraping algorithms - just an idea for now (?)
   - [ ] Make it not fail if there are errors in JSHint
   - [x] Run JSHint to fix mistakes in the code
-    - [ ] Fix the code from JSHint
+    - [x] Fix the code from JSHint
 - [x] Angular MD 
 
 #### Requirements
 ##### Core Requirements
-- [ ] 5 Route Handlers (there are much more than 5): 
+- [ ] 5 New Route Handlers (there are much more than 5): 
+  - [x] Search
+    - [x] Search Outfits
+    - [x] Search Styles
+    - [x] Get individual outfit
   - [x] Outfits
+    - [x] Create
+    - [x] Add to outfit
+    - [x] Delete
+    - [x] Get outfits with images
+    - [x] Get individual outfit
   - [ ] Following
   - [ ] Contact Me Form
   - [ ] Comments Forms
 - [x] 4 Mongoose Schemas: 
-  - [x] Outfits 
-  - [x] Following (edit User Schema) 
+  - [x] Outfits (with Comments).
+  - [x] Following (edit User Schema).
   - [x] Comments
   - [x] Styles (add Comments).
 - [ ] 3 Forms: 

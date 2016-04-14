@@ -305,38 +305,6 @@ router.get('/outfit/cover/:slug', function(req, res, next){
   });
 });
 
-// router.get('/stylesFull', function(req, res, next){
-//   //return outfit with all the clothing and outfits
-//   console.log("IN OUTFITS FULL");
-//   if (req.user){
-//     var query = {_id: req.user._id};
-//     if (req.user && req.user.provider){
-//       query = {facebookId: req.user.id};
-//     }
-//     User.findOne(query).populate('styles').populate('clothes').exec(function(err, user){
-//       console.log(err, user);
-//       if (!err){
-//         if (user.styles){
-//           // for (var user in user.outfits) {
-//           //   console.log(user);
-
-//           console.log(user.styles);
-//           res.json(user.styles);
-//         }
-//         else {
-//           res.status(404);
-//         }
-//       }
-//       else {
-//         res.sendStatus(500);
-//       }
-//     });
-//   }
-//   else {
-//     res.status(403);
-//   }
-
-// });
 
 // Katie : Route Handler 3
 router.post('/outfit/create', function(req, res, next){
