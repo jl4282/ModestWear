@@ -42,6 +42,13 @@ app.factory('StyleSrvc', ['$http',
     });
   }
 
+  var commentOnStyle = function(styleId, comment) {
+    console.log(styleId, comment);
+    return $http.post('/api/style/comment', {styleId: styleId, comment:comment}).then(function(res) {
+      return res;
+    });
+  };
+
   // var searchStyles = function(query) {
     
   // }
@@ -82,6 +89,7 @@ app.factory('StyleSrvc', ['$http',
     getStyles : getStyles,
     getStyle : getStyle,
     getStyleCover : getStyleCover,
+    commentOnStyle : commentOnStyle,
     // searchStyles : searchStyles
     addToStyle : addToStyle,
     removeFromStyle : removeFromStyle

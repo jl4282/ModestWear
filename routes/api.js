@@ -403,9 +403,6 @@ router.post('/outfit/add', function(req, res, next){
 });
 
 router.post('/outfit/comment', function(req, res, next){
-  // TODO : ADD COMMENT CODE
-  console.log("In API -> Trying to comment on outfit.");
-  console.log(req.user);
   if (req.user){
     var query = {_id: req.user._id};
     if (req.user.provider){
@@ -479,7 +476,7 @@ router.delete('/outfit/remove/:outfitId/:clothingId', function(req, res, next){
 router.get('/style/:slug', function(req, res, next){
   //return style with all the clothing and outfits
   console.log('in getStyle');
-  Style.findOne({slug: req.params.slug}).populate('clothes').populate('outfits').exec(function(err, style){
+  Style.findOne({slug: req.params.slug}).populate('clothes').populate('outfits').populate('comment').exec(function(err, style){
     console.log(err, style);
     if (!err){
       if (style){
@@ -628,8 +625,55 @@ router.post('/style/add', function(req, res, next){
 });
 
 router.post('/style/comment', function(req, res, next){
-  // TODO : ADD COMMENT CODE
+  if (req.user){
+    var query = {_id: req.user._id};
+    if (req.user.provider){
+      query = {facebookId: req.user.id};
+    }
+
+    console.log(req.body.comment, req.body.styleId, req.user);
+    var comment = {
+      name: req.body.comment,
+      commentOn: req.body.styleId,
+      owner: req.user
+    };
+
+    var newComment = new Comment(comment);
+
+    console.log(newComment);
+
+    newComment.save(function(err, comment, count) {
+      console.log(err, comment, count);
+      // console.log(comment);
+      if (!err) {
+        User.findOne(query, function(err, user){
+          if (user.styles.indexOf(req.body.styleId) > -1){
+            Style.findOneAndUpdate(
+              {_id: req.body.styleId},
+              {comment: newComment},
+              {safe: true, upsert: true},
+              function(err, style, count){
+                console.log('saving.... ',err, style);
+                if (!err){
+                  res.sendStatus(200);
+                }
+                else {
+                  res.sendStatus(500);
+                }
+            });
+          }
+          else {
+            res.sendStatus(403);
+          }
+        });
+      }
+    });
+  }
+  else{
+    res.sendStatus(403);
+  }
 });
+
 
 router.delete('/style/delete/:sid/:cid', function(req, res, next){
   // delete entire style

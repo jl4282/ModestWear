@@ -1,5 +1,25 @@
 <div layout-padding>
-  <h1>{{style.name}}</h1>
+  <div layout="row" flex="100">
+    <div layout="column" flex="70">
+      <h1>{{style.name}}</h1>
+      <h3>Any comments: {{style.comment.name}}</h3>
+    </div>
+    <div layout="column" flex="30">
+      <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+        <!-- TODO : NEED SOMETHING TO COMMIT TO submit(contactForm) -->
+        <form name="commentStyle" data-ng-submit="comment(style._id, form.comment)" novalidate data-ng-if="!sent">
+          <md-input-container class="md-block">
+              <label>Comment</label>
+              <input ng-model="form.comment" type="text", name="comment" required>
+              <div ng-messages="commentStyle.comment.$error">
+                <div ng-message="required">Please enter a comment if you want to add one.</div>
+              </div>
+            </md-input-container>
+            <md-button class="md-block md-raised md-primary" type="submit" data-ng-disabled="contactForm.$invalid">Submit</md-button>
+        </form>
+      </md-content>
+    </div>
+  </div>
 </div>
 <div layout="row" flex="100" layout-padding>
   <div flex="70" layout="column" layout-wrap>

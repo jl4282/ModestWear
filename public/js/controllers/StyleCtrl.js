@@ -45,4 +45,9 @@ app.controller('StyleCtrl', ['$scope', 'UserSrvc', 'StyleSrvc', 'Clothing', '$lo
     return false;
   };
 
+  $scope.comment = function(clothingId, comment) {
+    console.log("commenting");
+    Style.commentOnStyle(clothingId, comment);
+  }
+
 }]);
