@@ -37,6 +37,13 @@ app.factory('OutfitSrvc', ['$http', function($http){
     });
   }
 
+  var commentOnOutfit = function(outfitId, comment) {
+    console.log(outfitId);
+    return $http.post('/api/outfit/comment', {outfitId: outfitId, comment:comment}).then(function(res) {
+      return res;
+    });
+  };
+
   // var searchOutfits = function(query){
   //   console.log("Searching outfits");
   //   var params = {};

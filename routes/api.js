@@ -401,6 +401,40 @@ router.post('/outfit/add', function(req, res, next){
   }
 });
 
+router.post('/outfit/comment', function(req, res, next){
+  // TODO : ADD COMMENT CODE
+  console.log("In API -> Trying to comment on outfit.");
+  if (req.user){
+    var query = {_id: req.user._id};
+    if (req.user.provider){
+      query = {facebookId: req.user.id};
+    }
+    User.findOne(query, function(err, user){
+      if (user.outfits.indexOf(req.body.outfitId) > -1){
+        Outfit.findOneAndUpdate(
+          {_id: req.body.outfitId},
+          {comment: comment},
+          {safe: true, upsert: true},
+          function(err, outfit, count){
+            console.log('saving.... ',err, outfit);
+            if (!err){
+              res.sendStatus(200);
+            }
+            else {
+              res.sendStatus(500);
+            }
+        });
+      }
+      else {
+        res.sendStatus(403);
+      }
+    });
+  }
+  else{
+    res.sendStatus(403);
+  }
+});
+
 // Katie : Route Handler 5
 // TODO : THIS DOESNT WORK FOR SOME REASON
 router.delete('/outfit/remove/:outfitId/:clothingId', function(req, res, next){
@@ -541,10 +575,6 @@ router.post('/style/create', function(req, res, next){
 });
 
 router.post('/style/add', function(req, res, next){
-  //add clothing to style
-  // console.log('that matchup... ', req.user, req.body.styleId);
-  //
-
   console.log('IN ADD',req.user, req.body.styleId);
   if (req.user){
     var query = {_id: req.user._id};
@@ -575,6 +605,10 @@ router.post('/style/add', function(req, res, next){
   else{
     res.sendStatus(403);
   }
+});
+
+router.post('/style/comment', function(req, res, next){
+  // TODO : ADD COMMENT CODE
 });
 
 router.delete('/style/delete/:sid/:cid', function(req, res, next){
@@ -630,8 +664,6 @@ router.post('/contact', function(req, res, next){
     }
     console.log('Message sent: ' + info.response);
   });
-
-
 });
 
 

@@ -53,4 +53,20 @@ app.controller('OutfitCtrl', ['$scope', 'UserSrvc', 'OutfitSrvc', 'Clothing', '$
     return false;
   };
 
+  $scope.comment = function(clothingId, comment) {
+    console.log("commenting");
+    // comment on the clothing
+    // if ($scope.clothing && (($scope.clothing.length === 0) || (!$scope.inOutfit(clothing._id)))) {
+    //   //not in Outfit - add to it
+    //   Outfit.commentOnOutfit($scope.Outfit._id, clothing._id).then(function(res){
+    //     $scope.clothing.push(clothing);
+    //   });
+    // }
+    // else {
+    //   Outfit.removeFromOutfit($scope.Outfit._id, clothing._id).then(function(res){
+    //     $scope.clothing.splice($scope.clothing.indexOf(clothing), 1);
+    //   });
+    // }
+  }
+
 }]);
