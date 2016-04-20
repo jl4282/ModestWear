@@ -2,7 +2,7 @@ Setup Instructions:
 - Download
 - run `npm install`
 - run `bower install`
-- compile less by typing `grunt` in the terminal
+- compile less and run scraping algorithms by typing `grunt scrape` in the terminal
 
 Run By:
 - mongod
