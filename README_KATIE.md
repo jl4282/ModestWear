@@ -47,7 +47,7 @@
     - [x] Get outfits with images
     - [x] Get individual outfit
   - [ ] Following
-  - [ ] Contact Me Form
+  - [x] Contact Me Form
   - [ ] Comments Forms
 - [x] 4 Mongoose Schemas: 
   - [x] Outfits (with Comments).
@@ -55,7 +55,7 @@
   - [x] Comments
   - [x] Styles (add Comments).
 - [ ] 3 Forms: 
-  - [ ] Contact us 
+  - [x] Contact Me Form 
   - [ ] Forms to comment on outfits and styles
 
 ##### Additional Requirements
