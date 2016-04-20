@@ -249,20 +249,6 @@ router.get('/outfit/:slug', function(req, res, next){
   });
 });
 
-// Outfit POST method
-/*
-router.post('/outfit/:id', function(req, res, next){
-  //update the outfit
-});
-*/
-
-/*
-Clothing.findOne({'slug': req.params.slug}, function(err, clothes, count){
-    console.log(count, clothes);
-    res.json(clothes);
-  });
-*/
-
 // Katie : Route Handler 2
 router.get('/outfits', function(req, res, next){
   //return outfit with all the clothing and outfits
@@ -422,7 +408,6 @@ router.post('/outfit/comment', function(req, res, next){
 
     newComment.save(function(err, comment, count) {
       console.log(err, comment, count);
-      // console.log(comment);
       if (!err) {
         User.findOne(query, function(err, user){
           if (user.outfits.indexOf(req.body.outfitId) > -1){
@@ -471,10 +456,7 @@ router.delete('/outfit/remove/:outfitId/:clothingId', function(req, res, next){
   }
 });
 
-// END COPY PASTE
-
 router.get('/style/:slug', function(req, res, next){
-  //return style with all the clothing and outfits
   console.log('in getStyle');
   Style.findOne({slug: req.params.slug}).populate('clothes').populate('outfits').populate('comment').exec(function(err, style){
     console.log(err, style);

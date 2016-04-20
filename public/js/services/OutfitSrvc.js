@@ -21,6 +21,7 @@ app.factory('OutfitSrvc', ['$http', function($http){
       return res;
     });
   };
+
   var addToOutfit = function(outfitId, clothingId){
     console.log(outfitId, clothingId);
     return $http.post('/api/outfit/add', {outfitId: outfitId, clothingId: clothingId}).then(function(res){
@@ -28,9 +29,7 @@ app.factory('OutfitSrvc', ['$http', function($http){
     });
   };
 
-  var getOutfitCover = function(slug){
-    // console.log('slug: ', slug);
-    
+  var getOutfitCover = function(slug){    
     return $http.get('api/outfit/cover/' + slug).then(function(res){
       console.log(res);
       return res.data;

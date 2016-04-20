@@ -9,9 +9,10 @@
 - [ ] Styles
   - [ ] Delete style 
   - [x] Set up comments for styles
-- [x] Comments
+- [ ] Comments
   - [x] Set up routing for comments
   - [x] Integrate comments with outfits and styles on the respective pages
+    - [ ] Why doesn't it reload when commenting
 - [ ] Set up a way to follow outfits, styles, and users
   - [ ] Unfollow outfits/styles/users
   - [ ] Be able to follow them

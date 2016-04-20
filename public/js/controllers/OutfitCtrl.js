@@ -53,9 +53,13 @@ app.controller('OutfitCtrl', ['$scope', 'UserSrvc', 'OutfitSrvc', 'Clothing', '$
     return false;
   };
 
+  // TODO : WHY DOESNT THIS LOG SCOPE.COMMENT ?
   $scope.comment = function(clothingId, comment) {
     console.log("commenting");
-    Outfit.commentOnOutfit(clothingId, comment);
+    Outfit.commentOnOutfit(clothingId, comment).then(function(res) {
+      console.log("SCOPE.COMMENT", res);
+      $scope.comment = res;
+    });
   }
 
 }]);
