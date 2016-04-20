@@ -49,41 +49,6 @@ app.factory('StyleSrvc', ['$http',
     });
   };
 
-  // var searchStyles = function(query) {
-    
-  // }
-
-  // var searchStyles = function(query){
-  //   console.log("Searching styles");
-  //   var params = {};
-  //   console.log(query);
-  //   if (query.type){
-  //     params.type = query.type;
-  //   }
-  //   else if (query.description){
-  //     params.description = query.description;
-  //   }
-  //   else if (query.limit){
-  //     params.limit = query.limit;
-  //   }
-  //   else {
-  //     params.description = query;
-  //   }
-  //   return $http.get('/api/searchStyles/', {
-  //     params: params
-  //   }).then(function(resp){
-  //     return resp.data;
-  //   });
-  // };
-
-  // var getStyleCover = function(slug){
-  //   console.log('slug: ', slug);
-    
-  //   return $http.get('api/stylesFull/').then(function(res){
-  //     // console.log(res);
-  //     return res;
-  //   });
-  // }
   return {
     createStyle : createStyle,
     getStyles : getStyles,

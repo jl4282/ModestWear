@@ -4,14 +4,14 @@
 - [ ] Implement an Outfits feature
   - [x] Create outfits and be able to add to them
   - [x] Update DB with outfits
-  - [ ] Comments for outfits
+  - [x] Comments for outfits
   - [ ] Delete outfits
 - [ ] Styles
   - [ ] Delete style 
-  - [ ] Set up comments for styles
-- [ ] Comments
-  - [ ] Set up routing for comments
-  - [ ] Integrate comments with outfits and styles on the respective pages
+  - [x] Set up comments for styles
+- [x] Comments
+  - [x] Set up routing for comments
+  - [x] Integrate comments with outfits and styles on the respective pages
 - [ ] Set up a way to follow outfits, styles, and users
   - [ ] Unfollow outfits/styles/users
   - [ ] Be able to follow them
@@ -22,12 +22,12 @@
   - [x] Change the layout
   - [x] Add more information / cards showing some styles and outfits and favorites
   - [x] Make the routes load pictures from styles and outfits
-- [ ] Set up Contact Me Form 
-  - [ ] Use parsley for Client Side Validation
+- [x] Set up Contact Me Form 
+  - [x] Use parsley for Client Side Validation
 - [ ] Grunt 
   - [x] Use CSS Preprocessor
   - [x] Run scraping algorithms using grunt
-  - [ ] Automate running the scraping algorithms - just an idea for now (?)
+  - [x] Automate running the scraping algorithms - just an idea for now (?)
   - [ ] Make it not fail if there are errors in JSHint
   - [x] Run JSHint to fix mistakes in the code
     - [x] Fix the code from JSHint
@@ -48,15 +48,15 @@
     - [x] Get individual outfit
   - [ ] Following
   - [x] Contact Me Form
-  - [ ] Comments Forms
+  - [x] Comments Forms
 - [x] 4 Mongoose Schemas: 
   - [x] Outfits (with Comments).
   - [x] Following (edit User Schema).
   - [x] Comments
   - [x] Styles (add Comments).
-- [ ] 3 Forms: 
+- [x] 3 Forms: 
   - [x] Contact Me Form 
-  - [ ] Forms to comment on outfits and styles
+  - [x] Forms to comment on outfits and styles
 
 ##### Additional Requirements
 - [x] Grunt: 1 point
