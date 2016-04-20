@@ -55,6 +55,18 @@ app.controller('OutfitCtrl', ['$scope', 'UserSrvc', 'OutfitSrvc', 'Clothing', '$
 
   $scope.comment = function(clothingId, comment) {
     console.log("commenting");
+    Outfit.commentOnOutfit(clothingId, comment);
+    // var comment = new Comment({
+    //   name: comment,
+    //   commentOn: $scope.Outfit,
+    //   owner: $scope.user
+    // }).save(function(err) {
+    //   if (!err) {
+    //     console.log(comment);
+    //     Outfit.commentOnOutfit(clothingId, comment);
+    //   }
+    // });
+
     // comment on the clothing
     // if ($scope.clothing && (($scope.clothing.length === 0) || (!$scope.inOutfit(clothing._id)))) {
     //   //not in Outfit - add to it

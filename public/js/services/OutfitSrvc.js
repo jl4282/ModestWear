@@ -38,7 +38,7 @@ app.factory('OutfitSrvc', ['$http', function($http){
   }
 
   var commentOnOutfit = function(outfitId, comment) {
-    console.log(outfitId);
+    console.log(outfitId, comment);
     return $http.post('/api/outfit/comment', {outfitId: outfitId, comment:comment}).then(function(res) {
       return res;
     });
@@ -80,6 +80,7 @@ app.factory('OutfitSrvc', ['$http', function($http){
     getOutfits : getOutfits,
     getOutfit : getOutfit,
     addToOutfit : addToOutfit,
+    commentOnOutfit : commentOnOutfit,
     // searchOutfits : searchOutfits,
     getOutfitCover : getOutfitCover
     // removeFromOutfit : removeOutfit    

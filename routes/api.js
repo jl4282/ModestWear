@@ -13,6 +13,7 @@ var secrets = require('../secrets');
 var mongoose = require('mongoose');
 var Clothing = mongoose.model('Clothing');
 var Outfit = mongoose.model('Outfit');
+var Comment = mongoose.model('Comment');
 var Style = mongoose.model('Style');
 var User = mongoose.model('User');
 
@@ -230,7 +231,7 @@ router.get('/getUser', function(req, res, next){
 router.get('/outfit/:slug', function(req, res, next){
   //return outfit with all the clothing
   console.log('in getOutfit');
-  Outfit.findOne({slug: req.params.slug}).populate('clothes').populate('outfits').exec(function(err, style){
+  Outfit.findOne({slug: req.params.slug}).populate('clothes').populate('outfits').populate('comment').exec(function(err, style){
     console.log(err, style);
     if (!err){
       if (style){
@@ -404,29 +405,48 @@ router.post('/outfit/add', function(req, res, next){
 router.post('/outfit/comment', function(req, res, next){
   // TODO : ADD COMMENT CODE
   console.log("In API -> Trying to comment on outfit.");
+  console.log(req.user);
   if (req.user){
     var query = {_id: req.user._id};
     if (req.user.provider){
       query = {facebookId: req.user.id};
     }
-    User.findOne(query, function(err, user){
-      if (user.outfits.indexOf(req.body.outfitId) > -1){
-        Outfit.findOneAndUpdate(
-          {_id: req.body.outfitId},
-          {comment: comment},
-          {safe: true, upsert: true},
-          function(err, outfit, count){
-            console.log('saving.... ',err, outfit);
-            if (!err){
-              res.sendStatus(200);
-            }
-            else {
-              res.sendStatus(500);
-            }
+
+    console.log(req.body.comment, req.body.outfitId, req.user);
+    var comment = {
+      name: req.body.comment,
+      commentOn: req.body.outfitId,
+      owner: req.user
+    };
+
+    var newComment = new Comment(comment);
+
+    console.log(newComment);
+
+    newComment.save(function(err, comment, count) {
+      console.log(err, comment, count);
+      // console.log(comment);
+      if (!err) {
+        User.findOne(query, function(err, user){
+          if (user.outfits.indexOf(req.body.outfitId) > -1){
+            Outfit.findOneAndUpdate(
+              {_id: req.body.outfitId},
+              {comment: newComment},
+              {safe: true, upsert: true},
+              function(err, outfit, count){
+                console.log('saving.... ',err, outfit);
+                if (!err){
+                  res.sendStatus(200);
+                }
+                else {
+                  res.sendStatus(500);
+                }
+            });
+          }
+          else {
+            res.sendStatus(403);
+          }
         });
-      }
-      else {
-        res.sendStatus(403);
       }
     });
   }
