@@ -657,9 +657,22 @@ router.post('/style/comment', function(req, res, next){
 });
 
 
-router.delete('/style/delete/:sid/:cid', function(req, res, next){
+router.delete('/style/delete/:styleId', function(req, res, next){
   // delete entire style
-
+  if (req.user && (req.user.styles.indexOf(req.params.styleId) > -1)){
+    Style.remove({_id: req.params.styleId}, function(err){
+      console.log(err);
+      if (!err){
+        res.sendStatus(200);
+      }
+      else {
+        res.sendStatus(500);
+      }
+    });
+  }
+  else {
+    res.sendStatus(403);
+  }
 });
 
 router.delete('/style/remove/:styleId/:clothingId', function(req, res, next){

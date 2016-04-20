@@ -1,5 +1,5 @@
-app.controller('StylesCtrl', ['$scope', '$location', '$routeParams',
-	function($scope, $location, $routeParams){
+app.controller('StylesCtrl', ['$scope', '$location', '$routeParams', '$http',
+	function($scope, $location, $routeParams, $http){
 
   console.log('styles controller');
   console.log("In StylesCtrl -> plural!");
@@ -11,6 +11,13 @@ app.controller('StylesCtrl', ['$scope', '$location', '$routeParams',
     console.log('in clickStyle');
     $location.path('style/'+ slug);
   };
+
+  $scope.removeStyle = function(slug) {
+    console.log('try to remove style ' + slug);
+    $http.post('/api/style/delete/', $scope.form).then(function(res){
+      console.log('Called API to remove style');
+    });
+  }
 
   // $scope.search = function(query) {
   // 	$scope.showSearch = false;

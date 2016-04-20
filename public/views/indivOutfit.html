@@ -2,7 +2,8 @@
   <div layout="row" flex="100">
     <div layout="column" flex="70">
       <h1>{{Outfit.name}}</h1>
-      <h3>Any comments: {{Outfit.comment.name}}</h3>
+      <h3 data-ng-if="Outfit.comment">Any comments: {{Outfit.comment.name}}</h3>
+      <h4 data-ng-if="!Outfit.comment">Enter a comment with the form on the right</h4>
     </div>
     <div layout="column" flex="30">
       <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
@@ -38,9 +39,9 @@
             <md-button class="md-icon-button md-accent md-hue-1" data-ng-click="favorite(c._id)" data-ng-if="!favorited(c._id)" aria-label="favorite">
               <md-icon md-svg-icon="favorite-border"></md-icon>
             </md-button>
-            <md-button ng-click="toggleInStyle(c)" class="md-icon-button" aria-label="Open sample menu">
-              <md-icon md-svg-icon="add" data-ng-if="!inStyle(c._id)"></md-icon>
-              <md-icon md-svg-icon="check" data-ng-if="inStyle(c._id)"></md-icon>
+            <md-button ng-click="toggleInOutfit(c)" class="md-icon-button" aria-label="Open sample menu">
+              <md-icon md-svg-icon="add" data-ng-if="!inOutfit(c._id)"></md-icon>
+              <md-icon md-svg-icon="check" data-ng-if="inOutfit(c._id)"></md-icon>
             </md-button>
           </md-card-actions>
         </md-card>
@@ -62,9 +63,9 @@
             <md-button class="md-icon-button md-accent md-hue-1" data-ng-click="deleteFav(fav._id)" data-ng-if="favorited(fav._id)" aria-label="unfavorite">
               <md-icon md-svg-icon="favorite"></md-icon>
             </md-button>
-            <md-button ng-click="toggleInStyle(fav)" class="md-icon-button" aria-label="Open sample menu">
-              <md-icon md-svg-icon="add" data-ng-if="!inStyle(fav._id)"></md-icon>
-              <md-icon md-svg-icon="check" data-ng-if="inStyle(fav._id)"></md-icon>
+            <md-button ng-click="toggleInOutfit(fav)" class="md-icon-button" aria-label="Open sample menu">
+              <md-icon md-svg-icon="add" data-ng-if="!inOutfit(fav._id)"></md-icon>
+              <md-icon md-svg-icon="check" data-ng-if="inOutfit(fav._id)"></md-icon>
             </md-button>
           </md-card-actions>
         </md-card>

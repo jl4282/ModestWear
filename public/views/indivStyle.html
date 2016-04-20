@@ -2,7 +2,8 @@
   <div layout="row" flex="100">
     <div layout="column" flex="70">
       <h1>{{style.name}}</h1>
-      <h3>Any comments: {{style.comment.name}}</h3>
+      <h3 data-ng-if="style.comment">Any comments: {{style.comment.name}}</h3>
+      <h4 data-ng-if="!style.comment">Enter a comment with the form on the right</h4>
     </div>
     <div layout="column" flex="30">
       <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
