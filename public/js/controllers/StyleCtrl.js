@@ -46,8 +46,12 @@ app.controller('StyleCtrl', ['$scope', 'UserSrvc', 'StyleSrvc', 'Clothing', '$lo
   };
 
   $scope.comment = function(clothingId, comment) {
-    console.log("commenting");
-    Style.commentOnStyle(clothingId, comment);
+    Style.commentOnStyle(clothingId, comment).then(function(res){
+      if (res.status === 200){
+        $scope.style.comment = res.data;
+      }
+    });
+
   }
 
 }]);
