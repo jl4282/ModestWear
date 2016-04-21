@@ -441,7 +441,6 @@ router.post('/outfit/comment', function(req, res, next){
 });
 
 // Katie : Route Handler 5
-// TODO : THIS DOESNT WORK FOR SOME REASON
 router.delete('/outfit/remove/:outfitId/:clothingId', function(req, res, next){
   if (req.user && (req.user.outfits.indexOf(req.params.outfitId) > -1)){
     Outfit.update({_id: req.params.outfitId}, {$pull: {clothes: req.params.clothingId}}, function(err, user){
@@ -462,6 +461,25 @@ router.delete('/outfit/remove/:outfitId/:clothingId', function(req, res, next){
 router.delete('/outfit/remove/:outfitId', function(req, res, next){
   // remove clothing from style
   if (req.user && (req.user.styles.indexOf(req.params.outfitId) > -1)){
+    Outfit.remove({_id: req.params.outfitId}, function(err){
+      console.log(err);
+      if (!err){
+        res.sendStatus(200);
+      }
+      else {
+        res.sendStatus(500);
+      }
+    });
+  }
+  else {
+    res.sendStatus(403);
+  }
+});
+
+// Katie : Route Handler 6
+router.delete('/outfit/delete/:outfitId', function(req, res, next){
+  // delete entire style
+  if (req.user && (req.user.outfits.indexOf(req.params.outfitId) > -1)){
     Outfit.remove({_id: req.params.outfitId}, function(err){
       console.log(err);
       if (!err){

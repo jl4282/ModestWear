@@ -50,6 +50,12 @@ app.factory('OutfitSrvc', ['$http', function($http){
     });
   };
 
+  var deleteOutfit = function(outfitId){ 
+    return $http.delete('/api/outfit/delete/' + outfitId).then(function(res){
+      return res;
+    });
+  }
+
   // var searchOutfits = function(query){
   //   console.log("Searching outfits");
   //   var params = {};
@@ -89,6 +95,7 @@ app.factory('OutfitSrvc', ['$http', function($http){
     commentOnOutfit : commentOnOutfit,
     // searchOutfits : searchOutfits,
     getOutfitCover : getOutfitCover,
-    removeFromOutfit : removeFromOutfit    
+    removeFromOutfit : removeFromOutfit,
+    deleteOutfit :  deleteOutfit
   };
 }]);
