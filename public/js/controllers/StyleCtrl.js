@@ -45,6 +45,29 @@ app.controller('StyleCtrl', ['$scope', 'UserSrvc', 'StyleSrvc', 'Clothing', '$lo
     return false;
   };
 
+  $scope.owner = function(){
+    if ($scope.user.styles.indexOf($scope.style)){
+      return true;
+    }
+    return false;
+  };
+
+  $scope.deleteStyle = function(){
+    Style.deleteStyle($scope.style._id).then(function(res){
+      if (res.status === 200){
+        // remove style from user
+        if ($scope.user.styles.length >= 1){
+          $scope.user.styles.splice($scope.user.styles.indexOf($scope.style), 1);  
+        }
+        else {
+          $scope.user.styles = [];
+        }
+        //redirect to styles page
+        $location.path('/styles');
+      }
+    });
+  };
+
   $scope.comment = function(clothingId, comment) {
     Style.commentOnStyle(clothingId, comment).then(function(res){
       if (res.status === 200){

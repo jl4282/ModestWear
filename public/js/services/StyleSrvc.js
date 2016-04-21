@@ -42,6 +42,12 @@ app.factory('StyleSrvc', ['$http',
     });
   }
 
+  var deleteStyle = function(styleId){
+    return $http.delete('/api/style/delete/' + styleId).then(function(res){
+      return res;
+    });
+  }
+
   var commentOnStyle = function(styleId, comment) {
     console.log(styleId, comment);
     return $http.post('/api/style/comment', {styleId: styleId, comment:comment}).then(function(res) {
@@ -58,6 +64,7 @@ app.factory('StyleSrvc', ['$http',
     commentOnStyle : commentOnStyle,
     // searchStyles : searchStyles
     addToStyle : addToStyle,
-    removeFromStyle : removeFromStyle
+    removeFromStyle : removeFromStyle,
+    deleteStyle : deleteStyle
   };
 }]);
