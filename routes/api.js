@@ -419,7 +419,9 @@ router.post('/outfit/comment', function(req, res, next){
                 console.log('saving.... ',err, outfit);
                 if (!err){
                   // I know there should be sending json here...
-                  res.sendStatus(200);
+                  // console.log(json(outfit))
+                  // TODO : IK IT SHOULD BE res.status(200)
+                  res.json(outfit);
                 }
                 else {
                   res.sendStatus(500);
