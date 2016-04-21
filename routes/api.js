@@ -231,12 +231,12 @@ router.get('/getUser', function(req, res, next){
 router.get('/outfit/:slug', function(req, res, next){
   //return outfit with all the clothing
   console.log('in getOutfit');
-  Outfit.findOne({slug: req.params.slug}).populate('clothes').populate('outfits').populate('comment').exec(function(err, style){
-    console.log(err, style);
+  Outfit.findOne({slug: req.params.slug}).populate('clothes').populate('outfits').populate('comment').exec(function(err, outfit){
+    console.log(err, outfit);
     if (!err){
-      if (style){
-        console.log(style);
-        res.json(style);
+      if (outfit){
+        console.log(outfit);
+        res.json(outfit);
       }
       else {
         res.status(404);
@@ -418,6 +418,7 @@ router.post('/outfit/comment', function(req, res, next){
               function(err, outfit, count){
                 console.log('saving.... ',err, outfit);
                 if (!err){
+                  // I know there should be sending json here...
                   res.sendStatus(200);
                 }
                 else {

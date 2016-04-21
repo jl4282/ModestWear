@@ -58,7 +58,7 @@ app.controller('OutfitCtrl', ['$scope', 'UserSrvc', 'OutfitSrvc', 'Clothing', '$
     console.log("commenting");
     Outfit.commentOnOutfit(clothingId, comment).then(function(res) {
       console.log("SCOPE.COMMENT", res);
-      $scope.comment = res;
+      $scope.Outfit = res;
     });
   }
 
