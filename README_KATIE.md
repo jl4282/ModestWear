@@ -9,10 +9,9 @@
 - [ ] Styles
   - [ ] Delete style 
   - [x] Set up comments for styles
-- [ ] Comments
+- [x] Comments
   - [x] Set up routing for comments
   - [x] Integrate comments with outfits and styles on the respective pages
-    - [ ] Why doesn't it reload when commenting
 - [ ] Set up a way to follow outfits, styles, and users
   - [ ] Unfollow outfits/styles/users
   - [ ] Be able to follow them
@@ -72,9 +71,9 @@
 ## Modules / Concepts
 - [Grunt](http://gruntjs.com/) - Automate running the scraping algorithm
 - [JSHint / JSLint](http://jshint.com/) - Make sure that the coding style is up to par
-- [Parsley](http://parsleyjs.org/) - Client-side form validation library
+- [Angular Validation](https://docs.angularjs.org/guide/forms) - Client-side form validation library
 - [Angular MD](https://material.angularjs.org/latest/) - Enhance to make it responsive and look better
-- [Angular.less](https://www.npmjs.com/package/angular-less)
+- [Less](http://lesscss.org/)
 - [Angular.js](https://angularjs.org/) - Client Side Library, use it for routing
 
 ## Site Map

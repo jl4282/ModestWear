@@ -9,7 +9,8 @@ Run By:
 - node bin/www
 
 - [x] 1 form that can add data to your database
-	- [x] skirts, shirts, or dresses -> + -> add outfits
+	- [x] skirts, shirts, or dresses -> + on the bottom of the card -> add outfits
+	- [x] outfits or styles -> add comment
 - [x] 1 page that reads data from your database
 	- [x] http://localhost:3000/outfits/
 	- [x] added search for outfits and styles -> search button on top
