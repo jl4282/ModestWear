@@ -29,6 +29,12 @@ app.factory('OutfitSrvc', ['$http', function($http){
     });
   };
 
+  var removeFromOutfit = function(outfitId, clothingId){
+    return $http.delete('/api/outfit/remove/' + outfitId + '/' + clothingId).then(function(res){
+      return res;
+    });
+  };
+
   var getOutfitCover = function(slug){    
     return $http.get('api/outfit/cover/' + slug).then(function(res){
       console.log(res);
@@ -82,7 +88,7 @@ app.factory('OutfitSrvc', ['$http', function($http){
     addToOutfit : addToOutfit,
     commentOnOutfit : commentOnOutfit,
     // searchOutfits : searchOutfits,
-    getOutfitCover : getOutfitCover
-    // removeFromOutfit : removeOutfit    
+    getOutfitCover : getOutfitCover,
+    removeFromOutfit : removeFromOutfit    
   };
 }]);
