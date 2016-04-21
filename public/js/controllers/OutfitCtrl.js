@@ -52,13 +52,14 @@ app.controller('OutfitCtrl', ['$scope', 'UserSrvc', 'OutfitSrvc', 'Clothing', '$
     }
     return false;
   };
-
   // TODO : WHY DOESNT THIS LOG SCOPE.COMMENT ?
   $scope.comment = function(clothingId, comment) {
     console.log("commenting");
     Outfit.commentOnOutfit(clothingId, comment).then(function(res) {
-      console.log("SCOPE.COMMENT", res.comment);
-      $scope.Outfit.comment = res.comment;
+      // console.log("SCOPE.COMMENT", res.comment);
+      if (res.status === 200){
+        $scope.Outfit.comment = res.data;
+      }
     });
   }
 

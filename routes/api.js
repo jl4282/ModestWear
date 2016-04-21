@@ -421,7 +421,7 @@ router.post('/outfit/comment', function(req, res, next){
                   // I know there should be sending json here...
                   // console.log(json(outfit))
                   // TODO : IK IT SHOULD BE res.status(200)
-                  res.json(outfit);
+                  res.json(newComment);
                 }
                 else {
                   res.sendStatus(500);
@@ -640,7 +640,7 @@ router.post('/style/comment', function(req, res, next){
               function(err, style, count){
                 console.log('saving.... ',err, style);
                 if (!err){
-                  res.sendStatus(200);
+                  res.json(newComment);
                 }
                 else {
                   res.sendStatus(500);
