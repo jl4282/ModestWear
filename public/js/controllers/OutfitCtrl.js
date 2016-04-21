@@ -30,7 +30,8 @@ app.controller('OutfitCtrl', ['$scope', 'UserSrvc', 'OutfitSrvc', 'Clothing', '$
 
   $scope.toggleInOutfit = function(clothing){
     //check if in Outfit, if clothing is undefined, empty, or within the Outfit
-
+    console.log("TOGGLING IN OUTFIT");
+    console.log($scope.clothing);
     if ($scope.clothing && (($scope.clothing.length === 0) || (!$scope.inOutfit(clothing._id)))) {
       //not in Outfit - add to it
       Outfit.addToOutfit($scope.Outfit._id, clothing._id).then(function(res){
@@ -61,6 +62,11 @@ app.controller('OutfitCtrl', ['$scope', 'UserSrvc', 'OutfitSrvc', 'Clothing', '$
         $scope.Outfit.comment = res.data;
       }
     });
+  }
+
+  $scope.delete = function(styleId) {
+    console.log('deleting style: ' + styleId);
+
   }
 
 }]);

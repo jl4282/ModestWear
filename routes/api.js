@@ -459,6 +459,24 @@ router.delete('/outfit/remove/:outfitId/:clothingId', function(req, res, next){
   }
 });
 
+router.delete('/outfit/remove/:outfitId', function(req, res, next){
+  // remove clothing from style
+  if (req.user && (req.user.styles.indexOf(req.params.outfitId) > -1)){
+    Outfit.remove({_id: req.params.outfitId}, function(err){
+      console.log(err);
+      if (!err){
+        res.sendStatus(200);
+      }
+      else {
+        res.sendStatus(500);
+      }
+    });
+  }
+  else {
+    res.sendStatus(403);
+  }
+});
+
 router.get('/style/:slug', function(req, res, next){
   console.log('in getStyle');
   Style.findOne({slug: req.params.slug}).populate('clothes').populate('outfits').populate('comment').exec(function(err, style){

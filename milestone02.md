@@ -1,10 +1,13 @@
-Setup Instructions:
+# Milestone 2
+
+### Setup Instructions:
 - Download
 - run `npm install`
 - run `bower install`
+- run mongod
 - compile less and run scraping algorithms by typing `grunt scrape` in the terminal
 
-Run By:
+### Run By:
 - mongod
 - node bin/www
 
@@ -18,3 +21,6 @@ Run By:
 	- [x] Grunt
 	- [x] JSHint -> (run grunt)
 	- [x] Less -> (run grunt)
+
+#### Just a note 
+The secrets.js file has to be included for this, to allow you to run the proeject. On our actual, global directory, I have it included in our .gitignore, but in this, since it's private, I've included it. 
