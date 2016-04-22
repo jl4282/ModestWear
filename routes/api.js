@@ -48,7 +48,7 @@ router.get(/\/search.*/, function(req, res, next){
   // console.log(req.query);
   var searchType = 'clothing';
   if (req.query && req.query.limit){
-    limit = req.query.limit;
+    limit = parseInt(req.query.limit);
   }
   if (req.query && req.query.searchType){
     searchType = req.query.searchType;
@@ -73,10 +73,10 @@ router.get(/\/search.*/, function(req, res, next){
   // if (searchType === 'clothing'){
   model[searchType].find(query).limit(limit).exec(function(err, result, count){
     if (!err){
-      console.log(result);
       res.json(result);
     }
     else {
+      console.log('error is... ', err);
       res.sendStatus(500);
     }
   });
