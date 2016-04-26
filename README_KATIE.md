@@ -1,13 +1,13 @@
 # ModestWear - Katie's Additions
 
 ## New Features
-- [ ] Implement an Outfits feature
+- [x] Implement an Outfits feature
   - [x] Create outfits and be able to add to them
   - [x] Update DB with outfits
   - [x] Comments for outfits
-  - [ ] Delete outfits
-- [ ] Styles
-  - [ ] Delete style 
+  - [x] Delete outfits
+- [x] Styles
+  - [x] Delete style 
   - [x] Set up comments for styles
 - [x] Comments
   - [x] Set up routing for comments

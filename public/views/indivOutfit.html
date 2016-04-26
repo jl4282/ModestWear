@@ -1,14 +1,21 @@
 <div layout-padding>
   <div layout="row" flex="100">
     <div layout="column" flex="70">
-      <h1>{{outfit.name}}</h1>
-      <h3 data-ng-if="outfit.comment">Any comments: {{outfit.comment.name}}</h3>
+      <div layout="row" flex="100">
+        <h1>{{outfit.name}}</h1>
+      </div>
+      <div layout="row" flex="100">
+        <md-button class=" md-raised md-warn" data-ng-click="deleteOutfit()" data-ng-if="owner()">Delete "{{outfit.name}}"</md-button>
+      </div>
+      
+      <h3 data-ng-if="outfit.comment">Comments: {{outfit.comment.name}}</h3>
       <h4 data-ng-if="!outfit.comment">Enter a comment with the form on the right</h4>
+
     </div>
     <div layout="column" flex="30">
       <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
         <!-- TODO : NEED SOMETHING TO COMMIT TO submit(contactForm) -->
-        <form name="commentOutfit" data-ng-submit="comment(Outfit._id, form.comment)" novalidate data-ng-if="!sent">
+        <form name="commentOutfit" data-ng-submit="comment(outfit._id, form.comment)" novalidate data-ng-if="!sent">
           <md-input-container class="md-block">
               <label>Comment</label>
               <input ng-model="form.comment" type="text", name="comment" required>
@@ -19,7 +26,6 @@
             <md-button class="md-block md-raised md-primary" type="submit" data-ng-disabled="contactForm.$invalid">Submit</md-button>
         </form>
       </md-content>
-      <md-button class=" md-raised md-warn" data-ng-click="deleteOutfit()" data-ng-if="owner()">Delete</md-button>
     </div>
   </div>
 </div>

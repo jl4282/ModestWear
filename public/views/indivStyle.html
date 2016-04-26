@@ -1,8 +1,14 @@
 <div layout-padding>
   <div layout="row" flex="100">
     <div layout="column" flex="70">
-      <h1>{{style.name}}</h1>
-      <h3 data-ng-if="style.comment">Any comments: {{style.comment.name}}</h3>
+      <div layout="row" flex="100">
+        <h1>{{style.name}}</h1>
+      </div>
+      <div layout="row" flex="100">
+        <md-button class=" md-raised md-warn" data-ng-click="deleteStyle()" data-ng-if="owner()">Delete "{{style.name}}"</md-button>
+      </div>
+      
+      <h4 data-ng-if="style.comment">Comments: {{style.comment.name}}</h4>
       <h4 data-ng-if="!style.comment">Enter a comment with the form on the right</h4>
     </div>
     <div layout="column" flex="30">
@@ -19,7 +25,6 @@
             <md-button class="md-block md-raised md-primary" type="submit" data-ng-disabled="contactForm.$invalid">Submit</md-button>
         </form>
       </md-content>
-      <md-button class=" md-raised md-warn" data-ng-click="deleteStyle()" data-ng-if="owner()">Delete</md-button>
     </div>
   </div>
 </div>
