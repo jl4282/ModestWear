@@ -1,7 +1,6 @@
+// Grunt tasks
 module.exports = function(grunt) {
-  // Do grunt-related things in here
-  // grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
-
+  // Initialize the grunt tasks
   grunt.config.init({
   	jshint: {
     	all: ['public/*.js', 'routes/*.js', 'Gruntfile.js', 'Scraping/junees.js', 'Scraping/modeSty.js', 'Scraping/kosherCasual.js', './*.js']
@@ -18,22 +17,20 @@ module.exports = function(grunt) {
 		         paths: ["assets/css"],
 		         cleancss: true
 		     },
+         // Compile less into the css
 		     files: {"public/stylesheets/style.css": "public/stylesheets/style.less"}
 		 }
   	}
   });
-
-  /*
-	Running the command 'grunt' will run the defaut task which is jshint, and compile less
-  */
+  
+	// Running the command 'grunt' will run the defaut task which is jshint, and compile less
   grunt.registerTask('default', ['less', 'jshint']);
 
-/*
-  https://github.com/gruntjs/grunt-contrib-less
+  /*
+    https://github.com/gruntjs/grunt-contrib-less
 
-  http://www.wearecube.ch/from-less-to-css-with-grunt-js/
-*/
-
+    http://www.wearecube.ch/from-less-to-css-with-grunt-js/
+  */
   grunt.registerTask('scrape', 'runs all the scraping algorithms', function(){
   	// run each scraping algorithm
   	var done = this.async();

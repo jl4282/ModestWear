@@ -25,12 +25,12 @@
 - [x] Set up Contact Me Form 
   - [x] Use parsley for Client Side Validation
 - [ ] Grunt 
-  - [x] Use CSS Preprocessor
-  - [x] Run scraping algorithms using grunt
-  - [x] Automate running the scraping algorithms - just an idea for now (?)
+  - [x] Use CSS Preprocessor - Less is compiled by Grunt (in terminal command `grunt`)
+  - [x] Run scraping algorithms using grunt - run by typing `grunt scrape`
+  - [ ] Automate running the scraping algorithms
   - [ ] Make it not fail if there are errors in JSHint
   - [x] Run JSHint to fix mistakes in the code
-    - [x] Fix the code from JSHint
+    - [x] Fix the code from JSHint - by running `grunt`. The screenshot of the fixed stylistic errors is in /documentation/JSHint_Finished_Fixing.png
 - [x] Angular MD 
 
 #### Requirements
@@ -59,22 +59,20 @@
   - [x] Forms to comment on outfits and styles
 
 ##### Additional Requirements
-- [x] Grunt: 1 point
-- [x] JSHint: 1 point
-- [x] CSS Preprocessor: less (public/stylesheets/style.less): 1 point
-- [x] Client Side Validation: Angular: 2 point
-- [x] Angular MD: 1 point
-- [x] Client Side JS Library: Angular: 1 point
-
-1 + 1 + 1 + 2 + 1 + 1 = 7 -> so if I don't get everything done, I'm good?
+- [x] Grunt: 1 point - run `grunt`
+- [x] JSHint: 1 point - again, run `grunt`
+- [x] CSS Preprocessor: less (public/stylesheets/style.less): 1 point - also run by running `grunt`
+- [x] Client Side JS Library: Angular: 2 point - although this was already implemented, I still needed to learn how Angular worked and figure out the code structure to implement the Search, Outfits, forms, and edit the Styles feature. I'm including the ng core model, ngRoute and angular-md in this, which I think should give me 2 points.
+- [x] Client Side Validation: Angular Validation: 1 point 
+So Grunt (1) + JSHint (1) + Less (1) + Angular (2) + Angular Validation (1) = 6
 
 ## Modules / Concepts
 - [Grunt](http://gruntjs.com/) - Automate running the scraping algorithm
-- [JSHint / JSLint](http://jshint.com/) - Make sure that the coding style is up to par
-- [Angular Validation](https://docs.angularjs.org/guide/forms) - Client-side form validation library
-- [Angular MD](https://material.angularjs.org/latest/) - Enhance to make it responsive and look better
+- [JSHint](http://jshint.com/) - Make sure that the coding style is up to par
 - [Less](http://lesscss.org/)
 - [Angular.js](https://angularjs.org/) - Client Side Library, use it for routing
+- [Angular Validation](https://docs.angularjs.org/guide/forms) - Client-side form validation library
+- [Angular MD](https://material.angularjs.org/latest/) - Enhance to make it responsive and look better
 
 ## Site Map
 ![sitemap page image](/documentation/SiteMap.jpg?raw=true "SiteMap")
