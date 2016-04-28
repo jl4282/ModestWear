@@ -64,7 +64,8 @@
 - [x] CSS Preprocessor: less (public/stylesheets/style.less): 1 point - also run by running `grunt`
 - [x] Client Side JS Library: Angular: 2 point - although this was already implemented, I still needed to learn how Angular worked and figure out the code structure to implement the Search, Outfits, forms, and edit the Styles feature. I'm including the ng core model, ngRoute and angular-md in this, which I think should give me 2 points.
 - [x] Client Side Validation: Angular Validation: 1 point 
-So Grunt (1) + JSHint (1) + Less (1) + Angular (2) + Angular Validation (1) = 6
+
+Grunt (1) + JSHint (1) + Less (1) + Angular (2) + Angular Validation (1) = 6
 
 ## Modules / Concepts
 - [Grunt](http://gruntjs.com/) - Automate running the scraping algorithm
