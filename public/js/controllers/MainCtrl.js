@@ -36,14 +36,16 @@ app.controller('MainCtrl', ['$scope', 'Clothing', 'UserSrvc', 'StyleSrvc', 'Outf
     }
     if (query){
       var params = {};
+      params.searchType = $scope.searchRadio[$scope.searchType].value;
       if (query.type){
         params.type = query.type;
+        params.searchType = 'clothing'
       }
       else {
         params.description = query;
       }
-      params.searchType = $scope.searchRadio[$scope.searchType].value;
-      console.log(params);
+      
+      // console.log(params);
       $location.path('/search/').search(params);
     }
   };

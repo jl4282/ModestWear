@@ -8,7 +8,7 @@
     <md-card>
        <a href="/outfits/{{o.slug}}">
          <md-card-content>
-           <p><a href="/outfits/{{o.slug}}">{{o}}</a></p>
+           <p><a href="/outfit/{{o.slug}}">{{o}}</a></p>
          </md-card-content>
     </md-card>
   </div>
@@ -83,18 +83,18 @@
 <div flex="20" layout="column" ng-repeat="outfit in outfits">
           <!-- {{outfit.clothes}} -->
   <md-card>
-    <a href="/outfits/{{outfit.slug}}"><img id="outfit-{{$index}}" src="outfits.coverImage" class="md-card-image" alt="{{outfit.name}}"></a>
+    <a href="/outfit/{{outfit.slug}}"><img id="outfit-{{$index}}" src="outfits.coverImage" class="md-card-image" alt="{{outfit.name}}"></a>
     <md-card-content>
-      <p><a href="/outfits/{{outfit.slug}}">{{outfit.name}}</a></p>
+      <p><a href="/outfit/{{outfit.slug}}">{{outfit.name}}</a></p>
       <!-- <p>{{outfit}}</p> -->
     </md-card-content>
   </md-card>
 </div>
 <div flex="20" layout="column" ng-repeat="style in styles">    
   <md-card>
-    <a href="/styles/{{style.slug}}"><img id="style-{{$index}}" src="styles.coverImage" class="md-card-image" alt="{{style.name}}"></a>
+    <a href="/style/{{style.slug}}"><img id="style-{{$index}}" src="styles.coverImage" class="md-card-image" alt="{{style.name}}"></a>
     <md-card-content>
-      <p><a href="/styles/{{style.slug}}">{{style.name}}</a></p>
+      <p><a href="/style/{{style.slug}}">{{style.name}}</a></p>
     </md-card-content>
   </md-card>
 </div>
