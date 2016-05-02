@@ -39,6 +39,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
+    // TODO CHANGE TO : http://i6.cims.nyu.edu:12266/
     callbackURL: "http://localhost:4000/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {

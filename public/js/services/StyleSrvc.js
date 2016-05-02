@@ -56,6 +56,14 @@ app.factory('StyleSrvc', ['$http',
     });
   };
 
+  var searchStyle = function(){
+    var params = {searchType : 'styles'};
+    return $http.get('/api/search', {
+      params: params
+    }).then(function(resp){
+      return resp.data;
+    });
+  };
   return {
     createStyle : createStyle,
     getStyles : getStyles,
@@ -65,6 +73,7 @@ app.factory('StyleSrvc', ['$http',
     // searchStyles : searchStyles
     addToStyle : addToStyle,
     removeFromStyle : removeFromStyle,
-    deleteStyle : deleteStyle
+    deleteStyle : deleteStyle,
+    searchStyle : searchStyle
   };
 }]);

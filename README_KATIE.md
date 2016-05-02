@@ -12,9 +12,6 @@
 - [x] Comments
   - [x] Set up routing for comments
   - [x] Integrate comments with outfits and styles on the respective pages
-- [ ] Set up a way to follow outfits, styles, and users
-  - [ ] Unfollow outfits/styles/users
-  - [ ] Be able to follow them
 - [x] Search for outfits, styles and users
   - [x] Edit the form to choose if you want to search for outfits, styles, or clothing
   - [x] Actually search for it
@@ -24,18 +21,15 @@
   - [x] Make the routes load pictures from styles and outfits
 - [x] Set up Contact Me Form 
   - [x] Use parsley for Client Side Validation
-- [ ] Grunt 
+- [x] Grunt 
   - [x] Use CSS Preprocessor - Less is compiled by Grunt (in terminal command `grunt`)
   - [x] Run scraping algorithms using grunt - run by typing `grunt scrape`
-  - [ ] Automate running the scraping algorithms
-  - [ ] Make it not fail if there are errors in JSHint
   - [x] Run JSHint to fix mistakes in the code
     - [x] Fix the code from JSHint - by running `grunt`. The screenshot of the fixed stylistic errors is in /documentation/JSHint_Finished_Fixing.png
-- [x] Angular MD 
 
 #### Requirements
 ##### Core Requirements
-- [ ] 5 New Route Handlers (there are much more than 5): 
+- [x] 5 New Route Handlers (there are much more than 5): 
   - [x] Search
     - [x] Search Outfits
     - [x] Search Styles
@@ -46,7 +40,6 @@
     - [x] Delete
     - [x] Get outfits with images
     - [x] Get individual outfit
-  - [ ] Following
   - [x] Contact Me Form
   - [x] Comments Forms
 - [x] 4 Mongoose Schemas: 
@@ -62,11 +55,15 @@
 - [x] Grunt: 1 point - run `grunt`
 - [x] JSHint: 1 point - again, run `grunt`
 - [x] CSS Preprocessor: less (public/stylesheets/style.less): 1 point - also run by running `grunt`
-- [x] Client Side JS Library: Angular: 2 point - although this was already implemented, I still needed to learn how Angular worked and figure out the code structure to implement the Search, Outfits, forms, and edit the Styles feature. I'm including the ng core model, ngRoute and angular-md in this, which I think should give me 2 points.
+- [x] Client Side JS Library: Angular: 2 point - although this was already implemented, I still needed to learn how Angular worked and figure out the code structure to implement the Search, Outfits, forms, and edit the Styles feature. I'm including the _ng core_ model, _ngRoute_ and _angular-md_ in this, which I think should give me 2 points.
 - [x] Client Side Validation: Angular Validation: 1 point 
 
 Grunt (1) + JSHint (1) + Less (1) + Angular (2) + Angular Validation (1) = 6
 
+##### Things That I Didn't Get To / Next Steps:
+- [ ] Following - Allowing the user to keep track of other people's users, outfits, and styles.
+- [ ] Automate the running of the scraping algorithms - Every so often, continuously check if there is new clothing on the sites of the scraping algorithms, to keep the clothing current.
+ 
 ## Modules / Concepts
 - [Grunt](http://gruntjs.com/) - Automate running the scraping algorithm
 - [JSHint](http://jshint.com/) - Make sure that the coding style is up to par
@@ -103,7 +100,7 @@ Grunt (1) + JSHint (1) + Less (1) + Angular (2) + Angular Validation (1) = 6
   - A user can copy a style from another user
 - Postconditions: The style will appear on the user's profile
 
-####Following
+####Following - INCOMPLETE
 - Summmary: Seeing the outfits, styles, and even users that you like compiled in one place
 - Rationale: Certain people have similar styles, so it would be nice to be able to search and favorite users. Similarly, it would be nice to follow outfits and styles, ideally to also have a recommendation algorithm that would see what clothing are usually paired together for similar users and suggested. 
 - Users: All users

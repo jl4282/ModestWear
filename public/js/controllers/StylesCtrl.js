@@ -17,7 +17,14 @@ app.controller('StylesCtrl', ['$scope', '$location', '$routeParams', '$http',
     $http.post('/api/style/delete/', $scope.form).then(function(res){
       console.log('Called API to remove style');
     });
-  }
+  };
+
+  $scope.searchStyles = function(){
+    console.log("IN SEARCH STYLES");
+    params = { 'searchType' : 'searchAllStyles' };
+    console.log(params);
+    $location.path('/search/').search(params);
+  };
 
   // $scope.search = function(query) {
   // 	$scope.showSearch = false;

@@ -75,9 +75,9 @@
   mongoose.model('Style', Style);
   mongoose.model('Comment', Comment);
   mongoose.model('User', User);
-
+  // TODO : CHANGE TO http://i6.cims.nyu.edu:12266/
   if (process.env.NODE_ENV === 'PROD'){
-    mongoose.connect('mongodb://localhost:10371/userdb'); // TODO: CHANGE TO MY PORT NUMBER WHEN ASSIGNED
+    mongoose.connect('mongodb://localhost:12266/userdb'); // TODO: CHANGE TO MY PORT NUMBER WHEN ASSIGNED
   }
   else {
     mongoose.connect('mongodb://localhost/mwdb');

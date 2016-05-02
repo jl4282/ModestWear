@@ -50,9 +50,11 @@ router.get(/\/search.*/, function(req, res, next){
   if (req.query && req.query.limit){
     limit = parseInt(req.query.limit);
   }
+  // set search type to clothing/styles/outfits
   if (req.query && req.query.searchType){
     searchType = req.query.searchType;
   }
+  // get the query
   if (req.query && req.query.description){
     if (searchType === 'clothing'){
       query.description = new RegExp(decodeURIComponent(req.query.description), 'i');  
@@ -61,6 +63,7 @@ router.get(/\/search.*/, function(req, res, next){
       query.name = new RegExp(decodeURIComponent(req.query.description), 'i');
     }
   }
+  // I don't think this does anything...
   if (req.query && req.query.type){
     query.type = req.query.type;
   }
@@ -71,15 +74,30 @@ router.get(/\/search.*/, function(req, res, next){
   };
   // Find outfits
   // if (searchType === 'clothing'){
-  model[searchType].find(query).limit(limit).exec(function(err, result, count){
-    if (!err){
-      res.json(result);
-    }
-    else {
-      console.log('error is... ', err);
-      res.sendStatus(500);
-    }
-  });
+  console.log(model[searchType]);
+  if (query) {
+    model[searchType].find(query).limit(limit).exec(function(err, result, count){
+      if (!err){
+        console.log('result:', result);
+        res.json(result);
+      }
+      else {
+        console.log('error is... ', err);
+        res.sendStatus(500);
+      }
+    });
+  }
+  else {
+    model[searchType].find({}, function(err, result, count){
+      if (!err){
+        res.json(result);
+      }
+      else {
+        console.log('error is... ', err);
+        res.sendStatus(500);
+      }
+    });
+  }
   
 });
 

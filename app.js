@@ -32,7 +32,7 @@ var app = express();
 
 function getCallback(){
   if (process.env.NODE_ENV === 'PROD'){
-    return "http://i6.cims.nyu.edu:10370/auth/facebook/callback";
+    return "http://i6.cims.nyu.edu:12266/auth/facebook/callback";
   }
   return "http://localhost:3000/auth/facebook/callback";
 }
